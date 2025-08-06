@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<!-- <button id="myBtn">Resolve</button> -->
+
+		<script>
+			window.addEventListener("click", (e) => {
+				const { clientX, clientY } = e;
+
+				const divs = document.querySelectorAll("div");
+
+				if (divs.length == 2) {
+					divs.forEach((val) => val.remove());
+					return;
+				}
+
+				const size = Math.random() * (500 - 100) + 100;
+				const newDiv = document.createElement("div");
+
+				newDiv.style.height = `${size}px`;
+				newDiv.style.width = `${size}px`;
+				newDiv.style.borderRadius = "50%";
+				newDiv.style.border = "1px solid red";
+				newDiv.style.position = "absolute";
+				// newDiv.style.left = clientX + "px";
+				// newDiv.style.right = clientX + "px";
+				newDiv.style.left = `${clientX - size / 2}px`;
+				newDiv.style.top = `${clientY - size / 2}px`;
+
+				document.body.appendChild(newDiv);
+
+				divs.forEach((val) => {
+					console.log(newDiv.style.left);
+					console.log(val.style.left);
+
+					if (newDiv.style.left == val.style.left) {
+						console.log("worked");
+					} else {
+						console.log("not worked");
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
