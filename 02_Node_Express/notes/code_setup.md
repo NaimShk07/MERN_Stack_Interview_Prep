@@ -33,7 +33,7 @@ mkdir -p project_name/src/{config,controllers,middlewares,models,routes,utils} \
 ## npm
 
 - npm init -y
-- npm install express dotenv cors mysql2
+- npm install express dotenv cors helmet morgan mysql2
 - npm install --save-dev nodemon prettier
 
 ## Script

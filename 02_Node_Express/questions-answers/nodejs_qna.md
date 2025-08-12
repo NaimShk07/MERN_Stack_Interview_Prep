@@ -57,3 +57,8 @@
 
 - It's a core Node.js module for creating web servers.
 - You can handle requests and responses directly without using any external libraries like Express.
+
+10. Dev Vs Normal Dependencies
+
+- Needed only during development, not in production. ex. cors, morgan
+- Needed for your app to run in production. ex. prettier, nodemon

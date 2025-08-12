@@ -147,3 +147,11 @@
 22. Validation (basic & libraries like Formik, Yup)
 23. Context API
 24. Redux Toolkit (createSlice, configureStore)
+25. why do we use react
+26. what makes react different from other and javascript
+27. what is vite why it is faster
+28. what is react element
+29. what is fragment and why we use it
+30. what foreach returns
+31. redux vs contextapi
+32. what is compiler

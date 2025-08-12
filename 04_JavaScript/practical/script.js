@@ -1,4 +1,4 @@
-// promist without new keyword
+// promise without new keyword
 
 async function myPromise() {
 	return "resolved";

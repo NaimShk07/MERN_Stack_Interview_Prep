@@ -41,7 +41,7 @@
 - Use arrow functions for short tasks and when you want to inherit this.
 - Use regular functions when you need your own this, arguments, or hoisting.
 
-1. this keyword
+8. this keyword
 
 - this keyword is special keyword in javascript which changes it's value in different context
 - in global scope similar like call but
@@ -92,8 +92,8 @@
 - filter: Creates a new array with element that pass a condition.
 - reduce: Reduces the array to a single value.
 - find: Returns the first element that matches a condition.
-- some: Returns true if at least one element matches the condition.
-- every: Returns true if all elements match the condition.
+- some(or): Returns true if at least one element matches the condition.
+- every(and): Returns true if all elements match the condition.
 
 17. Object/Array destructuring, spread/rest operator
 
@@ -143,3 +143,4 @@
 39. Flatten array
 40. Unique values
 41. moduel scope and type of scopes
+42. memoize function

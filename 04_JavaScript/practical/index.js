@@ -140,3 +140,80 @@ console.log(findMissing([1, 2, 5, 6, 8, 3, 20, 10]));
 // 19. Check if an array is sorted
 
 // 20. Convert Roman numerals to integers
+
+// Data transformation
+let input = [
+	{ key: "sample1", data: "data1" },
+	{ key: "sample3", data: "data4" },
+	{ key: "sample3", data: "data5" },
+	{ key: "sample2", data: "data2" },
+	{ key: "sample2", data: "data3" },
+	{ key: "sample3", data: "data1" },
+];
+let output = {
+	sample1: [{ key: "sample1", data: "data1" }],
+	sample2: [
+		{ key: "sample2", data: "data2" },
+		{ key: "sample2", data: "data3" },
+	],
+	sample3: [
+		{ key: "sample3", data: "data4" },
+		{ key: "sample3", data: "data5" },
+		{ key: "sample3", data: "data1" },
+	],
+};
+let obj = {};
+
+input.forEach((value) => {
+	if (!obj.hasOwnProperty(value.key)) {
+		obj[value.key] = [];
+	}
+	obj[value.key].push(value);
+});
+
+// Memoize Function
+
+const map = new Map();
+
+function memoizeOne(func) {
+	function temp(...args) {
+		const key = args.join("-"); // '1-2'
+
+		if (map.has(key)) {
+			console.log("getting from cache");
+			return map.get(key);
+		}
+
+		const result = func(...args);
+		map.set(key, result);
+		return result;
+	}
+	return temp;
+}
+
+const add = (a, b) => a + b;
+
+const memoizeAdd = memoizeOne(add);
+
+console.log(memoizeAdd(1, 2));
+console.log(memoizeAdd(1, 2));
+console.log(memoizeAdd(2, 2));
+console.log(memoizeAdd(2, 2));
+console.log(memoizeAdd(1, 2));
+
+// Flatten the array
+
+function flattenArr(a) {
+	let result = [];
+	a.forEach((value) => {
+		if (Array.isArray(value)) {
+			result = result.concat(flattenArr(value));
+		} else {
+			result.push(value);
+		}
+	});
+	return result;
+}
+
+const arr = [1, 2, 3, [4, [5, 6]], 7, 8];
+console.log(flattenArr(arr));
