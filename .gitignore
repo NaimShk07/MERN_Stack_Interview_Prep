@@ -40,8 +40,9 @@ build/Release
 
 02_Node_Express/code-snippets/node_modules
 02_React/code-snippets/node_modules
+03_MongoDB/code-snippets/node_modules
 02_Node_Express/code-snippets/.env
-MissedInterviewQuestion/
+# MissedInterviewQuestion/
 
 # Dependency directories
 node_modules/
