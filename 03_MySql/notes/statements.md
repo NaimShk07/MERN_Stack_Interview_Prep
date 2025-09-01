@@ -1,0 +1,5 @@
+- DDL (Data Definition Language) : `CREATE`, `ALTER`, `RENAME`, `TRUNCATE`, `DROP`
+- DQL (Data Query Language) : `SELECT`
+- DML (Data Manipulation Language) : `INSERT`, `UPDATE`, `CALL`, `DELETE`
+- DCL (Data Control Language) : `GRANT`, `REVOKE`
+- TCL (Transaction Control Language) : `START TRANSACTION`, `COMMIT`, `ROLLBACK`, `SAVEPOINT`

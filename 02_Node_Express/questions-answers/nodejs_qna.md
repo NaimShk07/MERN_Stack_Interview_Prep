@@ -62,3 +62,104 @@
 
 - Needed only during development, not in production. ex. cors, morgan
 - Needed for your app to run in production. ex. prettier, nodemon
+
+11. What is the event loop in Node.js?
+
+- Node.js runs on a single thread, using an event loop to handle asynchronous tasks. It offloads I/O tasks to the background (libuv) and picks up the results later, allowing non-blocking execution.
+
+12. Explain single-threaded nature of Node.js.
+
+- Node.js uses a single-threaded event loop for handling requests, but internally it can use worker threads for heavy tasks like file I/O, so it scales with async operations.
+
+13. How does asynchronous programming work in Node?
+
+- Through callbacks, promises, and async/await. While the main thread executes, async tasks run in background and results are queued back to the event loop.
+
+14. Difference between CommonJS and ES6 imports?
+
+- CommonJS uses require/module.exports. ES6 uses import/export. ES6 is static and better optimized, CommonJS is dynamic.
+
+15. How do you handle errors in async code?
+
+- With try...catch in async/await, or .catch() in promises. Also global error handling middleware for Express.
+
+16. What are streams in Node.js?
+
+- Streams allow processing data in chunks instead of loading everything into memory (e.g., file upload/download, large data processing).
+
+17. Express.js
+
+18. What is Express.js and why use it?
+
+- It’s a lightweight Node.js framework for building REST APIs. It simplifies routing, middleware, and request handling.
+
+19. What are middleware functions?
+
+- Functions that execute between request and response. Types:
+  - Application-level (e.g., app.use() for all routes)
+  - Router-level
+  - Error-handling (4 params: err, req, res, next)
+
+10. Difference between app.use() and app.get()?
+
+- app.use() is for middleware (any HTTP method), app.get() handles only GET requests.
+
+11. Difference between query params and route params?
+
+- Query params: /users?name=Ali → req.query.name.
+  Route params: /users/:id → req.params.id.
+
+12. What happens if you don’t call next() in middleware?
+
+- Request will hang since the chain doesn’t continue.
+
+13. How do you secure REST APIs?
+
+- Use JWT for authentication, bcrypt for password hashing, Helmet for setting secure headers, and CORS to control cross-origin requests.
+
+14. What are HTTP methods?
+
+- GET (read), POST (create), PUT (replace), PATCH (update partially), DELETE (remove).
+
+15. PUT vs PATCH?
+
+- PUT replaces the entire resource.
+  PATCH updates only specific fields.
+
+16. HTTP status codes examples?
+
+- 200 OK, 201 Created, 400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found, 500 Server Error.
+
+17. What is idempotency?
+
+- An operation that gives the same result no matter how many times you call it (e.g., PUT, DELETE are idempotent, POST is not).
+
+18. Authentication vs Authorization?
+
+- Authentication = verifying identity (login).
+  Authorization = checking permissions (access control).
+
+19. How does JWT work?
+
+- User logs in → server generates JWT (with secret/private key) → client stores it → sends token in Authorization header → server verifies before allowing access.
+
+20. Advanced Backend
+
+21. What is caching?
+
+- Storing frequently accessed data in memory (like Redis) to reduce DB calls and improve speed.
+
+22. Horizontal vs vertical scaling?
+
+- Vertical = add more power (RAM/CPU) to one server.
+  Horizontal = add more servers to distribute load.
+
+23. How do you deploy a MERN project?
+
+- Backend: AWS/Heroku/DigitalOcean with Node.js.
+  Frontend: Vercel/Netlify.
+  Use NGINX/reverse proxy, manage env variables with dotenv.
+
+24. How do you handle env variables?
+
+- Store secrets in .env, use process.env.VARIABLE in Node.js, never push .env to Git.

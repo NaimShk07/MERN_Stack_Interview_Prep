@@ -155,3 +155,7 @@
 30. what foreach returns
 31. redux vs contextapi
 32. what is compiler
+33. what is lazy loading
+34. code spliting
+35. normalization
+36. organize the code in seperate file

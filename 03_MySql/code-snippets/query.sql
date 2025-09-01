@@ -60,7 +60,8 @@ WHERE
    AND middle_name IS NULL                      -- IS NULL
    AND salary > 3000                            -- Greater than
    AND bonus <= 5000                            -- Less than or equal
-   AND hire_date BETWEEN '2022-01-01' AND '2024-12-31' -- BETWEEN
+   AND hire_date BETWEEN 
+   '2022-01-01' AND '2024-12-31'                -- BETWEEN(Min & Max)
    AND dept_id IN (1, 2, 3)                     -- IN
    AND role NOT IN ('Intern', 'Contractor')     -- NOT IN
    AND email LIKE '%@example.com'               -- LIKE (pattern match)
@@ -292,12 +293,12 @@ SELECT e.emp_id, e.first_name, m.first_name AS manager_name
 FROM employees e, employees m
 where e.manager_id = m.emp_id;
 
--- UNOIN
+-- UNION
 SELECT emp_id FROM employees
 UNION
 SELECT emp_id FROM managers;
 
--- UNOIN ALL
+-- UNION ALL
 SELECT emp_id FROM employees
 UNION ALL
 SELECT emp_id FROM managers;
@@ -319,6 +320,152 @@ FROM employees e
 WHERE NOT EXISTS (
    SELECT 1 FROM managers m WHERE e.emp_id = m.emp_id
 );
+
+-- *AGGREGATE FUNCTION*
+SELECT COUNT(*) FROM employees;           -- Total number of employees
+
+SELECT SUM(salary) FROM employees;        -- Total salary expense
+
+SELECT AVG(bonus) FROM employees;         -- Average bonus
+
+SELECT MIN(hire_date) FROM employees;     -- First hire date
+
+SELECT MAX(salary) FROM employees;        -- Highest salary
+
+SELECT GROUP_CONCAT(name) FROM employees; -- All name seperated by comma 
+
+-- GROUP BY & HAVING
+SELECT dept_id, COUNT(*) AS total_employees
+FROM employees
+GROUP BY dept_id;
+
+SELECT dept_id, COUNT(*) AS total_employees
+FROM employees
+GROUP BY dept_id
+HAVING COUNT(*) > 5;
+
+-- *STRING FUNCTION*
+
+-- CONCAT
+SELECT CONCAT(first_name, ' ', last_name) AS full_name
+FROM employees;
+
+-- SUBSTRING
+SELECT SUBSTRING(first_name, 1, 3) AS short_name
+FROM employees;
+
+-- UPPER / LOWER
+SELECT UPPER(city) AS city_upper, LOWER(state) AS state_lower
+FROM employees;
+
+-- TRIM / LTRIM / RTRIM
+SELECT TRIM('   hello   ') AS cleaned_string;
+
+-- LENGTH
+SELECT LENGTH(TRIM(email)) AS clean_length
+FROM employees;
+
+-- REPLACE
+SELECT REPLACE(email, '@old.com', '@new.com') AS updated_email
+FROM employees;
+
+-- INSTR or POSITION
+SELECT INSTR(email, '@') AS at_position
+FROM employees;
+
+-- *SUB QUERY / NESTED QUERY*
+
+-- Single-Row 
+-- Multi-Row 
+-- Multi-Column 
+-- Correlated 
+-- Nested
+-- Scalar 
+-- Inline 
+
+-- Normal / Single-Row 
+SELECT first_name, salary
+FROM employees
+WHERE salary > (
+   SELECT AVG(salary)
+   FROM employees
+);
+
+-- In / Multi-Row 
+SELECT first_name
+FROM employees
+WHERE dept_id IN (
+   SELECT dept_id
+   FROM departments
+   WHERE location = 'New York'
+);
+
+-- Multi-Column 
+SELECT first_name
+FROM employees
+WHERE (dept_id, job_id) IN (
+   SELECT dept_id, job_id
+   FROM departments
+   WHERE location = 'New York'
+);
+
+-- Exists  / Correlated
+SELECT first_name
+FROM employees e
+WHERE EXISTS (
+   SELECT 1
+   FROM bonuses b
+   WHERE b.emp_id = e.emp_id
+);
+
+-- SCALAR
+SELECT 
+   first_name,
+   (SELECT department_name FROM departments 
+   WHERE departments.dept_id = employees.dept_id) AS dept_name
+FROM employees;
+
+-- INLINE VIEW
+SELECT dept_id, avg_salary
+FROM (
+   SELECT dept_id, AVG(salary) AS avg_salary
+   FROM employees
+   GROUP BY dept_id
+) AS dept_summary
+WHERE avg_salary > 5000;
+
+-- *DATE & TIME FUNCTION*
+
+SELECT
+   order_id,
+
+   NOW() AS current_datetime,
+   CURDATE() AS current_date,
+   CURTIME() AS current_time,
+
+   -- Extracting parts of the order_date
+   DATE(order_date) AS order_only_date,
+   TIME(order_date) AS order_only_time,
+   YEAR(order_date) AS order_year,
+   MONTH(order_date) AS order_month,
+   DAY(order_date) AS order_day,
+   HOUR(order_date) AS order_hour,
+   MINUTE(order_date) AS order_minute,
+   SECOND(order_date) AS order_second,
+
+   DATE_ADD(order_date, INTERVAL 7 DAY) AS one_week_later,
+   DATE_SUB(order_date, INTERVAL 1 MONTH) AS one_month_earlier,
+
+   -- Date difference
+   DATEDIFF(CURDATE(), DATE(order_date)) AS days_since_order,
+
+   -- Timestamp difference in hours
+   TIMESTAMPDIFF(HOUR, order_date, NOW()) AS hours_since_order,
+
+   -- Formatting
+   DATE_FORMAT(order_date, '%W, %M %e %Y %h:%i %p') AS formatted_order_date
+   STR_TO_DATE('16-08-2025', '%d-%m-%Y') as formatted_date
+FROM orders;
 
 
 

@@ -104,10 +104,14 @@
 18. Optional chaining ?., nullish coalescing ??
 
 - Use ?. to avoid crashes on missing properties. Right before the property where parent obj might not exist.
-- Use ?? to set fallback values for only null or undefined.
-- Use || to set fallback values for truthy and falsy value.
 
-19. Module system: import/export, CommonJS vs ESM
+19. && vs ?? vs ||
+
+- && — AND: If the first thing is true, return the second.
+- || — OR: If the first thing is false, use the second.
+- ?? — Nullish Coalescing: If the first thing is null or undefined, use the second.
+
+20. Module system: import/export, CommonJS vs ESM
 
 - CommonJS:
   - require() / module.exports
@@ -144,3 +148,4 @@
 40. Unique values
 41. moduel scope and type of scopes
 42. memoize function
+43. es6 vs before
