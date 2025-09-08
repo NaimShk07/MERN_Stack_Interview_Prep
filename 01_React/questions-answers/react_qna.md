@@ -6,6 +6,8 @@
 - Uses JSX (JavaScript + HTML)
 - Maintains a virtual DOM for efficient rendering
 
+1. What use React, pros and cons?
+
 2. Virtual DOM
 
 - When you use React, you don’t directly change the actual DOM. Instead, React uses a Virtual DOM — a lightweight in-memory copy of the real DOM.

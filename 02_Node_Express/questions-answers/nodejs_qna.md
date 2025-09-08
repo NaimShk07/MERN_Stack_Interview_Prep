@@ -5,7 +5,8 @@
   - Supports non-blocking, event-driven architecture
   - Great for building scalable, real-time applications (e.g., APIs, chat apps)
 
-2. Event-driven architecture
+2. Why use node.js, pros and cons
+3. Event-driven architecture
 
 - Node.js uses an event-driven architecture, meaning it reacts to events instead of following a strict step-by-step sequence.
 - It listens for events (like user actions, file reads, HTTP requests) and runs callback functions when those events occur.
