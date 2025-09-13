@@ -6,13 +6,32 @@
 
 ### 3. What does your day-to-day work look like? What tasks do you typically handle?
 
+## My Day-to-Day Work
+
+- **Requirement Analysis**:  
+  Go through tasks assigned in Jira/Tracker, understand requirements, and clarify with team if needed.
+
+- **Development**:
+
+  - Build and enhance UI components (React/Angular).
+  - Work on backend APIs and database queries when required.
+  - Ensure clean, reusable, and optimized code.
+
+- **Collaboration**:  
+  Participate coordinate with designers, QA, and backend team for smooth delivery.
+
+- **Code Reviews & Learning**:  
+  Review peers’ code, implement feedback, and keep upgrading skills with new tools and best practices.
+
 # 2. Frontend (React, State, Performance, Libraries)
 
 ### 1. What are the key differences between React and vanilla JavaScript?
 
-- Vanilla JavaScript manipulates the DOM manually, which gets messy as the app grows.
+- Vanilla JavaScript manipulates the `DOM` manually, which gets `messy` as the app grows.
+-
 - React makes **UI building** easier with **components, virtual DOM, and state management**.
 - It helps write **clean, reusable, and scalable** code — especially for dynamic UIs.
+-
 - React is built on top of JavaScript, but offers a smarter structure for building apps.
 
 ---
@@ -21,8 +40,8 @@
 
 - React makes UI building faster and cleaner with components and reusable code.
 - It handles DOM updates automatically with the virtual DOM, so no manual DOM code.
-- Managing state and dynamic data is much easier in React.
-- Great for scalable projects — plain JS/HTML gets messy as app size grows.
+- Managing `state` and dynamic data is much easier in React.
+- Great for scalable projects — plain JS/HTML gets `messy` as app size grows.
 
 ---
 
@@ -37,8 +56,8 @@
 
 ### 4. i am fresher how will you explain virtual dom to me
 
-- The **Virtual DOM** is a **copy** of the real DOM, kept in memory by React.
-- Instead of updating the real DOM directly (which is slow), React:
+- The **Virtual DOM** is a **copy** of the real DOM, kept in `memory` by React.
+- Instead of updating the real DOM `directly` (which is slow), React:
   1. Makes changes in the **Virtual DOM** first.
   2. **Compares** it with the previous version (using a process called "diffing").
   3. Only updates the **actual DOM where needed** — not the whole page.
@@ -47,7 +66,7 @@
 
 ### 5. What are Hooks in ReactJS?
 
-- **Hooks** are special functions in React that let you **use state and other features** without writing a class.
+- **Hooks** are special functions in React that let you **use state and other features** without writing a `class`.
 - Introduced in **React 16.8**, they allow you to manage:
   - ✅ State (`useState`)
   - ✅ Side effects (`useEffect`)
@@ -147,18 +166,18 @@ function GrandChild() {
 
 ### 14. What is Redux?
 
-- Redux is a **state management library** that helps manage and centralize the app’s state.
-- It’s useful when your app grows and managing state with only React becomes complex.
+- Redux is a **state management library** that helps `manage` and `centralize` the app’s state.
+- It’s useful when your app `grows` and managing state with only React becomes `complex`.
 - Redux provides a **single source of truth** (a global store) for all your app’s data.
 
 ---
 
 #### 🔧 How Redux Works (Basics)
 
-1. **Store**: Holds the whole app state.
-2. **Actions**: Plain objects describing _what_ happened.
-3. **Reducers**: Functions that update the state based on actions.
-4. **Dispatch**: A method to send actions to reducers.
+1. **Store**: Holds the whole app `state`.
+2. **Actions**: Plain `objects` describing _what_ happened.
+3. **Reducers**: Functions that `update` the state based on `actions`.
+4. **Dispatch**: A method to send `actions` to `reducers`.
 
 ---
 
@@ -167,7 +186,6 @@ function GrandChild() {
 - Use the **`react-redux`** library to connect Redux with React components.
 - Wrap your app in `<Provider store={store}>` to give access to the store.
 - Use `useSelector` to read data and `useDispatch` to send actions.
-- check the code for example
 
 ### 15. Disadvantages of Context API
 
@@ -197,14 +215,14 @@ function GrandChild() {
 ### 18. What is Redux Toolkit? Is it the same as Redux?
 
 - **Redux Toolkit (RTK)** is the **official, recommended way to write Redux logic** today.
-- It is **built on top of Redux**, designed to simplify Redux setup and reduce boilerplate.
+- It is **built on top of Redux**, designed to `simplify` Redux `setup` and reduce `boilerplate`.
 - Provides **pre-configured tools** like `configureStore`, `createSlice`, and `createAsyncThunk` to make Redux easier and faster to use.
 
 ---
 
 #### 🔧 Why use Redux Toolkit?
 
-- Removes the need to write action types, action creators, and reducers separately.
+- Removes the need to write action `types`, action `creators`, and `reducers` separately.
 - Includes **good defaults** for store setup (middleware, devtools).
 - Simplifies async logic with built-in helpers.
 - Encourages **best practices** and safer immutable updates with `Immer` under the hood.
@@ -217,8 +235,6 @@ function GrandChild() {
 - Using Redux Toolkit means you are still using Redux but **in a cleaner, modern way**.
 
 ---
-
-#### 🧠 In Short:
 
 > Redux Toolkit = **Redux, but easier, faster, and less boilerplate**.
 
@@ -290,7 +306,7 @@ function GrandChild() {
 
 ### 22. What is `useCallback` in React?
 
-- `useCallback` is a React **hook** that **memoizes a function**, so it doesn't get recreated on every render.
+- `useCallback` is a React **hook** that **memoizes a function**, so it doesn't get `recreated` on every render.
 - It returns the **same function instance** unless the dependencies change.
 
 #### Example
@@ -301,25 +317,25 @@ const handleClick = useCallback(() => {
 }, []);
 ```
 
-- Without useCallback, this function would be recreated every render.
+- Without useCallback, this function would be `recreated` every render.
 - With useCallback, it stays the same unless dependencies change.
 
 #### ✅ When to Use useCallback?
 
-- To prevent unnecessary re-renders of child components that rely on function props.
+- To prevent unnecessary re-renders of child components that `rely on function props`.
 - Useful when passing functions to:
   - React.memo components
   - Optimized list items
 
 #### ⚠️ Notes
 
-- Don’t overuse it — it's only helpful when functions are passed as props and cause re-renders.
+- Don’t overuse it — it's only helpful when `functions` are passed as `props` and cause re-renders.
 - Functions with no dependencies or frequent changes don’t benefit.
 
 ### 23. What is `useMemo` in React?
 
 - `useMemo` is a React **hook** that **memoizes a computed value** — it recalculates the value **only when its dependencies change**.
-- Used to **optimize performance** by avoiding expensive recalculations on every render.
+- Used to **optimize performance** by avoiding expensive `recalculations` on every render.
 
 #### 🔧 Example
 
@@ -329,12 +345,12 @@ const expensiveResult = useMemo(() => {
 }, [number]);
 ```
 
-- Without useMemo, heavyCalculation runs on every render.
+- Without useMemo, heavyCalculation `runs` on every render.
 - With useMemo, it runs only when number changes.
 
 #### ✅ When to Use useMemo?
 
-- For expensive calculations that don't need to run on every render.
+- For expensive calculations that `don't need to run` on every render.
 - When passing calculated values to child components that rely on memoization (React.memo).
 
 #### ⚠️ Notes
@@ -345,9 +361,9 @@ const expensiveResult = useMemo(() => {
 ### 24. Which routing library is used React project
 
 - React Router is the most commonly used routing library in React projects
-- because it's specifically built for React, supports dynamic and nested routes
+- because it's specifically built for React, supports `dynamic` and `nested` routes
 - integrates well with components, and is well-maintained.
-- It makes navigation and route-based rendering simple and efficient.
+- It makes `navigation` and `route-based` rendering simple and efficient.
 
 # 3. Backend (Node.js, Express.js)
 
@@ -405,10 +421,10 @@ const expensiveResult = useMemo(() => {
 ### 6. Why should we use Express.js if we already have Node.js?
 
 - Node.js is a runtime that runs JavaScript on the server with basic HTTP handling.
-- Express.js is a lightweight framework built on Node.js that simplifies backend development.
+- Express.js is a lightweight framework built on Node.js that `simplifies` backend development.
 - Provides **easy routing** and **middleware** support out of the box.
 - Handles common tasks like parsing requests and managing responses for you.
-- Speeds up API development with less code and better code organization.
+- Speeds up API development with `less` code and `better` code `organization`.
 
 ### 7. Node.js vs Express.js
 
@@ -510,7 +526,7 @@ const expensiveResult = useMemo(() => {
 2. Use `jwt.sign(payload, secret, options)`
 3. Send token to client (usually after login)
 
-🧠 In short: I sign a token with user data and a secret key, then verify it on protected routes.
+>🧠 In short: I sign a token with user data and a secret key, then verify it on protected routes.
 
 ### 2. How do you validate and verify JWT tokens on subsequent API requests?
 

@@ -186,6 +186,7 @@ Now older browsers will understand .includes()!
 
 ## 9. bind/call/apply
 
+- datanova: 38.2
 - All three are used to manually set the value of this.
 - to change function's this value to some object of our choice we can use call apply bind
 - call: change the value of this to a given object

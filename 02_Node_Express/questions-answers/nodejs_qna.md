@@ -125,7 +125,7 @@
 15. PUT vs PATCH?
 
 - PUT replaces the entire resource.
-  PATCH updates only specific fields.
+- PATCH updates only specific fields.
 
 16. HTTP status codes examples?
 

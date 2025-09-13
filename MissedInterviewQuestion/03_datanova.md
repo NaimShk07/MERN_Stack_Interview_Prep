@@ -233,7 +233,7 @@ counter(); // 2
 
 ---
 
-## 19. can we mongodb without javascript
+## 19. can we use mongodb without javascript
 
 - MongoDB can be used with many programming languages.
 - Although MongoDB uses a JavaScript-like syntax in its shell (like db.collection.find()), you don't need to use JavaScript to interact with it in real projects.
@@ -271,7 +271,7 @@ counter(); // 2
 
 ## 23. what is call back hell
 
-- **Callback Hell** refers to a situation in JavaScript where you have multiple nested callbacks, making the code hard to read, maintain, and debug.
+- **Callback Hell** refers to a situation in JavaScript where you have multiple nested callbacks, making the code hard to `read`, `maintain`, and `debug`.
 - This usually happens when you perform many asynchronous operations that depend on each other, and you use callbacks to handle each step.
 
 ---
@@ -448,29 +448,256 @@ const arr = new Array(1, 2, 3); // behind the scenes
 
 ## 35. typeof string, any why ?
 
+- `typeof` shows **primitive type** unless it's a **non-primitive object**.
+- **Strings** like `"hello"` are **primitive**, so:
+
+```js
+typeof "hello"; // "string"
+```
+
 ---
 
 ## 36. why type of array is object and string is string
 
----
-
-## 37. what happen when you write a url and hit enter in browser
+- above
 
 ---
 
-## 38. what is this keyword
+## 37. 🌐 What happens when you type a URL and hit Enter?
+
+- When I hit enter after typing a URL, the browser does a DNS lookup to find the IP, establishes a TCP connection, does a TLS handshake if it's HTTPS, sends an HTTP request, and then starts rendering the response — parsing HTML, applying CSS, running JS — until the full page loads.
+
+### 🧭 Step-by-step Breakdown:
+
+1. **DNS Lookup**
+
+   - URL → IP address using DNS.
+
+2. **TCP Connection**
+
+   - Browser establishes a **TCP handshake** (via port 80/443).
+
+3. **HTTPS (TLS Handshake)**
+
+   - If HTTPS, browser and server exchange certificates and keys.
+
+4. **HTTP Request Sent**
+
+   - Browser sends a **GET** request for the web page.
+
+5. **Server Response**
+
+   - Server sends back HTML, CSS, JS, images, etc.
+
+6. **Browser Rendering**
+
+   - HTML parsed → DOM created
+   - CSS applied → Render Tree
+   - JS executed → Dynamic content loaded
+
+7. **Page Loaded & Displayed**
 
 ---
 
-## 38. call apply bind
+```mermaid
+graph TD
+URL --> DNS_Lookup --> TCP_Connection --> TLS_Handshake --> HTTP_Request --> Server_Response --> Browser_Rendering --> Page_Ready
+```
 
 ---
 
-## 39. console this keyword in browser and node js output ?, why
+## 38. What is `this` keyword in JavaScript?
+
+- `this` refers to the **context** from where a function is called.
+- Its value depends on **how** the function is invoked.
+- In regular functions, it depends on the caller;
+- In arrow functions, it’s lexically inherited from the parent scope.
 
 ---
 
-## 40. what is prototypes
+### 📌 `this` in different contexts:
+
+| Context               | `this` refers to               |
+| --------------------- | ------------------------------ |
+| Global scope          | `window` (in browser)          |
+| Function (non-strict) | `window`                       |
+| Function (strict)     | `undefined`                    |
+| Object method         | That object                    |
+| Class constructor     | The instance being created     |
+| Arrow function        | Lexical (inherits from parent) |
+
+---
+
+### 🧠 Arrow Function Example:
+
+```js
+const obj = {
+	name: "JS",
+	arrowFn: () => {
+		console.log(this); // ❌ Not obj, it's window (or undefined in strict mode)
+	},
+};
+```
+
+```js
+const obj = {
+	name: "JS",
+	normalFn: function () {
+		console.log(this); // ✅ Refers to obj
+	},
+};
+```
+
+---
+
+## 38.1 🌐 What is `this` in Node.js?
+
+- In Node.js, `this` behaves differently than in the browser.
+
+---
+
+### 📌 `this` in different Node.js contexts:
+
+| Context               | `this` refers to                  |
+| --------------------- | --------------------------------- |
+| Global scope          | `{}` (empty object, not `global`) |
+| Inside a function     | `global` (in non-strict mode)     |
+| Inside a class method | Class instance                    |
+| Arrow function        | Lexical scope (same as parent)    |
+
+### 🧪 Example: Global Scope
+
+```js
+console.log(this); // {} in Node.js (not `global`)
+```
+
+### 🧪 Example: Inside a function
+
+```js
+function test() {
+	console.log(this); // global object
+}
+test();
+```
+
+---
+
+## 38.2 🔧 call, apply, bind in JavaScript
+
+- js qna : 9
+- **`call`**: Invokes function with a specified `this` and **arguments listed individually**
+
+  ```js
+  funcName.call(object, arg1, arg2, ...)
+  ```
+
+- **`apply`**: Invokes function with a specified `this` and **arguments passed as an array**
+
+  ```js
+  funcName.apply(object, [arg1, arg2, ...])
+  ```
+
+- **`bind`**: Returns a **new function** with `this` bound and optionally preset arguments
+  ```js
+  const newFn = funcName.bind(object, arg1, arg2, ...)
+  ```
+
+### 🧠 Example:
+
+```js
+function greet(greeting, punctuation) {
+	console.log(greeting + ", " + this.name + punctuation);
+}
+
+const person = { name: "Alice" };
+
+greet.call(person, "Hello", "!"); // Hello, Alice!
+greet.apply(person, ["Hi", "!!!"]); // Hi, Alice!!!
+const boundGreet = greet.bind(person, "Hey", "?");
+boundGreet(); // Hey, Alice?
+```
+
+---
+
+## 39. `console.log(this)` output in Browser vs Node.js, and why?
+
+- **In Browser (global scope):**
+
+```js
+console.log(this); // window object
+```
+
+- `this` points to the global `window` object.
+
+- **In Node.js (global scope):**
+
+```js
+console.log(this); // {}
+```
+
+- `this` points to an **empty object**, not the global object.
+
+---
+
+### 🧠 Why?
+
+- Browsers use `window` as the global object, so `this` in the global scope equals `window`.
+- Node.js wraps each file in a module wrapper, so `this` at the top-level refers to `module.exports` (an empty object `{}`), not the global object.
+
+---
+
+### Example:
+
+```js
+// Browser
+console.log(this === window); // true
+
+// Node.js
+console.log(this === global); // false
+console.log(this); // {}
+```
+
+---
+
+## 40. 🧬 What is a Prototype in JavaScript?
+
+- Every JavaScript object has a hidden internal property: `[[Prototype]]`
+- It points to another object — called the **prototype**.
+- Used for **inheritance** — if a property/method isn’t found on the object, JS looks up the prototype chain.
+
+---
+
+### 📌 Example:
+
+```js
+const obj = {
+	greet() {
+		console.log("Hello");
+	},
+};
+
+const newObj = Object.create(obj);
+newObj.greet(); // Hello (inherited from obj)
+```
+
+---
+
+### 🔍 Function Prototype:
+
+- Every function in JS has a `.prototype` property.
+- Used when creating objects via constructor functions.
+
+```js
+function Person(name) {
+	this.name = name;
+}
+Person.prototype.sayHi = function () {
+	console.log("Hi, " + this.name);
+};
+
+const p = new Person("Alice");
+p.sayHi(); // Hi, Alice
+```
 
 ---
 
@@ -499,178 +726,837 @@ After await
 
 ---
 
-## 42. what is nodejs, why, advantage, disadvantage
+## 42. ⚙️ What is Node.js?
+
+- Node.js is a **runtime environment** that lets you run JavaScript **outside the browser**.
+- Built on **Chrome’s V8 engine**.
+- Uses **`event-driven, non-blocking I/O`**, ideal for scalable network apps.
+
+---
+
+### 💡 Why Use Node.js?
+
+- Run JS on server-side.
+- Build fast, scalable network applications (e.g. APIs, real-time apps).
+- Use JavaScript across the **full stack** (frontend + backend).
+
+---
+
+### ✅ Pros of Node.js
+
+- 🔄 **Non-blocking I/O**: Handles many requests at once.
+- ⚡ **Fast execution**: Uses V8 engine.
+- 🧩 **Single language (JS)** across frontend & backend.
+- 🌐 Huge ecosystem via **npm**.
+- 🤝 Great for **real-time apps** (chat, games).
+
+---
+
+### ⚠️ Cons of Node.js
+
+- 🧵 **Single-threaded**: Not ideal for CPU-heavy tasks.
+- 📚 Callback hell (can be improved with promises/async-await).
+- 🔐 Less mature in some areas compared to traditional backend tech (e.g., .NET, Java).
 
 ---
 
 ## 43. pro and con of node.js
 
+-- 42
+
 ---
 
-## 44. in which use case we should avoid using node.js
+## 44. 🚫 When to Avoid Using Node.js?
+
+- We should avoid Node.js for CPU-heavy or multi-threaded tasks like image processing or large computations. It’s also not ideal for apps that need complex SQL operations or require high security and strict typing.
+
+Avoid Node.js when:
+
+1. **CPU-Intensive Tasks**
+
+   - Examples: Image processing, video encoding, large computations.
+   - Node’s single-threaded model struggles with heavy CPU work.
+
+2. **Multi-threaded Operations Needed**
+
+   - If your app needs native multi-threading (e.g., banking systems, scientific computations), better to use languages like Java, Go, or C++.
+
+3. **Relational-heavy Applications**
+
+   - If your app heavily relies on complex SQL joins & transactions (e.g., ERP systems), traditional backend frameworks (like Spring, .NET) might be more suitable.
+
+4. **Low-Latency, High-Security Systems**
+   - Example: FinTech apps, payment gateways — where synchronous execution and strict type safety matter.
 
 ---
 
 ## 45. what is event loop in node js
 
----
-
-## 46. what is v8 engine
+- js qna 13
 
 ---
 
-## 47. what is rest api
+## 46. ⚙️ What is the V8 Engine?
+
+- V8 is **Google’s open-source JavaScript engine**.
+- It compiles JavaScript directly to **machine code** using **Just-In-Time (JIT)** compilation.
+- Written in **C++**, used in:
+  - Google Chrome (browser)
+  - Node.js (server-side)
+
+---
+
+### 🔥 Key Features:
+
+- **High performance**: Compiles JS to native code at runtime.
+- **Memory management**: Built-in garbage collector.
+- **Cross-platform**: Runs on Windows, macOS, Linux.
+
+---
+
+### 🧠 Why it matters for Node.js:
+
+- Node.js uses V8 to execute JavaScript code **outside the browser**.
+- Makes server-side JS **fast**, **efficient**, and **scalable**.
+
+---
+
+---
+
+## 47. 🌐 What is a REST API?
+
+- REST = **Representational State Transfer**
+- A **REST API** is a way for systems to communicate over HTTP using **standard methods**.
 
 ---
 
 ## 48. difference between put vs patch
 
----
-
-## 49. what is express.js, why, advantage, disadvantage
+- nodejs qna: 15
 
 ---
 
-## 50. what is next functions
+## 49. 🚀 What is Express.js? Why use it? Pros & Cons
+
+### 📘 What is Express.js?
+
+- **Express.js** is a **minimal and flexible Node.js web framework**.
+- Helps in building **web applications and REST APIs** quickly.
+- Built on top of the **Node.js HTTP module**.
 
 ---
 
-## 51. what is package.json
+### 💡 Why Use Express?
+
+- Simplifies handling of **routes**, **requests**, **responses**, and **middleware**.
+- Makes backend development **faster and cleaner** with less boilerplate.
 
 ---
 
-## 52. what is package-lock.json
+### ✅ Pros of Express.js:
+
+- 🧱 **Minimal & unopinionated** – full control over architecture.
+- ⚡ **Fast setup** for APIs and web servers.
+- 🔌 **Middleware support** – easily add logging, auth, error handling.
+- 📦 Huge ecosystem via **npm**.
 
 ---
 
-## 53. difference between package.json vs package-lock.json
+### ⚠️ Cons of Express.js:
+
+- ❌ No built-in structure — can become messy in large apps without conventions.
+- 🛠 Manual setup required for common features (e.g., validation, security).
+- 🧵 Single-threaded — inherits Node.js limitations.
 
 ---
 
-## 54. if i delete one of them, or both will the code/server work ?
+## 50. 🔁 What is `next` Function in Express?
+
+- In Express.js, `next` is a **function** used in middleware to pass control to the **next middleware** or route handler.
 
 ---
 
-## 55. if i delete node modules will the code/server work ?
+### 📘 When is it used?
+
+- Inside **middleware functions** to continue request–response cycle.
+- If `next()` is **not called**, the request will **hang**.
 
 ---
 
-## 56. can we use http module without node modules
+### ⚠️ You can also use:
+
+- `next('route')` → skips to the next route (used in routers).
+- `next(err)` → passes an error to error-handling middleware.
 
 ---
 
-## 57. what is git
+## 51. 📦 What is `package.json`?
+
+- It's the **metadata file** for a Node.js project.
+- Defines the project’s **name, version, scripts, dependencies**, etc.
+- Required to manage packages using **npm** or **yarn**.
 
 ---
 
-## 58. what is database
+## 52. 🔐 What is `package-lock.json`?
+
+- Auto-generated file by **npm**.
+- **Locks** the exact versions of installed dependencies (and their sub-dependencies).
+- Ensures **same install** across all environments.
 
 ---
 
-## 59. before there were file manager, why do we need database
+### 🔍 Why it matters:
+
+- Prevents bugs from version mismatches.
+- Used for **dependency resolution** and faster installs.
 
 ---
 
-## 60. types of database
+## 53. 📦 package.json vs 🔐 package-lock.json
+
+### 📄 package.json
+
+- Manual file (you edit it).
+- Lists project info, scripts, and **dependency ranges** (e.g. ^1.0.0).
+- Used to **declare** what packages the project needs.
+
+---
+
+### 🔒 package-lock.json
+
+- Auto-generated by **npm**.
+- Records **exact versions** of all dependencies (including nested ones).
+- Ensures **consistent installs** across all systems.
+
+---
+
+## 54. What happens if you delete `package.json`, `package-lock.json`, or both?
+
+### 🗑️ Delete `package-lock.json` only:
+
+- ✅ App **will still work**.
+- On next install, `npm` will create a new lock file.
+- But dependency versions might differ slightly (e.g., minor updates).
+
+---
+
+### 🗑️ Delete `package.json` only:
+
+- ❌ App **won’t work**.
+- `npm install` can’t run — it doesn't know what dependencies to install.
+
+---
+
+### 🗑️ Delete both:
+
+- ❌ App breaks unless `node_modules` is already present.
+- You won’t be able to reinstall dependencies cleanly.
+
+---
+
+## 55. 🗑️ What happens if you delete `node_modules`?
+
+- If I delete node_modules, the app won't run. But I can easily restore it with npm install since dependencies are listed in package.json.
+- The **code/server won’t run** — required packages are missing.
+- This reads from `package.json` and `package-lock.json` to reinstall all dependencies.
+
+---
+
+## 56. 🌐 Can we use `http` module without `node_modules`?
+
+- ✅ **Yes**, because `http` is a **core module** in Node.js.
+- Core modules are **built into Node.js** — no need to install via npm.
+
+---
+
+- No need for `node_modules` — this will run as long as Node.js is installed.
+
+---
+
+## 57. 🔧 What is Git?
+
+- **Git** is a **distributed version control system**.
+- Tracks code changes, allows collaboration, and manages project history.
+- Created by **Linus Torvalds** (creator of Linux).
+
+---
+
+### 📌 Key Features:
+
+- Track changes across files and branches.
+- Revert to previous versions.
+- Supports collaboration via platforms like GitHub, GitLab.
+
+---
+
+## 58. What is a Database?
+
+- A **database** is a structured way to **store, manage, and retrieve data**.
+- It allows **efficient access**, **modification**, and **organization** of information.
+
+---
+
+### 📌 Types:
+
+- **SQL (Relational)** → e.g., MySQL, PostgreSQL
+- **NoSQL (Non-relational)** → e.g., MongoDB, Redis
+
+---
+
+## 59. Why use a Database instead of File System?
+
+- Databases provide **structured, efficient data storage** with **fast querying**.
+- Support **concurrent access** by multiple users safely.
+- Provide **data integrity, indexing, transactions, and security**.
+- File systems are simple but **slow and error-prone** for complex data operations.
+
+---
+
+## 60. 🗃️ Types of Databases
+
+1. **Relational Databases (SQL)**
+
+   - Store data in tables with rows and columns.
+   - Use structured query language (SQL).
+   - Examples: MySQL, PostgreSQL, Oracle.
+
+2. **Non-Relational Databases (NoSQL)**
+   - Flexible schema, store data as documents, key-value, graphs, or wide-columns.
+   - Examples: MongoDB (document), Redis (key-value), Cassandra (wide-column).
 
 ---
 
 ## 61. sql vs nosql
 
----
-
-## 62. what is foreign key
+- above
 
 ---
 
-## 63. what is unique key
+## 62. 🔗 What is a Foreign Key?
+
+- A **foreign key** is a field in one table that **refers to the primary key** in another table.
+- It creates a **relationship** between two tables.
 
 ---
 
-## 64. what is orm, orm vs raw query
+## 63. 🆔 What is a Unique Key?
+
+- A **unique key** ensures that **all values in a column are unique**—no duplicates allowed.
+- Similar to primary key but **allows null value**.
+- Used to enforce **data uniqueness** on columns.
 
 ---
 
-## 65. what is transaction
+## 64. ⚔️ ORM vs Raw Query
+
+| Aspect         | ORM                            | Raw Query                    |
+| -------------- | ------------------------------ | ---------------------------- |
+| Syntax         | Uses programming language code | Uses SQL statements directly |
+| Learning Curve | Easier for developers          | Requires SQL knowledge       |
+| Flexibility    | Limited to ORM features        | Full control over queries    |
+| Productivity   | Faster development             | More manual work             |
+| Performance    | Slight overhead                | Usually faster               |
 
 ---
 
-## 66. what is store procedures
+## 🗣️ What to say in the interview:
+
+> "ORM lets you work with databases using code objects, making development easier. Raw queries give full control and can be faster but need SQL expertise."
 
 ---
 
-## 67. store procedures vs function
+## 65. 🔄 What are Transactions?
+
+- A transaction is a **group of database operations** executed as a single unit.
+- All operations must **succeed together** or **fail together** (atomicity).
+- Ensures **data integrity** during concurrent access or errors.
 
 ---
 
-## 68. what is normalization
+### ACID properties:
+
+- **Atomicity:** All or nothing
+- **Consistency:** Valid data state
+- **Isolation:** Transactions don’t interfere
+- **Durability:** Changes persist after commit
+
+- A transaction groups multiple DB operations so they all succeed or fail together, ensuring data integrity with ACID properties.
 
 ---
 
-## 69. what is indexes, why, disadvantage, advantage
+## 66. 📜 What are Stored Procedures?
+
+- Pre-written **SQL code saved in the database**.
+- Executes complex operations or repetitive tasks.
+- Can accept parameters and return results.
+- Improves performance and security by reducing client-server traffic.
 
 ---
 
-## 70. how indexing works under the hood, how it make query faster
+## 67. ## ⚔️ Stored Procedure vs Function in SQL
+
+| Feature            | Stored Procedure                         | Function                                      |
+| ------------------ | ---------------------------------------- | --------------------------------------------- |
+| Return Type        | May return 0 or more values              | Must return **1 value**                       |
+| Use in SQL Queries | Cannot be used in `SELECT` statements    | Can be used in `SELECT`, `WHERE`              |
+| Purpose            | Performs **tasks** (DML: INSERT, UPDATE) | Performs **calculations** and returns a value |
+| Output Parameters  | Supports **IN, OUT, INOUT**              | Only **returns** a value                      |
+| Transactions       | Can contain transaction logic            | Usually **cannot**                            |
+
+> Stored procedures perform actions like insert/update and can return multiple values. Functions return a single value and can be used inside SQL queries.
+
+---
+
+## 68. 🧹 What is Normalization?
+
+- **Normalization** is the process of **organizing data** in a database to reduce **redundancy** and improve **data integrity**.
+- Data is split into multiple related tables using keys.
+
+---
+
+### 📚 Normal Forms:
+
+- **1NF** – Remove repeating groups (atomic values)
+- **2NF** – Remove partial dependencies
+- **3NF** – Remove transitive dependencies
+
+> Normalization reduces duplicate data by splitting it into related tables, making the database more efficient and consistent.
+
+---
+
+## 69. What is an Index in a Database?
+
+- An **index** is a data structure that helps the database **find data faster**.
+- Works like a **book index** — instead of scanning every row, it jumps directly to the needed data.
+
+---
+
+### ✅ Why Use Indexes?
+
+- ⚡ **Improves read/search performance** (e.g., `SELECT`, `WHERE`, `JOIN`)
+- 📈 Essential for large datasets and frequent queries
+
+---
+
+### 👍 Pros:
+
+- 🚀 Faster query performance
+- 🔍 Improves filtering and sorting
+- 📊 Better JOIN performance
+
+---
+
+### ⚠️ Cons:
+
+- 🐢 Slower write operations (`INSERT`, `UPDATE`, `DELETE`)
+- 📁 Takes extra storage
+- ⚙️ Needs to be updated when data changes
+
+> Indexes make data retrieval faster, like a book index. They speed up reads but slow down writes and use extra storage.
+
+---
+
+## 70. ⚙️ How Indexing Works Internally
+
+- Indexes use data structures like **B-Trees** or **Hash Tables**.
+- Instead of scanning the full table, the DB uses the index to **jump directly** to the matching record.
+
+---
+
+### 🧠 Example:
+
+Without index:  
+🔍 Full table scan → checks **every row**.
+
+With index:  
+📚 Uses **tree traversal** to quickly find matching rows.
+
+---
+
+### ⚡ Why It's Faster:
+
+- Reduces **search space** (e.g., O(log n) instead of O(n)).
+- Only accesses relevant rows — improves **query time**, especially on large tables.
+
+> Indexes use structures like B-Trees to reduce search time. Instead of scanning every row, the DB quickly jumps to relevant data — that’s what makes queries much faster.
 
 ---
 
 ## 71. types is indexes
 
+1. **Primary Index**
+
+   - Auto-created on the **primary key**.
+   - Ensures uniqueness.
+
+2. **Unique Index**
+
+   - Prevents duplicate values in a column.
+   - Similar to primary but allows **one NULL** (in most DBs).
+
+3. **Clustered Index**
+
+   - **Sorts the actual data** rows in the table.
+   - Only **one** clustered index per table.
+
+4. **Non-Clustered Index**
+
+   - Creates a **separate structure** pointing to actual data.
+   - You can have **multiple** non-clustered indexes.
+
+5. **Composite Index**
+
+   - Index on **multiple columns**.
+   - Useful for queries filtering by more than one column.
+
+6. **Full-Text Index**
+
+   - Optimized for **searching large text fields** (e.g., articles, descriptions).
+
+7. **Hash Index** (used in some NoSQL DBs like Redis)
+   - Uses **hash tables** for fast lookups (exact matches).
+
+> There are clustered and non-clustered indexes, along with unique, composite, and full-text. Clustered sorts the actual data; non-clustered just points to it.
+
 ---
 
-## 72. can we put index to all the column in the table
+## 72. Can We Add Index to All Columns?
+
+- Technically, **yes**, but **not recommended**.
 
 ---
 
-## 73. what is react.js, why, disadvantage, advantage
+### ⚠️ Why Not:
+
+- 📉 **Write Performance Drops**  
+  Every insert/update/delete must update all indexes.
+
+- 💾 **High Storage Usage**  
+  Indexes consume extra disk space.
+
+- ⚙️ **Slower Maintenance**  
+  More indexes = slower migrations and table updates.
+
+- ❌ **May Not Improve Queries**  
+  Not all columns are used in filters/sorts — indexing them is wasteful.
+
+> We can, but we shouldn't. Indexing every column hurts write performance and storage. Only index columns used in filtering or joining.
 
 ---
+
+### ✅ Best Practice:
+
+- Index only columns used in:
+  - `WHERE`, `JOIN`, `ORDER BY`, `GROUP BY`
+  - Frequently searched or filtered queries
+
+---
+
+## 73. ⚛️ What is React.js?
+
+- **React.js** is a **JavaScript library** for building **user interfaces**.
+- Developed by **Facebook**, it focuses on building **component-based** UIs, mainly for **single-page applications (SPA)**.
+
+---
+
+### ✅ Why Use React?
+
+- 🧩 **Component-based** – reusable, modular UI pieces
+- ⚡ **Fast rendering** with Virtual DOM
+- 🔁 **One-way data binding** for better control
+- 🔥 Huge community & ecosystem
+
+> React is a fast, component-based JS library used to build modern UIs. It’s popular for its performance and reusability, though it’s just the view layer.
+
+---
+
+## 73.2 Pros and Cons
+
+### 👍 Pros:
+
+- 🚀 High performance with Virtual DOM
+- ♻️ Reusable components
+- 🔧 Rich developer tools
+- 🧠 Easy to learn if you know JS
+
+---
+
+### ⚠️ Cons:
+
+- 🧱 Just a library, not full framework
+- 🧩 JSX syntax can be confusing at first
+- 🔁 Frequent updates — ecosystem evolves fast
+
+---
+
+## 73.2 📚 Library vs 🏗️ Framework
+
+| Feature     | Library                  | Framework                       |
+| ----------- | ------------------------ | ------------------------------- |
+| Control     | **You** call the library | **Framework** calls your code   |
+| Flexibility | More flexible            | More structured and opinionated |
+| Usage       | Use only what you need   | Comes with full set of tools    |
+| Example     | React (UI library)       | Angular, Next.js (frameworks)   |
+
+---
+
+### 🎯 Key Rule:
+
+> **Library** → You’re in control  
+> **Framework** → It’s in control
+
+> A library is a tool you call when needed, like React. A framework is a full structure that controls the flow, like Angular or Next.js.
 
 ## 74. why use react.js if we had html css js
+
+- kerinfotech - 2.2
 
 ---
 
 ## 75. what is dom
 
+- kerinfotech - 3
+
 ---
 
 ## 76. what is virtual dom
 
----
-
-## 77. what are components in react.js
+- kerinfotech - 4
 
 ---
 
-## 78. can we make component with class
+## 77. 🧩 What Are Components in React.js?
+
+- Components are **reusable building blocks** of a React UI.
+- Each component represents a **part of the UI** (like buttons, forms, navbars).
+- Can be **functional** or **class-based**.
+
+---
+
+### 🧱 Types of Components:
+
+1. **Functional Component** – Basic JS function using `useState`, `useEffect`, etc.
+2. **Class Component** – Uses ES6 class, with lifecycle methods (`this.state`, `this.setState`)
+
+---
+
+> In React, components are reusable pieces of UI — like functions that return JSX. We mainly use functional components now with hooks.
+
+---
+
+## 78. 🏛️ Can We Make React Components with Class?
+
+- Yes, **class components** are React components defined using ES6 classes.
+- They have **lifecycle methods** and manage their own **state** with `this.state` and `this.setState`.
+- Used before hooks were introduced; still supported but less common now.
+
+---
+
+### 🧪 Example:
+
+```js
+class Hello extends React.Component {
+	render() {
+		return <h1>Hello World</h1>;
+	}
+}
+```
+
+> Yes, React supports class components with lifecycle methods, but functional components with hooks are now preferred.
 
 ---
 
 ## 79. state vs prop
 
+- kerinfotech - 2.9
+
 ---
 
 ## 80. what is hooks
 
+- kerinfotech - 2.5
+
 ---
 
-## 81. difference between useState vs useMemo
+## 81. ⚡ useState vs useMemo in React
+
+- **useState**: Manages state in functional components. When state updates, it triggers a re-render.
+- **useMemo**: Memoizes (caches) expensive calculations or values to optimize performance. It only recalculates when dependencies change and does **not** trigger re-renders.
+
+---
+
+> "useState manages component state and triggers re-renders when updated, while useMemo caches expensive calculations to avoid unnecessary recomputations."
 
 ---
 
 ## 82. let take scenario, you are only full stack developer in the team and frontend is not loading or giving 500 error what are the steps you will take to fix this
 
+### Step-by-step approach:
+
+1. **Check Browser Console & Network Tab**
+
+   - Look for error messages, failed requests, or missing files.
+
+2. **Inspect Server Logs**
+
+   - Check backend logs for errors causing 500.
+
+3. **Check API Endpoints**
+
+   - Test if backend APIs are responding correctly.
+
+4. **Review Environment Configurations**
+
+   - Check if environment variables or configs are correct.
+
+5. **Rollback Recent Changes**
+
+   - If error started after recent updates, revert and test.
+
+6. **Clear Cache & Cookies**
+
+   - Sometimes stale cache causes loading issues.
+
+7. **Use Debugging Tools**
+   - Add logs or debug breakpoints if needed.
+
+> First, I’d check browser errors and server logs for clues. Then verify the build and deployment are correct. I’d test APIs, review configs, and rollback recent changes if needed. Clearing cache and using debugging tools helps pinpoint the issue quickly.
+
 ---
 
-## 83. suppose there is a dashboard and plenty of api is getting called in it how will decide which api is breaking or taking time longer then expected
+## 83. 📊 suppose there is a dashboard and plenty of api is getting called in it how will decide which api is breaking or taking time longer then expected
+
+### ✅ Step-by-step Approach:
+
+1. **Open Browser DevTools → Network Tab**
+
+   - View all API calls, their status codes, and timings.
+   - Sort by **Time** or **Status** to find failing or slow ones.
+
+2. **Check Console for JS Errors**
+
+   - Sometimes API errors show up in logs.
+
+3. **Use API Monitoring Tools**
+
+   - Tools like **Postman, Thunder Client**, or **cURL** to manually test endpoints.
+   - Identify if delay is on frontend or backend.
+
+4. **Add Logging on Backend**
+   - Log time taken for each API at controller/service level.
+   - Helps catch backend bottlenecks.
+
+> I’d use the browser network tab to spot failing or slow APIs, then check logs or APM tools to trace performance issues. Sorting by response time quickly shows the bottlenecks.
 
 ---
 
 ## 84. suppose you got the api which taking time longer then expected so would you speed up the api, what the step you will take in node and db
 
+### 🧪 Step-by-step:
+
+### 🔍 1. **Analyze the API Logic**
+
+- Check for **unnecessary loops**, **large payloads**, or **blocking operations**.
+- Use tools like `console.time()` or profilers to track time.
+
+### 📦 2. **Optimize Database Queries**
+
+- Use **indexes** on frequently filtered columns.
+- Avoid **N+1 queries** (fetching inside loops).
+- Use **projection** – only fetch required fields.
+- Add **pagination** for large result sets.
+
+### 🧠 3. **Add Caching**
+
+- Use **Redis** or in-memory cache for repeated data (e.g., dropdowns, stats).
+- Cache DB queries or responses where real-time data isn’t critical.
+
+### ⚙️ 4. **Async and Non-blocking Code**
+
+- Use `async/await` properly.
+- Avoid long sync operations in request cycle.
+
+### 📉 5. **Connection Handling**
+
+- Reuse DB connections with **connection pooling**.
+- Make sure DB queries aren’t waiting in queue.
+
+> First, I’d analyze the API code for slow logic, then check the DB queries — using indexes, reducing payloads, and paginating results. I’d also add caching where possible and ensure async code is optimized for non-blocking execution.
+
 ---
 
 ## 85. suppose we have 2 gb memory and 4 bit cpu server(fixed non expandable) space and issue is from the server db has indexing , it query fast, and the issue is from server side because millions of request are coming to our server, so how will fix it
 
+### 🖥️ Constraints:
+
+- **2 GB RAM**
+- **4-core CPU**
+- **Millions of requests**
+- **DB is optimized (indexed)**
+
 ---
+
+### ✅ Steps to Fix (Smart Resource Handling):
+
+### 1. **Enable Caching Aggressively**
+
+- Use **Redis** or **in-memory** caching for frequent API responses.
+- Serve static or semi-static data from cache.
+
+---
+
+### 2. **Rate Limiting & Throttling**
+
+- Protect server from abuse:
+
+```js
+// Example with express-rate-limit
+const rateLimit = require("express-rate-limit");
+app.use(rateLimit({ windowMs: 1000, max: 100 }));
+```
+
+---
+
+### 3. **Use Load Balancer or Reverse Proxy**
+
+- Place **Nginx** or **HAProxy** in front to queue, compress, and offload static traffic.
+- Enables better CPU handling.
+
+---
+
+### 4. **Offload Heavy Tasks to Queue**
+
+- Use message queues (e.g., **RabbitMQ**, **Bull**) for background jobs like emails, PDF generation.
+
+---
+
+### 5. **Optimize Code**
+
+- Avoid blocking operations (file sync, heavy loops).
+- Use streaming for large data (e.g., file download/upload).
+
+---
+
+### 6. **Serve Static Files via CDN**
+
+- Offload JS, CSS, images to **Cloudflare**, **S3 + CloudFront**, etc.
+
+---
+
+### 7. **Cluster Mode (if Node.js app)**
+
+- Use all CPU cores with `cluster` or **PM2** to scale horizontally within one machine.
+
+```js
+const cluster = require("cluster");
+const os = require("os");
+if (cluster.isMaster) {
+	for (let i = 0; i < os.cpus().length; i++) {
+		cluster.fork();
+	}
+}
+```
+
+> Since DB is fast but the server is choking, I’d use Redis to cache common responses, add rate limiting to prevent abuse, and run Node in cluster mode to utilize all CPU cores. I'd also offload heavy tasks to a queue and serve static files via CDN to reduce load.
+

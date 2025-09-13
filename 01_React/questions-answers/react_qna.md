@@ -6,7 +6,7 @@
 - Uses JSX (JavaScript + HTML)
 - Maintains a virtual DOM for efficient rendering
 
-1. What use React, pros and cons?
+1. Why use React, pros and cons?
 
 2. Virtual DOM
 
@@ -142,22 +142,23 @@
 - Reconciliation is the process React uses to update the DOM when a component’s state or props change.
 - It compares the new virtual DOM with the previous one and efficiently applies the minimum number of changes to the real DOM.
 
-18. React Router v6
-19. useNavigate, useParams, Outlet
-20. Nested routes
-21. Controlled components
-22. Validation (basic & libraries like Formik, Yup)
-23. Context API
-24. Redux Toolkit (createSlice, configureStore)
-25. why do we use react
-26. what makes react different from other and javascript
-27. what is vite why it is faster
-28. what is react element
-29. what is fragment and why we use it
-30. what foreach returns
-31. redux vs contextapi
-32. what is compiler
-33. what is lazy loading
-34. code spliting
-35. normalization
-36. organize the code in seperate file
+18. Why key is very important in the react
+19. React Router v6
+20. useNavigate, useParams, Outlet
+21. Nested routes
+22. Controlled components
+23. Validation (basic & libraries like Formik, Yup)
+24. Context API
+25. Redux Toolkit (createSlice, configureStore)
+26. why do we use react
+27. what makes react different from other and javascript
+28. what is vite why it is faster
+29. what is react element
+30. what is fragment and why we use it
+31. what foreach returns
+32. redux vs contextapi
+33. what is compiler
+34. what is lazy loading
+35. code spliting
+36. normalization
+37. organize the code in seperate file

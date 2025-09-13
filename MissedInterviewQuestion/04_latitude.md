@@ -1,8 +1,45 @@
 ## 1. Tell me about few project that you have worked on
 
+### 1. Business Networking App
+
+- **Tech Stack**: React, Node.js
+- **Role**: Implemented key features like referrals, testimonials, and reporting system.
+- **Impact**: Boosted user engagement and helped businesses generate quality leads.
+
+---
+
+### 2. EV Charging Station Admin Panel
+
+- **Tech Stack**: Angular
+- **Role**: Built dashboards, reports, and user management modules.
+- **Impact**: Enabled real-time monitoring and improved operational efficiency for charging stations.
+
+---
+
+### 3. Gujarat Maheshwari Samaj – District-Wise Listing
+
+- **Tech Stack**: React, Node.js
+- **Role**: Developed a district-wise listing system with advanced filters & search functionality.
+- **Impact**: Simplified community access to information and improved overall usability.
+
 ---
 
 ## 1.1 What is your responsibility in your current company
+
+- **Full Stack Development**:  
+  Work with React, Angular, Node.js, and SQL to build scalable web applications.
+
+- **Frontend Focus**:  
+  Develop responsive UI components, optimize performance, and ensure smooth user experience.
+
+- **Backend Contribution**:  
+  Collaborate on APIs, integrate databases, and handle data-driven features.
+
+- **Project Ownership**:  
+  Take end-to-end responsibility for modules — from understanding requirements to deployment.
+
+- **Collaboration**:  
+  Work closely with designers, QA, and team members to deliver features on time.
 
 ---
 
@@ -80,7 +117,7 @@
 
 ## 8. React App is taking time to load What are the steps you will take to optimize
 
-- kerinfotech
+- kerinfotech 2.19
 
 ---
 
@@ -152,7 +189,7 @@
 ## 12. What is debouncing
 
 - Debouncing is a technique to **limit how often a function runs**.
-  - It waits for a pause in user actions before running a function.
+  - It `waits` for a `pause` in user actions before running a function.
   - Commonly used in **search input, resize, scroll**, etc.
   - Helps improve performance and reduce API calls.
 
@@ -368,6 +405,8 @@ useEffect(() => {
 
 ## 23. What is middleware
 
+- kerinfotech
+
 - Middleware functions are functions that have access to the request object (req), the response object (res), and the next middleware function in the application’s request-response cycle. The next middleware function is commonly denoted by a variable named next.
 
 - Middleware functions can perform the following tasks:
@@ -400,20 +439,20 @@ useEffect(() => {
 
 - A single document is related to multiple documents.
 
-- Embedded: When the "many" documents are few and tightly coupled.
+  - Embedded: When the "many" documents are few and tightly coupled.
 
-```js
- { name: "User", posts: [ { title: "Post1" }, { title: "Post2" } ] }
-```
+  ```js
+   { name: "User", posts: [ { title: "Post1" }, { title: "Post2" } ] }
+  ```
 
-- Referenced: When the "many" documents are many, large, or independent.
+  - Referenced: When the "many" documents are many, large, or independent.
 
-```js
- // User
- { _id: 1, name: "User" }
- // Posts
- { title: "Post1", user_id: 1 }
-```
+  ```js
+   // UserD
+   { _id: 1, name: "User" }
+   // Posts
+   { title: "Post1", user_id: 1 }
+  ```
 
 ---
 
@@ -460,7 +499,7 @@ db.orders.aggregate([
 
 ## 27. What is populate
 
-- populate is a Mongoose method that simplifies the process of referencing documents from different collections.
+- populate is a Mongoose method that simplifies the process of `referencing` documents from different collections.
 - Makes querying related data easier without writing manual $lookup or multiple queries.
 - It automatically replaces the referenced document IDs with the actual documents.
 
