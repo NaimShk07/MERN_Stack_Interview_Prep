@@ -27,7 +27,7 @@
 21. what is middleware, why use
 22. what is header
 23. cookies
-24. authorization
+24. authorization and authentication
 25. what is status code and it types
 26. app.use vs app.route 
 27. query vs route param
@@ -41,4 +41,6 @@
 35. clustering
 36. security best practices
 37. concurrency 
-38. 
+38. cookie parser
+39. state full and less authentication
+40. 

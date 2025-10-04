@@ -164,3 +164,5 @@
 24. How do you handle env variables?
 
 - Store secrets in .env, use process.env.VARIABLE in Node.js, never push .env to Git.
+
+25. Current version?

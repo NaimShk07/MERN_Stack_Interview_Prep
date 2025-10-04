@@ -369,7 +369,7 @@ Now older browsers will understand .includes()!
 
 ---
 
-## 41. moduel scope and type of scopes
+## 41. module scope and type of scopes
 
 ---
 
@@ -378,11 +378,6 @@ Now older browsers will understand .includes()!
 ---
 
 ## 43. es6 vs before
+---
 
-```
-
-```
-
-```
-
-```
+## 44. event delegation

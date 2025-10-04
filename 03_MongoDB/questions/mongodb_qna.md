@@ -22,3 +22,4 @@
 22. What precautions would you take before using deleteMany()?
 23. what is atomic
 24. what is acid
+25. userschema.method vs userschma.static

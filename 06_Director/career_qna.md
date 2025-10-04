@@ -10,6 +10,7 @@
 
 1. How does the company support developers in improving their skills or growing into senior roles?
 2. What are the company’s main goals for the next year, and how can this role contribute to them?
+3. What kind of projects will I be working on at "Company Name"? And how does the team usually collaborate?
 
 ## Top 5 Questions to Ask:
 

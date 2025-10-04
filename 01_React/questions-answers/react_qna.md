@@ -161,4 +161,8 @@
 34. what is lazy loading
 35. code spliting
 36. normalization
-37. organize the code in seperate file
+37. axios vs fetch
+38. create async thunk
+39. extra reducer
+40. current latest version
+41. organize the code in seperate file(demo)
