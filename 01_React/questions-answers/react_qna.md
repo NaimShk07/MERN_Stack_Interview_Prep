@@ -165,4 +165,5 @@
 38. create async thunk
 39. extra reducer
 40. current latest version
-41. organize the code in seperate file(demo)
+41. useLayoutEffect
+42. organize the code in seperate file(demo)

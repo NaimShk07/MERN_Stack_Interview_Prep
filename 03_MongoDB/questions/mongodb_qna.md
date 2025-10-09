@@ -23,3 +23,4 @@
 23. what is atomic
 24. what is acid
 25. userschema.method vs userschma.static
+26. populate vs $loopup

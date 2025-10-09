@@ -34,7 +34,7 @@ console.log(car1.brand); // "Tesla"
 
 ## 2. 🗄️ What is ORM?
 
-- ORM (**Object-Relational Mapping**) is a technique that maps **database tables to objects**.
+- ORM (**Object-Relational Mapping**) is a technique that maps **`database tables` to `objects`**.
 - Lets developers interact with databases using **JavaScript objects instead of raw SQL queries**.
 - Improves **readability, maintainability**, and speeds up development.
 - Common ORMs in JS: **Sequelize, TypeORM**
@@ -43,10 +43,10 @@ console.log(car1.brand); // "Tesla"
 
 ### ⚖️ Benefits of ORM
 
-1. Cleaner and more readable code
+1. `Cleaner` and more `readable` code
 2. Database-agnostic (can switch DBs easily)
-3. Built-in validations and relations
-4. Faster development for CRUD apps
+3. Built-in `validations` and `relations`
+4. `Faster development` for CRUD apps
 
 ---
 
@@ -80,7 +80,7 @@ const users = await User.findAll();
 
 1. Abstracts MongoDB queries into simple JS methods
 2. Provides **schema & validation** for collections
-3. Supports middleware/hooks for pre & post operations
+3. Supports `middleware/hooks` for pre & post operations
 4. Easier to handle relationships (populate, refs)
 
 ---
@@ -113,9 +113,9 @@ const users = await User.find();
 
 ## 4. 📦 What is NPM?
 
-- **NPM (Node Package Manager)** is the default package manager for Node.js.
-- It is used to **install, share, and manage third-party packages (libraries & tools)**.
-- Comes pre-installed with Node.js.
+- **NPM (Node Package Manager)** is the `default package manager` for Node.js.
+- It is used to **`install, share, and manage` third-party packages (libraries & tools)**.
+- Comes `pre-installed` with Node.js.
 - Provides access to the world’s largest software registry: [npmjs.com](https://www.npmjs.com).
 
 ---
@@ -249,6 +249,13 @@ CREATE TABLE users (
    - Returns all rows when there is a match in either left or right table.
    - If no match, NULLs are included.
 
+   ```sql
+   SELECT C.name, O.item
+   FROM Customers C
+   FULL OUTER JOIN Orders O
+   ON C.customer_id = O.customer_id;
+   ```
+
 5. **CROSS JOIN**
 
    - Returns the Cartesian product of both tables (all possible combinations).
@@ -263,7 +270,7 @@ CREATE TABLE users (
 
 ## 8. 💳 What is a Transaction in SQL?
 
-- A **transaction** is a sequence of one or more SQL operations executed as a **single unit of work**.
+- A **transaction** is a `sequence` of one or more SQL operations executed as a **single unit of work**.
 - Ensures **data integrity** even if errors or failures occur.
 - Follows the **ACID properties**:
   - **A**tomicity → All or nothing
@@ -288,7 +295,7 @@ COMMIT;  -- or ROLLBACK if error
 
 ## 9. 📜 What is a Stored Procedure in SQL?
 
-- A **Stored Procedure** is a **precompiled set of SQL statements** stored in the database.
+- A **Stored Procedure** is a **`precompiled set of SQL statements`** stored in the database.
 - Can take **inputs (parameters)**, execute queries, and return results.
 - Used to **reuse logic, improve performance, and enhance security**.
 
@@ -315,6 +322,7 @@ CALL GetUsersByCity('Ahmedabad');
 - Improves security (restrict direct table access)
 
 > In short: A Stored Procedure is like a function in SQL that stores reusable queries inside the database.
+> A function always returns a value and can be used inside SQL queries like SELECT statements, whereas a stored procedure doesn't have to return anything and is mainly used to perform actions like inserts, updates, or complex logic. Functions are more for computation; procedures are more for operations.
 
 ---
 
@@ -347,7 +355,7 @@ SET NEW.created_at = NOW();
 ## 11. 🗂️ What is an Index in SQL?
 
 📌 **Definition:**  
-An index is a **database object** that improves the **speed of data retrieval** on a table.  
+An index is a **`database object`** that improves the **speed of data retrieval** on a table.  
 It works like a **table of contents** in a book to quickly locate data without scanning the entire table.
 
 ---
@@ -507,6 +515,8 @@ SELECT CURRENT_DATE;   -- 2025-10-03
 📌 **Definition:**  
 BSON (**Binary JSON**) is a **binary-encoded serialization** of JSON-like documents.  
 It is primarily used by **MongoDB** to store and transfer data efficiently.
+
+BSON stands for Binary JSON. It’s a binary-encoded format used by MongoDB to store documents more efficiently than plain JSON. Unlike JSON, BSON supports additional data types like Date, Binary, and ObjectId, and it’s faster for reading and writing due to its binary nature.
 
 ---
 
@@ -692,7 +702,7 @@ const element = React.createElement("h1", null, "Hello, JSX!");
 ### ⚡ Expression
 
 - Produces a **value**.
-- Can be used **wherever a value is expected** (inside JSX, assignment, etc.).
+- Can be used **`wherever a value is expected`** (inside JSX, assignment, etc.).
 - Examples:
   ```js
   5 + 10; // → 15
@@ -702,7 +712,7 @@ const element = React.createElement("h1", null, "Hello, JSX!");
 
 ### ⚡ Statement
 
-- Performs an action but does not return a value directly.
+- Performs an action but `does not return a value` directly.
 - Cannot be used directly inside JSX.
 - Examples:
 
@@ -719,7 +729,7 @@ const element = React.createElement("h1", null, "Hello, JSX!");
 ### ⚡ Reason
 
 - JSX is syntactic sugar for JavaScript expressions,
-  and in JSX you can only use expressions, not statements.
+  and in JSX you can only use `expressions, not statements`.
 - if-else is a statement, so it doesn’t work directly inside JSX.
 
 > In short: Use ternary, &&, or helper functions instead of raw if-else inside JSX.

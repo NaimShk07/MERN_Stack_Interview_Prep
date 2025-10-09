@@ -86,6 +86,8 @@
 
 ---
 
+## MOST IMPORTANT !!
+
 ### 7. What is the difference between a regular variable and a useState variable in React?
 
 #### 🔸 Regular Variable
@@ -401,7 +403,7 @@ const expensiveResult = useMemo(() => {
 
 ### 4. What is Express.js?
 
-- **Express.js** is a **minimal and flexible Node.js web framework**.
+- **Express.js** is a **minimal and flexible Node.js web `framework`**.
 - It simplifies building **web servers and APIs** in Node.js.
 
 ---
@@ -426,7 +428,7 @@ const expensiveResult = useMemo(() => {
 - Handles common tasks like parsing requests and managing responses for you.
 - Speeds up API development with `less` code and `better` code `organization`.
 
-### 7. Node.js vs Express.js
+### 7. ---------------------
 
 ### 8. What is Middleware in Express.js?
 
@@ -439,6 +441,7 @@ const expensiveResult = useMemo(() => {
 
 ### 9. What is restful api?
 
+- Representational State Transfer
 - A RESTful API follows **REST principles** to handle communication between client and server.
 - It uses:
   - 🔹 **HTTP methods**: GET, POST, PUT, DELETE
@@ -451,7 +454,7 @@ const expensiveResult = useMemo(() => {
   - Protect routes using tokens (e.g., JWT).
   - Make sure only the right users access the right data.
 
-- ✅ Use HTTPS
+- ✅ Use HTTPS: Hypertext Transfer Protocol Secure
 
   - Encrypts data in transit — protects against data leaks/sniffing.
 
@@ -463,7 +466,7 @@ const expensiveResult = useMemo(() => {
 
   - Don’t expose passwords, tokens, or error details in responses.
 
-- ✅ Use CORS properly
+- ✅ Use CORS(Cross-Origin Resource Sharing) properly
 
   - Restrict which domains can access your APIs.
 
@@ -526,7 +529,7 @@ const expensiveResult = useMemo(() => {
 2. Use `jwt.sign(payload, secret, options)`
 3. Send token to client (usually after login)
 
->🧠 In short: I sign a token with user data and a secret key, then verify it on protected routes.
+> 🧠 In short: I sign a token with user data and a secret key, then verify it on protected routes.
 
 ### 2. How do you validate and verify JWT tokens on subsequent API requests?
 

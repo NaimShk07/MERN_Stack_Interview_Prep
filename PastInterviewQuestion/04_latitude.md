@@ -188,7 +188,7 @@
 
 ## 12. What is debouncing
 
-- Debouncing is a technique to **limit how often a function runs**.
+- Debouncing is a `technique` to **limit how often a function runs**.
   - It `waits` for a `pause` in user actions before running a function.
   - Commonly used in **search input, resize, scroll**, etc.
   - Helps improve performance and reduce API calls.
@@ -210,6 +210,25 @@ useEffect(() => {
 		console.log("Api called...");
 	}
 }, [debouncedValue]);
+```
+
+```js
+function debounce(func, delay) {
+	let timeout;
+
+	return function (...args) {
+		clearTimeout(timeout);
+		timeout = setTimeout(() => func.apply(this, args), delay);
+	};
+}
+
+function handleInput(event) {
+	console.log("Searching for:", event.target.value);
+}
+
+const debouncedInput = debounce(handleInput, 300);
+
+document.getElementById("searchBox").addEventListener("input", debouncedInput);
 ```
 
 ---
@@ -422,7 +441,7 @@ useEffect(() => {
 - Aggregation is a way to **process and transform data** in MongoDB.
   - Similar to SQL's `GROUP BY`, `JOIN`, `SUM`, etc.
   - Used to **analyze**, **filter**, **group**, or **combine** documents.
-- A pipeline is a **sequence of stages** that process data **step-by-step**.
+- A pipeline is a **sequence of `stages`** that process data **step-by-step**.
   - Each stage transforms the data and passes it to the next.
 
 ### Common Stages:
@@ -433,19 +452,52 @@ useEffect(() => {
 - `$project` → Select specific fields
 - `$limit` / `$skip` → Pagination
 
+```js
+db.orders.aggregate([
+	{
+		$match: { year: 2023 },
+	},
+	{
+		$group: {
+			_id: "$customerName",
+			totalSpent: { $sum: "$orderAmount" },
+			ordersCount: { $sum: 1 },
+		},
+	},
+	// Sort by totalSpent (highest first)
+	{
+		$sort: { totalSpent: -1 },
+	},
+	{
+		$skip: 5,
+	},
+	{
+		$limit: 5,
+	},
+	{
+		$project: {
+			_id: 0,
+			customer: "$_id",
+			totalSpent: 1,
+			ordersCount: 1,
+		},
+	},
+]);
+```
+
 ---
 
 ## 25. how to handle one to many relationship in mongodb
 
 - A single document is related to multiple documents.
 
-  - Embedded: When the "many" documents are few and tightly coupled.
+  - `Embedded`: When the "many" documents are few and tightly coupled.
 
   ```js
    { name: "User", posts: [ { title: "Post1" }, { title: "Post2" } ] }
   ```
 
-  - Referenced: When the "many" documents are many, large, or independent.
+  - `Referenced`: When the "many" documents are many, large, or independent.
 
   ```js
    // UserD
@@ -499,7 +551,7 @@ db.orders.aggregate([
 
 ## 27. What is populate
 
-- populate is a Mongoose method that simplifies the process of `referencing` documents from different collections.
+- populate is a `Mongoose method` that simplifies the `process of referencing` documents from different collections.
 - Makes querying related data easier without writing manual $lookup or multiple queries.
 - It automatically replaces the referenced document IDs with the actual documents.
 
@@ -600,7 +652,7 @@ User.find({ age: { $gt: 18 } });
 - Never expose full error stack traces to clients
 - Log errors securely (e.g., Winston, Sentry)
 
-### Others 3:10
+### kerinfotech 3:10
 
 ---
 

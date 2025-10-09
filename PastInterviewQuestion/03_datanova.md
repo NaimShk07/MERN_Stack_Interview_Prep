@@ -19,7 +19,7 @@
 ## 5. What is ecmascript
 
 - ECMAScript ek standard hai jo batata hai JavaScript kaise kaam kare — jaise ek guideline ya rulebook.
-- ECMAScript is the **specification** or rulebook for JavaScript.
+- ECMAScript is the **rulebook** for JavaScript.
 - iska kaam hai rules define karna — jaise syntax, features, aur behavior.
 - Bas, jitne naye versions aate hain (jaise ES6(2015), ES2020), naye features add hote hain.
 
@@ -118,6 +118,61 @@ typeof function () {}; // "function"
 
 ---
 
+## 10.1 📦 Reference vs Value | Shallow vs Deep Copy in JavaScript
+
+### 🔹 Primitive Types → Stored by **Value**
+
+> Copying creates a new value. Changes don’t affect the original.
+
+```js
+const a = "Hello";
+const b = a;
+
+b = "World";
+console.log(a); // "Hello"
+```
+
+### 🔸 Non-Primitives (Objects, Arrays) → Stored by Reference
+
+> Copying just points to the same memory. Changes affect both.
+
+```js
+const obj1 = { name: "Alice" };
+const obj2 = obj1;
+
+obj2.name = "Bob";
+console.log(obj1.name); // "Bob"
+```
+
+### 🔁 Shallow Copy
+
+> Only top-level properties are copied. Nested objects are still shared.
+
+```js
+const obj1 = { name: "Alice", address: { city: "NY" } };
+const obj2 = { ...obj1 }; // Shallow copy
+
+obj2.name = "Bob"; // ✅ ok
+obj2.address.city = "LA"; // ❌ affects obj1
+
+console.log(obj1.address.name); // "Alice"
+console.log(obj1.address.city); // "LA"
+```
+
+### 🧬 Deep Copy
+
+> Fully independent copy (including nested objects)
+
+```js
+// ✅ Method 1: JSON trick (simple objects only)
+const obj2 = JSON.parse(JSON.stringify(obj1));
+
+// ✅ Method 2: structuredClone (modern, safe)
+const obj2 = structuredClone(obj1);
+```
+
+---
+
 ## 11. ⚖️ null vs undefined in JavaScript
 
 | Feature | `null`                           | `undefined`                        |
@@ -148,16 +203,16 @@ console.log(b); // null
 
 > It answers: "Can I access this variable here?"
 
-- types: latitude: 15
+- types: latitude: 20
 
 ---
 
 ## 13. Can We Create Scope Without Curly Braces?
 
+- So, you can’t create block scope without {}, but function scope exists with or without {} in concise arrow functions.
 - Scope creation depends on the type:
   - Block scope (for let/const) requires curly braces {}.
   - Function scope is created by functions themselves, which need {} for their body—except arrow functions with a single expression don’t use {} but still create function scope.
-- So, you can’t create block scope without {}, but function scope exists with or without {} in concise arrow functions.
 
 ---
 
@@ -263,8 +318,8 @@ counter(); // 2
 
 ## 22. why we should use promise i we already have callback
 
-- Callbacks definitely work—but they can quickly become messy and difficult to manage when dealing with multiple asynchronous tasks.
-- This mess is often called **callback hell** deeply nested functions that are hard to read, maintain, and debug.
+- Callbacks definitely work—but they can quickly become `messy and difficult to manage` when dealing with multiple asynchronous tasks.
+- This mess is often called **callback hell** deeply nested functions that are hard to `read, maintain, and debug`.
 - Promises help solve this problem by allowing us to chain asynchronous operations using .then() and handle errors centrally with .catch(), leading to cleaner, more readable code.
 
 ---
@@ -1559,4 +1614,3 @@ if (cluster.isMaster) {
 ```
 
 > Since DB is fast but the server is choking, I’d use Redis to cache common responses, add rate limiting to prevent abuse, and run Node in cluster mode to utilize all CPU cores. I'd also offload heavy tasks to a queue and serve static files via CDN to reduce load.
-
