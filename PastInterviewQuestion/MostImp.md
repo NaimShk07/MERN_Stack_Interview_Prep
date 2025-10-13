@@ -1,3 +1,12 @@
+## Do you have any questions for me
+
+1. What learning or growth opportunities do developers get here?
+2. How does the company support developer growth?
+3. Can you tell me about the kind of projects the team is currently working on?
+4. What are the next steps in the interview process?
+5. How do you see this company evolving in the next year?
+6. What do you value most in your engineering team?
+
 ## 1. How to secure your node js application
 
 ### ✅ Environment Variables
@@ -300,3 +309,36 @@ console.log(this === window); // true
 // Node.js
 console.log(this === global); // false
 ```
+
+## 13. Difference between `express.json()` and `express.urlencoded()`
+
+Used in Express.js to parse incoming request bodies before your handlers.
+
+### 📌 `express.json()`
+
+- Parses incoming requests with `JSON` payloads
+- Used for `application/json` content type
+
+```js
+app.use(express.json());
+```
+
+---
+
+### 📌 `express.urlencoded({ extended: true })`
+
+- Parses incoming requests with `URL-encoded` payloads (like from HTML forms)
+- `extended: true` allows rich objects and arrays (uses `qs` library instead of `querystring`)
+
+```js
+app.use(express.urlencoded({ extended: true }));
+```
+
+---
+
+### ✅ Key Points
+
+- `express.json()` → for APIs sending JSON
+- `express.urlencoded()` → for form data (`application/x-www-form-urlencoded`)
+- You can use both if your app handles both types of data
+- `extended: true` handles nested objects: `{ user: { name: "Tom" } }`
