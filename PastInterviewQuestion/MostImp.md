@@ -342,3 +342,61 @@ app.use(express.urlencoded({ extended: true }));
 - `express.urlencoded()` → for form data (`application/x-www-form-urlencoded`)
 - You can use both if your app handles both types of data
 - `extended: true` handles nested objects: `{ user: { name: "Tom" } }`
+
+## 14. how to handle one to many relationship in mongodb
+
+- A single document is related to multiple documents.
+
+  - `Embedded`: When the "many" documents are few and tightly coupled.
+
+  ```js
+   { name: "User", posts: [ { title: "Post1" }, { title: "Post2" } ] }
+  ```
+
+  - `Referenced`: When the "many" documents are many, large, or independent.
+
+  ```js
+   // UserD
+   { _id: 1, name: "User" }
+   // Posts
+   { title: "Post1", user_id: 1 }
+  ```
+
+---
+
+## 15. 🌐 What happens when you type a URL and hit Enter?
+
+- When I hit enter after typing a URL, the browser does a DNS lookup to find the IP, establishes a TCP connection, does a TLS handshake if it's HTTPS, sends an HTTP request, and then starts rendering the response — parsing HTML, applying CSS, running JS — until the full page loads.
+
+### 🧭 Step-by-step Breakdown:
+
+1. **DNS Lookup**
+
+   - URL → IP address using DNS.
+
+2. **TCP Connection**
+
+   - Browser establishes a **TCP handshake** (via port 80/443).
+
+3. **HTTP Request Sent**
+
+   - Browser sends a **GET** request for the web page.
+
+4. **Server Response**
+
+   - Server sends back HTML, CSS, JS, images, etc.
+
+5. **Browser Rendering**
+
+   - HTML parsed → DOM created
+   - CSS applied → Render Tree
+   - JS executed → Dynamic content loaded
+
+6. **Page Loaded & Displayed**
+
+---
+
+```mermaid
+graph TD
+URL --> DNS_Lookup --> TCP_Connection --> TLS_Handshake --> HTTP_Request --> Server_Response --> Browser_Rendering --> Page_Ready
+```

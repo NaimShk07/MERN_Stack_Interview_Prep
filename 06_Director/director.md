@@ -58,14 +58,14 @@
 - I usually make a short checklist, break tasks into small milestones, and test after each phase.
 - This helps me deliver a working project on time while keeping room for improvements if time allows
 
-## Company Fit / Culture (change this according to the company)
+## Company Fit / Culture (Dynamic Dreamz)
 
 1. Why do you want to join our company?
 
 - I want to join Dynamic Dreamz because I really admire how your team blends creativity with strong technical execution. The company’s values — like integrity, adaptability, and quality — align with how I like to work.
 - I’ve seen how you deliver innovative web solutions for global clients, and I’d love to be part of such a skilled and growth-oriented environment where I can contribute and learn from experienced professionals.
 
-1. What do you know about our company or product?
+2. What do you know about our company or product?
 
 - Dynamic Dreamz is a full-service web and app development company with 150+ experts working across technologies like Shopify, WordPress, Magento, and custom full-stack solutions.
 - What stands out to me is how you’ve built long-term client trust through your client-centric and quality-first approach.
@@ -80,6 +80,20 @@
 4. How do you handle feedback or conflict in a team?
 
 - I take feedback very positively. I see it as a chance to learn and improve. If there’s ever a conflict, I prefer to communicate directly and calmly, understand the other person’s point of view, and focus on solving the problem rather than proving a point. I believe clear communication and mutual respect can resolve most issues quickly.
+
+## Techify
+
+1. Why do you want to join our company?
+
+- I want to join Techify because I really like how you focus on innovation, learning, and teamwork. It’s a place where I can grow my skills, learn from experienced people, and contribute to real impactful projects.
+
+2. What do you know about our company?
+
+- Techify is a fast-growing IT company known for building smart, scalable software solutions. I like that you value self-development, innovation, and client success — that’s the kind of culture I want to be part of.
+
+3. What kind of work environment do you thrive in?
+
+- I do best in a positive and collaborative environment where everyone supports each other and shares ideas. From what I’ve seen, Techify really values teamwork and learning — and that matches perfectly with how I like to work.
 
 ## Decision-Making & Ownership
 
