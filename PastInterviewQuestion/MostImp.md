@@ -400,3 +400,26 @@ app.use(express.urlencoded({ extended: true }));
 graph TD
 URL --> DNS_Lookup --> TCP_Connection --> TLS_Handshake --> HTTP_Request --> Server_Response --> Browser_Rendering --> Page_Ready
 ```
+
+## 16. Find vs Aggregation Query (MongoDB)
+
+**Find** and **Aggregation** are MongoDB queries used to retrieve data, but with different purposes and capabilities.
+
+---
+
+### 📌 Key Differences
+
+- 🔍 **Find**: Retrieves documents matching simple filter criteria
+- 🧩 **Aggregation**: Performs complex data processing and transformations (grouping, sorting, computing)
+
+---
+
+### 🔤 Example
+
+```js
+// Find query - get all users aged 25
+db.users.find({ age: 25 });
+
+// Aggregation query - group users by age and count
+db.users.aggregate([{ $group: { _id: "$age", count: { $sum: 1 } } }]);
+```
