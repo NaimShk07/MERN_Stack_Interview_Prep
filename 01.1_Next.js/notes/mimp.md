@@ -251,3 +251,32 @@ Common tools:
 - 🔧 Great developer experience
 
 ---
+
+# 📁 Next.js Production Folder Structure (Simple & Scalable)
+
+```bash
+my-app/
+├── public/ # Static assets (images, fonts, etc.)
+├── src/ # Source code
+│ ├── app/ # Next.js App Router (pages, layouts, etc.)
+│ ├── components/ # Reusable UI components
+│ ├── features/ # Feature-based modules (optional)
+│ ├── lib/ # Utilities, helpers, API clients
+│ ├── styles/ # Global and modular styles (CSS/SCSS)
+│ ├── hooks/ # Custom React hooks
+│ ├── types/ # TypeScript types and interfaces
+│ └── config/ # App-wide configuration (env, constants)
+├── .env.local # Local environment variables
+├── next.config.js # Next.js configuration
+├── tsconfig.json # TypeScript configuration
+├── package.json # Project metadata and scripts
+└── README.md # Project overview
+```
+
+## ✅ Notes:
+
+- `src/app/` is used with **App Router** (`app/` directory structure from Next.js 13+).
+- `components/` and `features/` encourage separation of UI and business logic.
+- Keep `lib/` lean and focused on utility functions or API calls.
+- Organize `styles/` with global files and component-level CSS modules.
+- Use `types/` to keep type definitions reusable and maintainable.
