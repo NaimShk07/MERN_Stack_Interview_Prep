@@ -4,6 +4,9 @@ SELECT * FROM person p WHERE p.firstname = 'naeem';
 -- Find the second highest salary from the salaries table.
 SELECT * from tyn t ORDER BY t.tynamount DESC LIMIT 1 OFFSET 1;
 
+SELECT MAX(t.tynamount) FROM tyn t
+WHERE t.tynamount < (select MAX(t1.tynamount) from tyn t1);
+
 -- Count the number of employees in each department.
 SELECT o.organizationname,COUNT(p.personid) FROM organization o 
 inner JOIN organizationperson op on op.OrganizationID = o.organizationid and op.status = 'active'
