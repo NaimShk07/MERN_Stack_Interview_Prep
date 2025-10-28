@@ -67,3 +67,44 @@
 - upload.single('fieldName'): for single file
 - upload.array('fieldName', maxCount): for multiple files
 - upload.fields([...]): for uploading multiple fields/files
+
+## Express.js
+
+### Essentials:
+
+- Creating RESTful APIs
+- Middleware (req, res, next)
+- Route handling
+- Error handling middleware
+- Environment variables with dotenv
+- CORS, helmet, morgan
+
+### Routing:
+
+- Route parameters and query
+- Nested routes
+- Router modularization
+
+### Data Handling:
+
+- req.body, req.params, req.query
+- File uploads with multer
+
+
+🔹 Express.js (Mini framework)
+Creating routes
+
+Middleware
+
+Error handling
+
+REST APIs with Express
+
+🔹 Extras (often asked in interviews)
+Environment variables (dotenv)
+
+Global objects (__dirname, __filename, process)
+
+EventEmitter
+
+Node.js vs Express.js

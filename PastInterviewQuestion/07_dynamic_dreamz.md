@@ -524,53 +524,9 @@ db.orders.aggregate([
 
 ## 11. What is `populate` in MongoDB (Mongoose)?
 
-**`populate`** is a Mongoose method used to **replace references (ObjectIds) with actual documents** from related collections.
+[clikc](../07_MongoDB/newnotes/mongodb_qna.md#L231)
 
 ---
-
-### 🔗 Why use `populate`?
-
-- MongoDB stores references between documents as ObjectIds
-- `populate` fetches and injects the related documents automatically
-- Makes querying related data simpler and cleaner
-
----
-
-### 🧪 Example:
-
-#### Schemas:
-
-```js
-const userSchema = new mongoose.Schema({
-	name: String,
-});
-
-const postSchema = new mongoose.Schema({
-	title: String,
-	author: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-});
-
-const User = mongoose.model("User", userSchema);
-const Post = mongoose.model("Post", postSchema);
-```
-
-#### Using `populate`:
-
-```js
-Post.find()
-	.populate("author") // replaces author ObjectId with User document
-	.then((posts) => {
-		console.log(posts);
-	});
-```
-
----
-
-### ✅ Key Points
-
-- `populate` works only in Mongoose (Node.js ODM), not raw MongoDB
-- Can populate multiple fields or nested documents
-- Useful for handling relationships without manual joins
 
 ## 11. What is a JWT Token?
 

@@ -371,125 +371,33 @@ const expensiveResult = useMemo(() => {
 
 ### 1. What is Node.js?
 
-- **Node.js** is a **JavaScript runtime environment** built on **Chrome's V8 engine**.
-- It lets you run JavaScript **outside the browser**, mainly used for building **server-side applications**.
-- It's **event-driven** and **non-blocking**, which makes it great for handling multiple requests (asynchronous I/O).
-
----
-
-#### ✅ Key Features
-
-- 🔹 Runs JavaScript on the **server** (backend)
-- 🔹 **Fast** and efficient — uses the V8 engine
-- 🔹 Uses **non-blocking I/O** — great for APIs and real-time apps
-- 🔹 Has built-in **modules** (like `fs`, `http`, `path`)
-- 🔹 Huge ecosystem via **npm** (Node Package Manager)
-
-### 2. Advantages of node.js
-
-- 🔹 **JavaScript everywhere** – same language on frontend & backend.
-- 🔹 **Fast performance** – built on Google’s V8 engine.
-- 🔹 **Non-blocking I/O** – handles many requests at once (good for APIs).
-- 🔹 **Huge package ecosystem** – via `npm`.
-- 🔹 **Great for real-time apps** – like chat apps, live dashboards.
-- 🔹 **Scalable** – good for microservices and large applications.
-
-### 3. Disadvantages of node.js
-
-- 🔸 **Not ideal for CPU-heavy tasks** – slows down due to single-threaded nature.
-- 🔸 **Callback hell** (though improved with Promises/async-await).
-- 🔸 **Less opinionated** – you have to choose and manage a lot of tools/libraries.
-- 🔸 **Asynchronous debugging** can be tricky for beginners.
+[09](../06_Node_Express/newnotes/nodejs_qna.md#L9)
 
 ### 4. What is Express.js?
 
-- **Express.js** is a **minimal and flexible Node.js web `framework`**.
-- It simplifies building **web servers and APIs** in Node.js.
-
----
-
-#### ✅ Key Features
-
-- 🔹 Handles **routing**, **middleware**, and **HTTP requests/responses**
-- 🔹 Easy to create **RESTful APIs**
-- 🔹 Supports **middleware** for authentication, logging, error handling, etc.
-- 🔹 Works well with **MongoDB**, **Mongoose**, and frontend frameworks like **React**
+[click](../06_Node_Express/newnotes/express_qna.md#L5)
 
 ### 5. Node.js vs Express.js
 
-- **Node.js** is the **engine** that runs JavaScript on the server.
-- **Express.js** is a **framework** built on Node.js to **make backend development easier and faster**.
+[click](../06_Node_Express/newnotes/express_qna.md#L50)
 
 ### 6. Why should we use Express.js if we already have Node.js?
 
-- Node.js is a runtime that runs JavaScript on the server with basic HTTP handling.
-- Express.js is a lightweight framework built on Node.js that `simplifies` backend development.
-- Provides **easy routing** and **middleware** support out of the box.
-- Handles common tasks like parsing requests and managing responses for you.
-- Speeds up API development with `less` code and `better` code `organization`.
+[click](../06_Node_Express/newnotes/express_qna.md#L50)
 
 ### 7. ---------------------
 
 ### 8. What is Middleware in Express.js?
 
-- Middleware is a function that runs **between** the request and response.
-- it can
-  - 🔹 Modify the `req` or `res` object
-  - 🔹 Run code (e.g., logging, auth)
-  - 🔹 End the request–response cycle
-  - 🔹 Call `next()` to move to the next middleware
+[click](../06_Node_Express/newnotes/express_qna.md#L97)
 
 ### 9. What is restful api?
 
-- Representational State Transfer
-- A RESTful API follows **REST principles** to handle communication between client and server.
-- It uses:
-  - 🔹 **HTTP methods**: GET, POST, PUT, DELETE
-  - 🔹 **URLs as resources**: `/users`, `/products/:id`
+[click](../06_Node_Express/newnotes/express_qna.md#L72)
 
 ### 10. How to Make APIs Secure (Simple & Smart Answer)
 
-- ✅ Use **Authentication & Authorization**
-
-  - Protect routes using tokens (e.g., JWT).
-  - Make sure only the right users access the right data.
-
-- ✅ Use HTTPS: Hypertext Transfer Protocol Secure
-
-  - Encrypts data in transit — protects against data leaks/sniffing.
-
-- ✅ Limit API Requests
-
-  - Apply **rate limiting** to prevent abuse or brute-force attacks.
-
-- ✅ Hide Sensitive Info
-
-  - Don’t expose passwords, tokens, or error details in responses.
-
-- ✅ Use CORS(Cross-Origin Resource Sharing) properly
-
-  - Restrict which domains can access your APIs.
-
-  ```js
-  const allowedOrigins = [
-  	"https://yourdomain.com",
-  	"https://anotherdomain.com",
-  ];
-
-  const corOption = {
-  	origin: (origin, callback) => {
-  		if (!origin) return callback(null, true); // postman
-  		if (allowedOrigins.includes(origin)) {
-  			callback(null, true); // Allow the request
-  		} else {
-  			callback(new Error("Not allowed by CORS")); // Block the request
-  		}
-  	},
-  	methods: ["GET", "POST", "PATCH"],
-  };
-
-  app.use(cors(corOption));
-  ```
+[click](../06_Node_Express/newnotes/optimize.md#L81)
 
 ### 11. How are you structuring your backend using Express.js in your projects?
 
@@ -502,12 +410,7 @@ const expensiveResult = useMemo(() => {
 
 ### 1. How do you ensure your APIs are secure?
 
-- Authentication: Use tokens (JWT, sessions, API keys) to verify users.
-- Authorization: Check what each user is allowed to do.
-- Rate limiting: Prevent brute-force or spam attacks using tools like express-rate-limit.
-- Input validation & sanitization: Prevent injection attacks.
-- Avoid public endpoints if not needed: Don’t expose sensitive APIs without login.
-- HTTPS only:Always use HTTPS to prevent MITM attacks.
+[click](../06_Node_Express/newnotes/optimize.md#L82)
 
 ### 2. Let’s say someone gets access to your API endpoint — how would you protect against unauthorized access?
 
@@ -525,19 +428,9 @@ const expensiveResult = useMemo(() => {
 
 ### 1. How do you generate a JWT token in Node.js? What’s the process?
 
-1. Import `jsonwebtoken`
-2. Use `jwt.sign(payload, secret, options)`
-3. Send token to client (usually after login)
-
-> 🧠 In short: I sign a token with user data and a secret key, then verify it on protected routes.
+[JWT](../06_Node_Express/newnotes/nodejs_qna.md#L206)
 
 ### 2. How do you validate and verify JWT tokens on subsequent API requests?
-
-- On each request, the client sends the token in the `Authorization` header.
-- I use middleware to:
-  - 🔹 Extract the token
-  - 🔹 Verify it using `jwt.verify(token, secret)`
-  - 🔹 Allow or deny access based on validity
 
 # 6. Database (MySQL)
 

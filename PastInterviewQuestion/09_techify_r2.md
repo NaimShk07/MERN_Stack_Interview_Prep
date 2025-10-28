@@ -1,6 +1,10 @@
 ## 1. What is the Event Loop in JavaScript and Node.js, and how does it work?
 
+[click](../06_Node_Express/newnotes/architecture.md#L3)
+
 ## 2. What is libuv, and how does it support Node.js's asynchronous operations?
+
+[click](../06_Node_Express/newnotes/architecture.md#L3)
 
 ## 3. What is the difference between a Vanilla JavaScript application and a React application?
 

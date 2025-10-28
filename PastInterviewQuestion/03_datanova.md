@@ -607,33 +607,7 @@ const obj = {
 
 ## 38.1 🌐 What is `this` in Node.js?
 
-- In Node.js, `this` behaves differently than in the browser.
-
----
-
-### 📌 `this` in different Node.js contexts:
-
-| Context               | `this` refers to                  |
-| --------------------- | --------------------------------- |
-| Global scope          | `{}` (empty object, not `global`) |
-| Inside a function     | `global` (in non-strict mode)     |
-| Inside a class method | Class instance                    |
-| Arrow function        | Lexical scope (same as parent)    |
-
-### 🧪 Example: Global Scope
-
-```js
-console.log(this); // {} in Node.js (not `global`)
-```
-
-### 🧪 Example: Inside a function
-
-```js
-function test() {
-	console.log(this); // global object
-}
-test();
-```
+[`This`](../06_Node_Express/newnotes/this_in_node.md);
 
 ---
 
@@ -783,67 +757,13 @@ After await
 
 ## 42. ⚙️ What is Node.js?
 
-- Node.js is a **runtime environment** that lets you run JavaScript **outside the browser**.
-- Built on **Chrome’s V8 engine**.
-- Uses **`event-driven, non-blocking I/O`**, ideal for scalable network apps.
-
----
-
-### 💡 Why Use Node.js?
-
-- Run JS on server-side.
-- Build fast, scalable network applications (e.g. APIs, real-time apps).
-- Use JavaScript across the **full stack** (frontend + backend).
-
----
-
-### ✅ Pros of Node.js
-
-- 🔄 **Non-blocking I/O**: Handles many requests at once.
-- ⚡ **Fast execution**: Uses V8 engine.
-- 🧩 **Single language (JS)** across frontend & backend.
-- 🌐 Huge ecosystem via **npm**.
-- 🤝 Great for **real-time apps** (chat, games).
-
----
-
-### ⚠️ Cons of Node.js
-
-- 🧵 **Single-threaded**: Not ideal for CPU-heavy tasks.
-- 📚 Callback hell (can be improved with promises/async-await).
-- 🔐 Less mature in some areas compared to traditional backend tech (e.g., .NET, Java).
-
----
-
-## 43. pro and con of node.js
-
--- 42
+[09](../06_Node_Express/newnotes/nodejs_qna.md#L9)
 
 ---
 
 ## 44. 🚫 When to Avoid Using Node.js?
 
-- We should avoid Node.js for CPU-heavy or multi-threaded tasks like image processing or large computations. It’s also not ideal for apps that need complex SQL operations or require high security and strict typing.
-
-Avoid Node.js when:
-
-1. **CPU-Intensive Tasks**
-
-   - Examples: Image processing, video encoding, large computations.
-   - Node’s single-threaded model struggles with heavy CPU work.
-
-2. **Multi-threaded Operations Needed**
-
-   - If your app needs native multi-threading (e.g., banking systems, scientific computations), better to use languages like Java, Go, or C++.
-
-3. **Relational-heavy Applications**
-
-   - If your app heavily relies on complex SQL joins & transactions (e.g., ERP systems), traditional backend frameworks (like Spring, .NET) might be more suitable.
-
-4. **Low-Latency, High-Security Systems**
-   - Example: FinTech apps, payment gateways — where synchronous execution and strict type safety matter.
-
----
+## [Click](../06_Node_Express/newnotes/nodejs_qna.md#L24)
 
 ## 45. what is event loop in node js
 
@@ -853,28 +773,7 @@ Avoid Node.js when:
 
 ## 46. ⚙️ What is the V8 Engine?
 
-- V8 is **Google’s open-source JavaScript engine**.
-- It compiles JavaScript directly to **machine code** using **Just-In-Time (JIT)** compilation.
-- Written in **C++**, used in:
-  - Google Chrome (browser)
-  - Node.js (server-side)
-
----
-
-### 🔥 Key Features:
-
-- **High performance**: Compiles JS to native code at runtime.
-- **Memory management**: Built-in garbage collector.
-- **Cross-platform**: Runs on Windows, macOS, Linux.
-
----
-
-### 🧠 Why it matters for Node.js:
-
-- Node.js uses V8 to execute JavaScript code **outside the browser**.
-- Makes server-side JS **fast**, **efficient**, and **scalable**.
-
----
+[Click](../06_Node_Express/newnotes/nodejs_qna.md#L68)
 
 ---
 
@@ -887,41 +786,13 @@ Avoid Node.js when:
 
 ## 48. difference between put vs patch
 
-- nodejs qna: 15
+[Click](../06_Node_Express/newnotes/express_qna.md#L25)
 
 ---
 
 ## 49. 🚀 What is Express.js? Why use it? Pros & Cons
 
-### 📘 What is Express.js?
-
-- **Express.js** is a **minimal and flexible Node.js web framework**.
-- Helps in building **web applications and REST APIs** quickly.
-- Built on top of the **Node.js HTTP module**.
-
----
-
-### 💡 Why Use Express?
-
-- Simplifies handling of **routes**, **requests**, **responses**, and **middleware**.
-- Makes backend development **faster and cleaner** with less boilerplate.
-
----
-
-### ✅ Pros of Express.js:
-
-- 🧱 **Minimal & unopinionated** – full control over architecture.
-- ⚡ **Fast setup** for APIs and web servers.
-- 🔌 **Middleware support** – easily add logging, auth, error handling.
-- 📦 Huge ecosystem via **npm**.
-
----
-
-### ⚠️ Cons of Express.js:
-
-- ❌ No built-in structure — can become messy in large apps without conventions.
-- 🛠 Manual setup required for common features (e.g., validation, security).
-- 🧵 Single-threaded — inherits Node.js limitations.
+[click](../06_Node_Express/newnotes/express_qna.md#L5)
 
 ---
 
@@ -947,87 +818,17 @@ Avoid Node.js when:
 
 ## 51. 📦 What is `package.json`?
 
-- It's the **metadata file** for a Node.js project.
-- Defines the project’s **name, version, scripts, dependencies**, etc.
-- Required to manage packages using **npm** or **yarn**.
-
----
-
 ## 52. 🔐 What is `package-lock.json`?
-
-- Auto-generated file by **npm**.
-- **Locks** the exact versions of installed dependencies (and their sub-dependencies).
-- Ensures **same install** across all environments.
-
----
-
-### 🔍 Why it matters:
-
-- Prevents bugs from version mismatches.
-- Used for **dependency resolution** and faster installs.
-
----
 
 ## 53. 📦 package.json vs 🔐 package-lock.json
 
-### 📄 package.json
-
-- Manual file (you edit it).
-- Lists project info, scripts, and **dependency ranges** (e.g. ^1.0.0).
-- Used to **declare** what packages the project needs.
-
----
-
-### 🔒 package-lock.json
-
-- Auto-generated by **npm**.
-- Records **exact versions** of all dependencies (including nested ones).
-- Ensures **consistent installs** across all systems.
-
----
-
 ## 54. What happens if you delete `package.json`, `package-lock.json`, or both?
-
-### 🗑️ Delete `package-lock.json` only:
-
-- ✅ App **will still work**.
-- On next install, `npm` will create a new lock file.
-- But dependency versions might differ slightly (e.g., minor updates).
-
----
-
-### 🗑️ Delete `package.json` only:
-
-- ❌ App **won’t work**.
-- `npm install` can’t run — it doesn't know what dependencies to install.
-
----
-
-### 🗑️ Delete both:
-
-- ❌ App breaks unless `node_modules` is already present.
-- You won’t be able to reinstall dependencies cleanly.
-
----
 
 ## 55. 🗑️ What happens if you delete `node_modules`?
 
-- If I delete node_modules, the app won't run. But I can easily restore it with npm install since dependencies are listed in package.json.
-- The **code/server won’t run** — required packages are missing.
-- This reads from `package.json` and `package-lock.json` to reinstall all dependencies.
-
----
-
 ## 56. 🌐 Can we use `http` module without `node_modules`?
 
-- ✅ **Yes**, because `http` is a **core module** in Node.js.
-- Core modules are **built into Node.js** — no need to install via npm.
-
----
-
-- No need for `node_modules` — this will run as long as Node.js is installed.
-
----
+[All](../06_Node_Express/newnotes/npm.md)
 
 ## 57. 🔧 What is Git?
 
@@ -1508,34 +1309,7 @@ class Hello extends React.Component {
 
 ## 84. suppose you got the api which taking time longer then expected so would you speed up the api, what the step you will take in node and db
 
-### 🧪 Step-by-step:
-
-### 🔍 1. **Analyze the API Logic**
-
-- Check for **unnecessary loops**, **large payloads**, or **blocking operations**.
-- Use tools like `console.time()` or profilers to track time.
-
-### 📦 2. **Optimize Database Queries**
-
-- Use **indexes** on frequently filtered columns.
-- Avoid **N+1 queries** (fetching inside loops).
-- Use **projection** – only fetch required fields.
-- Add **pagination** for large result sets.
-
-### 🧠 3. **Add Caching**
-
-- Use **Redis** or in-memory cache for repeated data (e.g., dropdowns, stats).
-- Cache DB queries or responses where real-time data isn’t critical.
-
-### ⚙️ 4. **Async and Non-blocking Code**
-
-- Use `async/await` properly.
-- Avoid long sync operations in request cycle.
-
-### 📉 5. **Connection Handling**
-
-- Reuse DB connections with **connection pooling**.
-- Make sure DB queries aren’t waiting in queue.
+[click](../06_Node_Express/newnotes/optimize.md#L130)
 
 > First, I’d analyze the API code for slow logic, then check the DB queries — using indexes, reducing payloads, and paginating results. I’d also add caching where possible and ensure async code is optimized for non-blocking execution.
 

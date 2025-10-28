@@ -49,202 +49,19 @@ function add(a, b) {
 
 ## 3. Difference Between Node.js and JavaScript
 
-**JavaScript** is a **programming language** primarily used for web development.  
-**Node.js** is a **runtime environment** that allows JavaScript to run **outside the browser**, powered by the **V8 engine**.
-
----
-
-### 📌 Key Differences
-
-- 🌐 JavaScript runs in the **browser** (client-side)
-- 🖥️ Node.js runs on the **server** (backend)
-- 🚀 Node.js uses Google's **V8 engine** to execute JS code fast
-- 📁 Node.js supports file system, OS, and network modules
-- ❌ Browser JavaScript has no access to system-level APIs
-
----
-
-### 🔤 Example
-
-```js
-// Node.js (can access file system)
-const fs = require("fs");
-fs.writeFileSync("hello.txt", "Hello from Node");
-
-// JavaScript (browser - can't access files)
-console.log("Hello from browser JS");
-```
-
----
-
-### 📊 Comparison Table
-
-| Feature            | JavaScript (Browser) 🌐                      | Node.js 🖥️            |
-| ------------------ | -------------------------------------------- | --------------------- |
-| Environment        | Browser only                                 | Server-side runtime   |
-| Engine             | Browser’s JS engine (e.g., SpiderMonkey, V8) | V8 engine (Google)    |
-| File System Access | ❌ No                                        | ✅ Yes (via `fs`)     |
-| Modules            | ES Modules                                   | CommonJS + ES Modules |
-| DOM Access         | ✅ Yes                                       | ❌ No                 |
-| Used For           | UI / frontend logic                          | Backend, APIs, tools  |
-
----
-
-### ✅ Key Points
-
-- Node.js runs JS on the server using the **fast V8 engine**
-- JavaScript runs in browsers with their own JS engines
-- Use Node.js for backend apps, CLI tools, and servers
-- Use browser JavaScript for client-side interactions
+[click](../06_Node_Express/newnotes/nodejs_qna.md#L69)
 
 ## 4. Is Node.js Single-threaded or Multi-threaded?
 
-**Node.js** is primarily **single-threaded** but uses a **multi-threaded** architecture under the hood for I/O operations.
-
----
-
-### 📌 Key Points
-
-- ✅ Runs JavaScript code on a **single main thread** (event loop)
-- ⚙️ Uses **libuv thread pool** for non-blocking I/O tasks (file system, DNS, etc.)
-- 🔄 Handles concurrency via **asynchronous callbacks** and **event-driven model**
-- ⚠️ CPU-intensive tasks can block the event loop unless offloaded
-
----
-
-### 🔤 Example
-
-```js
-// Asynchronous I/O example - non-blocking
-const fs = require("fs");
-
-fs.readFile("file.txt", "utf8", (err, data) => {
-	if (err) throw err;
-	console.log(data);
-});
-
-console.log("Reading file...");
-```
-
----
-
-### 📊 Summary
-
-| Aspect               | Description                         |
-| -------------------- | ----------------------------------- |
-| JavaScript execution | Single-threaded (event loop)        |
-| I/O operations       | Multi-threaded (libuv thread pool)  |
-| Concurrency model    | Asynchronous, non-blocking          |
-| CPU-bound tasks      | Can block event loop if not managed |
-
----
-
-### ✅ Key Takeaways
-
-- Node.js is **single-threaded** for JavaScript code execution
-- It efficiently handles I/O with a **background thread pool**
-- Use **worker threads** or external services for heavy CPU tasks
+[click](../06_Node_Express/newnotes/architecture.md#L3)
 
 ## 5. Is Node.js Synchronous or Asynchronous?
 
-**Node.js** is **asynchronous** by design, using an **event-driven, non-blocking I/O** model.
-
----
-
-### 📌 Key Points
-
-- ✅ Most Node.js APIs are **asynchronous** (non-blocking)
-- ⚙️ Uses **callbacks, promises, async/await** to handle async code
-- 🔄 Executes code **without waiting** for I/O operations to complete
-- ⚠️ Some Node.js APIs offer **synchronous** versions (blocking)
-
----
-
-### 🔤 Example
-
-```js
-// Asynchronous (non-blocking)
-const fs = require("fs");
-fs.readFile("file.txt", "utf8", (err, data) => {
-	if (err) throw err;
-	console.log("File content:", data);
-});
-console.log("Reading file...");
-
-// Synchronous (blocking)
-const data = fs.readFileSync("file.txt", "utf8");
-console.log("File content:", data);
-```
-
----
-
-### 📊 Comparison Table
-
-| Feature      | Asynchronous (Default) ✅ | Synchronous (Blocking) ⚠️          |
-| ------------ | ------------------------- | ---------------------------------- |
-| I/O behavior | Non-blocking              | Blocking                           |
-| Performance  | High concurrency          | Slower, blocks event loop          |
-| Usage        | Preferred in Node.js      | Used for simple scripts or startup |
-| Example API  | `fs.readFile`             | `fs.readFileSync`                  |
-
----
-
-### ✅ Key Takeaways
-
-- Node.js is **mostly asynchronous** for better scalability
-- Avoid synchronous methods in production to prevent blocking
-- Use async patterns like **callbacks**, **promises**, or **async/await**
+[click](../06_Node_Express/newnotes/architecture.md#L92)
 
 ## 6. How Does Node.js Handle Multiple Requests at a Time?
 
-Node.js handles multiple requests **concurrently** using a **single-threaded event loop** with **non-blocking I/O**.
-
----
-
-### 📌 Key Points
-
-- ✅ Uses a **single main thread** (event loop) to manage requests
-- ⚙️ Delegates I/O tasks to **libuv’s thread pool** (background threads)
-- 🔄 Processes completed I/O events via **callbacks** or **promises**
-- 🚀 Enables handling thousands of connections without blocking
-
----
-
-### 🔤 Example (Conceptual)
-
-```js
-const http = require("http");
-
-http
-	.createServer((req, res) => {
-		// Non-blocking I/O example
-		setTimeout(() => {
-			res.end("Request handled asynchronously");
-		}, 100);
-	})
-	.listen(3000);
-
-console.log("Server running on port 3000");
-```
-
----
-
-### 📊 Summary
-
-| Aspect            | Description                             |
-| ----------------- | --------------------------------------- |
-| Request handling  | Single-threaded event loop              |
-| I/O processing    | Handled asynchronously by libuv threads |
-| Concurrency model | Event-driven, non-blocking              |
-| Scalability       | High, due to async non-blocking design  |
-
----
-
-### ✅ Key Takeaways
-
-- Node.js handles multiple requests **without creating new threads per request**
-- Event loop continuously checks for completed tasks to execute callbacks
-- Efficient for I/O-bound workloads but CPU-heavy tasks can block the loop
+[click](../06_Node_Express/newnotes/architecture.md#L113)
 
 ## 7. What is Helmet?
 
@@ -286,9 +103,7 @@ app.listen(3000);
 
 ## 8. What Are Streams in Node.js?
 
-**Streams** are objects that let you read or write data **piece-by-piece** (chunk by chunk) instead of all at once.
-
----
+[click](../06_Node_Express/newnotes/nodejs_qna.md#L370)
 
 ### 📌 Key Points
 
@@ -331,86 +146,13 @@ readable.pipe(writable); // Stream data from file to file efficiently
 
 ## 9. Find vs Aggregation Query (MongoDB)
 
-**Find** and **Aggregation** are MongoDB queries used to retrieve data, but with different purposes and capabilities.
-
----
-
-### 📌 Key Differences
-
-- 🔍 **Find**: Retrieves documents matching simple filter criteria
-- 🧩 **Aggregation**: Performs complex data processing and transformations (grouping, sorting, computing)
-
----
-
-### 🔤 Example
-
-```js
-// Find query - get all users aged 25
-db.users.find({ age: 25 });
-
-// Aggregation query - group users by age and count
-db.users.aggregate([{ $group: { _id: "$age", count: { $sum: 1 } } }]);
-```
-
----
-
-### 📊 Comparison Table
-
-| Feature              | Find Query                | Aggregation Query                         |
-| -------------------- | ------------------------- | ----------------------------------------- |
-| Use case             | Simple data retrieval     | Complex data transformations              |
-| Operations supported | Filtering, projection     | Grouping, sorting, calculating, reshaping |
-| Performance          | Faster for simple queries | Can be slower, more powerful              |
-| Output               | Documents                 | Transformed documents or computed results |
-
----
-
-### ✅ Key Points
-
-- Use **find** for basic queries with filters
-- Use **aggregation** for reports, analytics, and complex data operations
-- Aggregation pipeline supports multiple stages for flexible data processing
+[click](../07_MongoDB/newnotes/mongodb_qna.md/#L202)
 
 ## 10. Return Type of `find` and `findOne` (MongoDB)
 
 `find` and `findOne` are MongoDB methods used to query documents, but they return different types.
 
----
-
-### 📌 Key Points
-
-- `find` returns a **cursor** that can iterate over multiple documents
-- `findOne` returns a **single document** or `null` if none found
-
----
-
-### 🔤 Example
-
-```js
-// find returns a cursor (array after toArray())
-const cursor = db.users.find({ age: 25 });
-const users = await cursor.toArray(); // Array of documents
-
-// findOne returns a single document
-const user = await db.users.findOne({ age: 25 });
-```
-
----
-
-### 📊 Comparison Table
-
-| Method    | Return Type        | Result                            |
-| --------- | ------------------ | --------------------------------- |
-| `find`    | Cursor             | Multiple documents (can be empty) |
-| `findOne` | Document or `null` | Single document or `null`         |
-
----
-
-### ✅ Key Takeaways
-
-- Use `find` to retrieve **multiple documents**
-- Use `findOne` to retrieve **a single document** quickly
-- `find` needs `.toArray()` or iteration to get actual results
+[click](../07_MongoDB/newnotes/mongodb_qna.md/#L99)
 
 ## 11. What is Sharding in MongoDB?
 

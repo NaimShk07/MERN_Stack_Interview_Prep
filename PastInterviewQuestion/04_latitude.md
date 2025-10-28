@@ -247,40 +247,11 @@ document.getElementById("searchBox").addEventListener("input", debouncedInput);
 
 ## 15. commonjs vs es modules
 
-- CommonJS (CJS)
-
-  - Used mainly in Node.js (older standard)
-  - Uses `require()` to import and `module.exports` to export
-  - synchronous
-
-- ES Modules (ESM)
-  - Modern JS module system (ES6+)
-  - Uses import/export syntax
-  - Supported in browsers & Node.js (with .mjs or "type": "module")
-  - asynchronous
+[click](../06_Node_Express/newnotes/nodejs_qna.md#L166)
 
 ## 16. Execution Differs: Synchronous vs Asynchronous
 
-- CommonJS — Synchronous
-
-  - Modules are loaded immediately and fully executed using require().
-  - Blocking behavior — it waits until the module is loaded before moving to the next line.
-
-  ```js
-  const greet = require("./greet"); // <- waits here until loaded
-  console.log("After require"); // runs after greet.js is fully loaded
-  ```
-
-- ✅ ES Modules — Asynchronous (Non-blocking)
-
-  - import is hoisted and asynchronous under the hood.
-  - It allows things like top-level await and deferred execution.
-  - Modules are loaded in the background during parsing.
-
-  ```js
-  import { greet } from "./greet.js"; // loaded asynchronously
-  console.log("After import"); // this may run before the module is fully loaded
-  ```
+[click](../06_Node_Express/newnotes/nodejs_qna.md#L179)
 
 ---
 
@@ -398,29 +369,7 @@ document.getElementById("searchBox").addEventListener("input", debouncedInput);
 
 ## 22. can i create server without express
 
-- Yes — you can create a server without Express using pure Node.js!
-
-  - Express is just a wrapper built on top of Node’s native http module to make things easier. But Node itself can handle HTTP requests directly.
-
-  ```js
-  const http = require("http");
-
-  const server = http.createServer((req, res) => {
-  	if (req.url === "/") {
-  		res.write("Hello from pure Node.js server!");
-  	} else {
-  		res.writeHead(404);
-  		res.write("Page not found");
-  	}
-  	res.end();
-  });
-
-  server.listen(3000, () => {
-  	console.log("Server running at http://localhost:3000");
-  });
-  ```
-
----
+[http](../06_Node_Express/newnotes/nodejs_qna.md#L109)
 
 ## 23. What is middleware
 
@@ -438,54 +387,7 @@ document.getElementById("searchBox").addEventListener("input", debouncedInput);
 
 ## 24. What is aggregation and aggregation pipeline
 
-- Aggregation is a way to **process and transform data** in MongoDB.
-  - Similar to SQL's `GROUP BY`, `JOIN`, `SUM`, etc.
-  - Used to **analyze**, **filter**, **group**, or **combine** documents.
-- A pipeline is a **sequence of `stages`** that process data **step-by-step**.
-  - Each stage transforms the data and passes it to the next.
-
-### Common Stages:
-
-- `$match` → Filter documents (like `WHERE`)
-- `$group` → Group data (like `GROUP BY`)
-- `$sort` → Sort results
-- `$project` → Select specific fields
-- `$limit` / `$skip` → Pagination
-
-```js
-db.orders.aggregate([
-	{
-		$match: { year: 2023 },
-	},
-	{
-		$group: {
-			_id: "$customerName",
-			totalSpent: { $sum: "$orderAmount" },
-			ordersCount: { $sum: 1 },
-		},
-	},
-	// Sort by totalSpent (highest first)
-	{
-		$sort: { totalSpent: -1 },
-	},
-	{
-		$skip: 5,
-	},
-	{
-		$limit: 5,
-	},
-	{
-		$project: {
-			_id: 0,
-			customer: "$_id",
-			totalSpent: 1,
-			ordersCount: 1,
-		},
-	},
-]);
-```
-
----
+[click](../07_MongoDB/newnotes/mongodb_qna.md#L117)
 
 ## 25. how to handle one to many relationship in mongodb
 
@@ -494,7 +396,7 @@ db.orders.aggregate([
   - `Embedded`: When the "many" documents are few and tightly coupled.
 
   ```js
-   { name: "User", posts: [ { title: "Post1" }, { title: "Post2" } ] }
+    { name: "User", posts: [ { title: "Post1" }, { title: "Post2" } ] }
   ```
 
   - `Referenced`: When the "many" documents are many, large, or independent.
@@ -565,16 +467,7 @@ Post.find().populate('author').then(posts => {
 
 ## 28. findOne and find
 
-- findOne
-
-  - Returns a single document that matches the query
-  - If multiple documents match, it returns the first one found
-  - Returns null if no match
-
-- find
-  - Returns a cursor or array of documents matching the query
-  - Can return multiple documents
-  - Returns empty array or empty cursor if no match
+[click](../07_MongoDB/newnotes/mongodb_qna.md#L99)
 
 ---
 
@@ -637,142 +530,32 @@ User.find({ age: { $gt: 18 } });
 
 ## 32. How to secure your node js application
 
-### ✅ 1. Environment Variables
-
-- Store secrets (DB URI, JWT keys) in `.env`
-- Never hardcode credentials
-
-### ✅ 2. Secure HTTP Headers
-
-- Use `helmet` middleware
-- Sets security-related HTTP headers
-
-### ✅ 3. Error Handling
-
-- Never expose full error stack traces to clients
-- Log errors securely (e.g., Winston, Sentry)
-
-### kerinfotech 3:10
+[click](../06_Node_Express/newnotes/optimize.md#L81)
 
 ---
 
 ## 33. How to optimize api in node and mongodb
 
-### 1️⃣ Node.js Optimization
-
-#### ✅ Use Asynchronous Code
-
-- Use `async/await` and non-blocking I/O
-- Avoid blocking operations (e.g., heavy loops, sync file access)
-
-#### ✅ Use Pagination
-
-- Limit data returned with `limit` and `skip` instead of sending all records
-
-#### ✅ Enable GZIP Compression
-
-- Use `compression` middleware to reduce response size
-
-#### ✅ Use Caching
-
-- Cache frequent API responses using Redis or memory (e.g., NodeCache)
-
-#### ✅ Avoid Unnecessary Work
-
-- Only parse/process what's needed per request
-
-#### ✅ Use Clustering
-
-- Use `cluster` module to utilize all CPU cores
-
----
-
-### 2️⃣ MongoDB Optimization
-
-#### ✅ Use Indexes
-
-- Create indexes on fields used in `find`, `sort`, `match`, etc.
-- Check performance with `.explain()`
-
-#### ✅ Project Only Needed Fields
-
-- Use `.select()` or `$project` to fetch only required data
-
-#### ✅ Limit & Paginate Results
-
-- Avoid returning large datasets in one go
-- Use `limit`, `skip`, or cursor-based pagination
-
-#### ✅ Optimize Aggregation Pipeline
-
-- Use `$match` early in the pipeline
-- Use `$project` to remove unused fields
-
-#### ✅ Avoid N+1 Queries
-
-- Use `$lookup` or `.populate()` smartly (not in loops)
+- [Node.js](../06_Node_Express/newnotes/optimize.md#L82)
+- [Mongodb](../07_MongoDB/newnotes/mongodb_qna.md#L124)
 
 ---
 
 ## 34. how to join collection with populate and aggregation
 
-- check above
+[check above](command:revealLine?{"lineNumber":413,"at":"top"})
 
 ---
 
 ## 35. How to do error handling in node js
 
-### ✅ 1. Try-Catch (for async/await)
-
-```js
-app.get("/user", async (req, res) => {
-	try {
-		const user = await User.findById(req.params.id);
-		res.json(user);
-	} catch (err) {
-		res.status(500).json({ message: "Server Error" });
-	}
-});
-```
-
-### ✅ 2. Express Error-Handling Middleware
-
-```js
-// Error handler middleware
-app.use((err, req, res, next) => {
-	console.error(err.stack);
-	res.status(500).json({ message: "Something went wrong!" });
-});
-```
-
-### ✅ 3. asyncHandler Utility
-
-```js
-const asyncHandler = (reqHandler) => {
-	return (req, res, next) => {
-		Promise.resolve(reqHandler(req, res, next)).catch((err) => next(err));
-	};
-};
-```
+[click](../06_Node_Express/newnotes/errorHandling.md)
 
 ---
 
 ## 36. How to make global error handling middleware
 
-```js
-const errorHandler = (err, req, res, next) => {
-	const statusCode = err.statusCode || 500;
-	const message = err.message || "Internal Server Error";
-
-	res.status(statusCode).json({
-		success: false,
-		message,
-		stack: process.env.NODE_ENV === "development" ? err.stack : "🚫",
-	});
-};
-
-app.use(errorHandler);
-```
+[click](../06_Node_Express/newnotes/errorHandling.md)
 
 ---
 

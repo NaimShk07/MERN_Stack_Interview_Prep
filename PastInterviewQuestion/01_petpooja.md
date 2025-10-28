@@ -31,19 +31,11 @@
 
 ## 5. How to optimize timing in Express Node API
 
-- Use async/await and non-blocking code.
-- Optimize database queries and add indexes.
-- Use caching (e.g., Redis).
-- Apply gzip compression.
-- Limit payload size and use pagination.
+[click](../06_Node_Express/newnotes/optimize.md)
 
 ## 6. How to secure your protected route/API
 
-- Use JWT or OAuth for authentication.
-- Validate and sanitize input.
-- Use HTTPS.
-- Implement rate limiting and CORS.
-- Protect against SQL injection and XSS.
+[click](../06_Node_Express/newnotes/optimize.md#L82)
 
 ## 7. useMemo, React.memo, and useCallback
 
@@ -70,14 +62,7 @@ SELECT * FROM table WHERE column LIKE 'shi%';
 
 ## 10. MongoDB vs MySQL: Differences
 
-| Feature        | MongoDB                     | MySQL                       |
-| -------------- | --------------------------- | --------------------------- |
-| Type           | NoSQL (document-based)      | Relational (table-based)    |
-| Schema         | Schema-less                 | Fixed schema                |
-| Query Language | BSON / JavaScript-like      | SQL                         |
-| Use Case       | Flexible, unstructured data | Structured, relational data |
-
----
+[click](../07_MongoDB/newnotes/mongodb_qna.md#L54)
 
 ## 11. Primary vs Foreign vs Unique Key
 

@@ -113,74 +113,13 @@ const users = await User.find();
 
 ## 4. 📦 What is NPM?
 
-- **NPM (Node Package Manager)** is the `default package manager` for Node.js.
-- It is used to **`install, share, and manage` third-party packages (libraries & tools)**.
-- Comes `pre-installed` with Node.js.
-- Provides access to the world’s largest software registry: [npmjs.com](https://www.npmjs.com).
-
----
-
-### ⚖️ Key Features of NPM
-
-1. Install dependencies (`npm install express`)
-2. Manage project versions & scripts (`package.json`)
-3. Publish your own packages (`npm publish`)
-4. Run tasks with scripts (`npm run start`)
-
----
-
-### 🧪 Example
-
-```bash
-# Initialize a project
-npm init -y
-
-# Install a package
-npm install express
-
-# Run a script defined in package.json
-npm run start
-```
-
-> In short, NPM is like a marketplace + manager for Node.js packages, making project development faster and easier.
+[npm](../06_Node_Express/newnotes/npm.md)
 
 ---
 
 ## 5. 🔄 Require vs Import in Node.js
 
-- Both are used to **include modules** in Node.js, but they work differently.
-- `require` → CommonJS (older system, default in Node.js).
-- `import` → ES6 Modules (modern standard, needs `"type": "module"` in package.json).
-
----
-
-### ⚖️ Differences
-
-| Feature      | require (CommonJS)             | import (ES6 Modules)                                           |
-| ------------ | ------------------------------ | -------------------------------------------------------------- |
-| Syntax       | `const fs = require('fs')`     | `import fs from 'fs'`                                          |
-| Loading      | Synchronous                    | Asynchronous                                                   |
-| Export style | `module.exports = ...`         | `export default` / `export {}`                                 |
-| Availability | Default in Node.js             | Needs `"type": "module"` in `package.json` or `.mjs` extension |
-| When to use  | Legacy projects, simple setups | Modern apps, frontend + backend                                |
-
----
-
-### 🧪 Examples
-
-**Using require (CommonJS):**
-
-```js
-const express = require("express");
-const app = express();
-```
-
-**Using import (ES6 Modules):**
-
-```js
-import express from "express";
-const app = express();
-```
+[click](../06_Node_Express/newnotes/nodejs_qna.md#L151)
 
 > In short: require is older (CommonJS), import is modern (ESM). Today, ES Modules (import/export) are preferred for new projects.
 

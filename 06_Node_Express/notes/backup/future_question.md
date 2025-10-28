@@ -35,20 +35,3 @@ Event Loop in Node.js
 
 Streams and Buffers
 
-🔹 Express.js (Mini framework)
-Creating routes
-
-Middleware
-
-Error handling
-
-REST APIs with Express
-
-🔹 Extras (often asked in interviews)
-Environment variables (dotenv)
-
-Global objects (__dirname, __filename, process)
-
-EventEmitter
-
-Node.js vs Express.js
