@@ -12,7 +12,7 @@
 
 ## 4. What is javascript
 
--- js qna 1
+[click](../03_JavaScript/notes/javascript_qna.md#L1)
 
 ---
 
@@ -77,33 +77,7 @@
 
 ## 10. 📦 Data Types in JavaScript
 
-JavaScript has two main categories of data types:
-
----
-
-### 🔹 1. **Primitive Data Types**
-
-> Stored by value (not by reference)
-
-- `String` → `"Hello"`
-- `Symbol` → unique & immutable value (used as object keys)
-- `Number` → `42`, `3.14`
-- `Null` → intentional absence of value
-- `Boolean` → `true`, `false`
-- `BigInt` → large integers (e.g. `12345678901234567890n`)
-- `Undefined` → declared but not assigned
-
----
-
-### 🔸 2. **Non-Primitive (Reference) Data Types**
-
-> Stored by reference (points to memory location)
-
-- `Object` → `{ name: "John" }`
-- `Array` → `[1, 2, 3]` (technically an object)
-- `Function` → `function() {}` (also a type of object)
-
----
+## [click](MostImp.md#L31)
 
 ### 🧪 typeof Examples:
 
@@ -120,79 +94,13 @@ typeof function () {}; // "function"
 
 ## 10.1 📦 Reference vs Value | Shallow vs Deep Copy in JavaScript
 
-### 🔹 Primitive Types → Stored by **Value**
-
-> Copying creates a new value. Changes don’t affect the original.
-
-```js
-const a = "Hello";
-const b = a;
-
-b = "World";
-console.log(a); // "Hello"
-```
-
-### 🔸 Non-Primitives (Objects, Arrays) → Stored by Reference
-
-> Copying just points to the same memory. Changes affect both.
-
-```js
-const obj1 = { name: "Alice" };
-const obj2 = obj1;
-
-obj2.name = "Bob";
-console.log(obj1.name); // "Bob"
-```
-
-### 🔁 Shallow Copy
-
-> Only top-level properties are copied. Nested objects are still shared.
-
-```js
-const obj1 = { name: "Alice", address: { city: "NY" } };
-const obj2 = { ...obj1 }; // Shallow copy
-
-obj2.name = "Bob"; // ✅ ok
-obj2.address.city = "LA"; // ❌ affects obj1
-
-console.log(obj1.address.name); // "Alice"
-console.log(obj1.address.city); // "LA"
-```
-
-### 🧬 Deep Copy
-
-> Fully independent copy (including nested objects)
-
-```js
-// ✅ Method 1: JSON trick (simple objects only)
-const obj2 = JSON.parse(JSON.stringify(obj1));
-
-// ✅ Method 2: structuredClone (modern, safe)
-const obj2 = structuredClone(obj1);
-```
+[click](MostImp.md#L59)
 
 ---
 
 ## 11. ⚖️ null vs undefined in JavaScript
 
-| Feature | `null`                           | `undefined`                        |
-| ------- | -------------------------------- | ---------------------------------- |
-| Meaning | Intentional absence of value     | Variable declared but not assigned |
-| Type    | `object` (weird JS quirk)        | `undefined`                        |
-| Set By  | Developer (manually)             | JavaScript (by default)            |
-| Usage   | When you want to "empty" a value | When a value hasn't been set yet   |
-
----
-
-### ✅ Examples:
-
-```js
-let a;
-console.log(a); // undefined
-
-let b = null;
-console.log(b); // null
-```
+[click](../03_JavaScript/notes/javascript_qna.md#L122)
 
 ---
 

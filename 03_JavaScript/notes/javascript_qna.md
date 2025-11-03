@@ -5,7 +5,7 @@
 - Used to make web pages **interactive and dynamic**.
 -
 - just for info below
-- JavaScript is a single-threaded, dynamically typed, prototype-based, high-level interpreted programming language, primarily used for creating interactive web applications.
+- JavaScript is a `single-threaded`, `dynamically typed`, `prototype-based`, `high-level interpreted programming language`, primarily used for creating interactive web applications.
 
 ---
 
@@ -116,6 +116,29 @@ Now older browsers will understand .includes()!
 ---
 
 ## 1.3 what do you mean by this : 🕵️‍♂️ Security issues (can be exploited if not handled properly)
+
+---
+
+## 1. ⚖️ null vs undefined in JavaScript
+
+| Feature | `null`                           | `undefined`                        |
+| ------- | -------------------------------- | ---------------------------------- |
+| Meaning | Intentional absence of value     | Variable declared but not assigned |
+| Type    | `object` (weird JS quirk)        | `undefined`                        |
+| Set By  | Developer (manually)             | JavaScript (by default)            |
+| Usage   | When you want to "empty" a value | When a value hasn't been set yet   |
+
+---
+
+### ✅ Examples:
+
+```js
+let a;
+console.log(a); // undefined
+
+let b = null;
+console.log(b); // null
+```
 
 ---
 
@@ -287,12 +310,6 @@ Now older browsers will understand .includes()!
 
 ---
 
-## 21. What is Javascript?
-
-- JavaScript is a high-level, interpreted programming language used to make web pages interactive. It runs in browsers and can also be used on servers (like with Node.js).
-
----
-
 ## 22. Higher Order Function
 
 ---
@@ -378,6 +395,7 @@ Now older browsers will understand .includes()!
 ---
 
 ## 43. es6 vs before
+
 ---
 
 ## 44. event delegation

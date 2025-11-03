@@ -74,7 +74,7 @@ about question
 - Representational State Transfer
 - A RESTful API follows **REST principles** to handle communication between client and server.
 - It uses:
-  - 🔹 **HTTP methods**: GET, POST, PUT, DELETE
+  - 🔹 **HTTP methods**: GET, POST, PUT, PATCH, DELETE
   - 🔹 **URLs as resources**: `/users`, `/products/:id`
 
 #### 6. HTTP methods: GET, POST, PUT, PATCH, DELETE
@@ -90,6 +90,9 @@ about question
 
 #### 9. How do you handle environment variables in an Express app?
 
+- Environment variables are used to store sensitive or configuration data separately from your source code, like:
+- Database passwords, API keys, Port, Secrets (JWT_SECRET, etc.),
+
 #### 10. How can you serve static files in Express?
 
 #### 11. What is the role of the `package.json` file in an Express project?
@@ -102,12 +105,13 @@ about question
 
 #### 1. What is middleware in Express.js?
 
-- Middleware is a function that runs **between** the request and response.
+- Middleware functions have access to (req, res, next)
+- Middleware function runs **between** the request and response.
 - it can
   - 🔹 Modify the `req` or `res` object
-  - 🔹 Run code (e.g., logging, auth)
   - 🔹 End the request–response cycle
   - 🔹 Call `next()` to move to the next middleware
+  - 🔹 Run code (e.g., logging, auth)
 
 #### 2. How does middleware work? `(req, res, next)`
 
@@ -144,6 +148,14 @@ If `next()` is **not called**, the request will **hang**.
 #### 4. How do you modularize routes using `express.Router()`?
 
 #### 5. What are nested routes and why use them?
+
+- Nested routes help you organize related routes in separate files or under a common parent path. They're useful for cleaner structure and modular code
+
+```
+  GET /posts              → Get all posts
+  GET /posts/:postId      → Get single post
+  GET /posts/:postId/comments → Get comments for a post
+```
 
 #### 6. What is the default port for an Express app, and how to change it?
 

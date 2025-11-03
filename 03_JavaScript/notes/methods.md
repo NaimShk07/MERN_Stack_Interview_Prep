@@ -11,6 +11,7 @@
 - `Object.entries(obj)` → returns array of `[key, value]` pairs
 - `Object.assign(target, source)` → copies properties
 - `Object.hasOwn(obj, key)` → checks key existence
+- `obj.hasOwnProperty("city")` → checks key existence
 
 ### 🧪 Example:
 

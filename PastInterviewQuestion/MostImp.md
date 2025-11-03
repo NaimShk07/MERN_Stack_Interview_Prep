@@ -28,7 +28,35 @@
 - ✅ Yes — `http` is a **core** Node.js module
 - Core modules are built into Node.js (no need to install)
 
-## 8 📦 Reference vs Value | Shallow vs Deep Copy in JavaScript
+## 8 📦 Data Types in JavaScript
+
+JavaScript has two main categories of data types:
+
+---
+
+### 🔹 1. **Primitive Data Types**
+
+> Stored by value (not by reference)
+
+- `String` → `"Hello"`
+- `Symbol` → unique & immutable value (used as object keys)
+- `Number` → `42`, `3.14`
+- `Null` → intentional absence of value
+- `Boolean` → `true`, `false`
+- `BigInt` → large integers (e.g. `12345678901234567890n`)
+- `Undefined` → declared but not assigned
+
+---
+
+### 🔸 2. **Non-Primitive (Reference) Data Types**
+
+> Stored by reference (points to memory location)
+
+- `Object` → `{ name: "John" }`
+- `Array` → `[1, 2, 3]` (technically an object)
+- `Function` → `function() {}` (also a type of object)
+
+## 8.1 📦 Reference vs Value | Shallow vs Deep Copy in JavaScript
 
 ### 🔹 Primitive Types → Stored by **Value**
 
@@ -312,3 +340,38 @@ URL --> DNS_Lookup --> TCP_Connection --> TLS_Handshake --> HTTP_Request --> Ser
 ## 16. Find vs Aggregation Query (MongoDB)
 
 [click](../07_MongoDB/newnotes/mongodb_qna.md#L213)
+
+## 17. Single Connection vs Connection Pool
+
+- Single Connection: One DB connection; simple but slow and bad for multiple users.
+- Connection Pool: Multiple reusable connections; more efficient, handles concurrency, slightly more complex.
+
+## 18. pool.query vs pool.execute
+
+- Static / ad-hoc → fixed query, no parameters → `query` is okay.
+- Dynamic / user input → changing values → always use `execute`.
+
+## 18. express.json() vs express.urlencoded() vs bodyParsor.json()
+
+- `express.json()` → parses JSON data (e.g. from APIs or frontend apps).
+- `express.urlencoded({ extended: true })` → parses form data (`application/x-www-form-urlencoded`, like from HTML forms).
+
+`extended: true` just means it can handle nested objects/arrays in form data.
+
+## 19. mysql.createConnection vs mysql.createPool
+
+- `mysql.createConnection()` → creates a **single DB connection**. Suitable for scripts or single queries.
+
+  - Limitation: cannot handle many simultaneous requests, needs manual reconnects if dropped.
+
+- `mysql.createPool()` → creates a **pool of reusable connections**. Suitable for **production apps**.
+  - Handles multiple queries concurrently, auto-reconnects, configurable max connections.
+
+✅ **Rule of thumb:** Use `createPool` in production, `createConnection` for simple scripts.
+
+## 20. .env vs .env.local in Next.js
+
+- `.env`: Default environment variables for all environments; shared across machines.
+- `.env.local`: Local overrides for `.env`, ignored by git; used for secrets or machine-specific settings.
+
+**Loading order:** `.env` → `.env.local` → environment-specific files like `.env.development` or `.env.production`.
