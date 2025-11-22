@@ -452,10 +452,10 @@ SELECT CURRENT_DATE;   -- 2025-10-03
 ## 14. 🟦 What is Binary JSON (BSON)?
 
 📌 **Definition:**  
-BSON (**Binary JSON**) is a **binary-encoded serialization** of JSON-like documents.  
-It is primarily used by **MongoDB** to store and transfer data efficiently.
+BSON (**Binary JSON**) is a **`binary-encoded` serialization** of JSON-like documents.  
+It is primarily used by **MongoDB** to `store and transfer` data efficiently.
 
-BSON stands for Binary JSON. It’s a binary-encoded format used by MongoDB to store documents more efficiently than plain JSON. Unlike JSON, BSON supports additional data types like Date, Binary, and ObjectId, and it’s faster for reading and writing due to its binary nature.
+BSON stands for Binary JSON. It’s a `binary-encoded` format used by MongoDB to store documents more efficiently than plain JSON. Unlike JSON, BSON supports additional data types like Date, Binary, and ObjectId, and it’s faster for reading and writing due to its binary nature.
 
 ---
 
@@ -558,18 +558,6 @@ Keys are **unique identifiers** used by React to track elements in **lists** for
 ---
 
 ## 19. 🔑 React Keys & What Happens If You Don’t Pass Them
-
-### ⚡ Key Points
-
-- React **warns in the console**:  
-  `"Each child in a list should have a unique "key" prop."`
-- Without keys, React may **re-render inefficiently**, causing:
-  - Unnecessary DOM updates
-  - Wrong component state being reused
-
----
-
-### 🧪 What Happens If You Don’t Pass Keys?
 
 - React **will still render the list**, but it will **warn in the console**:  
   `"Each child in a list should have a unique "key" prop."`

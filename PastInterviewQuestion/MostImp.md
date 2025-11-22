@@ -89,12 +89,15 @@ console.log(obj1.name); // "Bob"
 ```js
 const obj1 = { name: "Alice", address: { city: "NY" } };
 const obj2 = { ...obj1 }; // Shallow copy
+const obj2 = Object.assign({}, obj1); // Shallow copy
 
 obj2.name = "Bob"; // ✅ ok
 obj2.address.city = "LA"; // ❌ affects obj1
 
 console.log(obj1.address.name); // "Alice"
 console.log(obj1.address.city); // "LA"
+
+
 ```
 
 ### 🧬 Deep Copy
@@ -375,3 +378,5 @@ URL --> DNS_Lookup --> TCP_Connection --> TLS_Handshake --> HTTP_Request --> Ser
 - `.env.local`: Local overrides for `.env`, ignored by git; used for secrets or machine-specific settings.
 
 **Loading order:** `.env` → `.env.local` → environment-specific files like `.env.development` or `.env.production`.
+
+## 20. Agile vs Waterflow method

@@ -8,7 +8,7 @@
 
 ### 🔶 1. Definition
 
-- **JSON (JavaScript Object Notation)**: A _string-based_ data format used for data exchange. It is language-independent but based on JavaScript syntax.
+- **JSON (JavaScript Object Notation)**: A **string-based** data format used for `data exchange`. It is language-independent but based on JavaScript syntax.
 - **Object**: A data structure in JavaScript used to store key-value pairs.
 
 ### 🔶 2. Syntax Differences
@@ -126,7 +126,7 @@ const [first, ...rest] = [10, 20, 30];
 
 ## 8. What is the difference between interfaces and types?
 
-**`interface`** and **`type`** are both used to define object shapes in TypeScript, but have different capabilities and use-cases.
+**`interface`** and **`type`** are both used to define `object` shapes in TypeScript, but have different capabilities and use-cases.
 
 - `interface` is best for defining object structures
 - `type` is more flexible: supports primitives, unions, intersections

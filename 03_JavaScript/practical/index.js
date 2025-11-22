@@ -251,3 +251,67 @@ console.log(formatedUser);
 const words = ["apple", "banana", "apple", "orange", "banana", "apple"];
 
 // ! 30. find the sum of two fractions
+// ! 31. find the duplicate number from arr
+
+const arr = [1, 2, 3, 2, 4, 2, 3, 4, 5, 2];
+
+function returnDuplicate(arr) {
+	let repeatedNum = [];
+
+	// #1
+
+	// for(let i=0;i < arr.length; i++){
+	//     for(let j=i;j < arr.length - 1; j++){
+	//         if(arr[i] == arr[j+1]){
+	//             if(!repeatedNum.includes(arr[i])){
+	//               repeatedNum.push(arr[i]);
+	//             }
+	//         }
+	//     }
+	// }
+
+	// #2
+
+	let sortedArr = arr.sort((a, b) => a - b);
+
+	for (let i = 0; i < arr.length - 1; i++) {
+		if (arr[i] == arr[i + 1]) {
+			if (!repeatedNum.includes(arr[i])) {
+				repeatedNum.push(arr[i]);
+			}
+		}
+	}
+
+	return repeatedNum;
+}
+
+console.log(returnDuplicate(arr));
+
+// ! 32. Example: Understanding "x + 5% = 100"
+
+// Step-by-step Explanation in Hinglish:
+
+// 1️⃣ Equation diya hai:
+// x + 5% = 100
+
+// 2️⃣ Yahaan “5%” ka matlab hota hai “5% of x”,
+// yani (5/100) * x = 0.05x
+
+// 3️⃣ Ab equation ko likh sakte hain:
+// x + 0.05x = 100
+
+// 4️⃣ Dono terms mein x hai, toh add kar do:
+// (1 + 0.05)x = 100
+// 1.05x = 100
+
+// 5️⃣ Ab x nikalne ke liye divide karo:
+// x = 100 / 1.05
+// x = 95.24
+
+// ✅ Final Answer:
+// x = 95.24
+
+// 💡 Simple Words Mein:
+// “x + 5% = 100” ka matlab hai “x mein uska 5% add karke 100 milta hai.”
+// Isliye 5% ko x ke saath multiply karna zaroori hai — isliye “0.05x” likhte hain.
+

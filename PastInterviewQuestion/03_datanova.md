@@ -20,7 +20,7 @@
 
 - ECMAScript ek standard hai jo batata hai JavaScript kaise kaam kare — jaise ek guideline ya rulebook.
 - ECMAScript is the **rulebook** for JavaScript.
-- iska kaam hai rules define karna — jaise syntax, features, aur behavior.
+- iska kaam hai rules define karna — jaise `syntax`, `features`, aur `behavior`.
 - Bas, jitne naye versions aate hain (jaise ES6(2015), ES2020), naye features add hote hain.
 
 ---
@@ -82,10 +82,10 @@
 ### 🧪 typeof Examples:
 
 ```js
-typeof null; // "object" ❗ (JavaScript quirk)
 typeof undefined; // "undefined"
 typeof "hello"; // "string"
 typeof 42; // "number"
+typeof null; // "object" ❗ (JavaScript quirk)
 typeof [1, 2, 3]; // "object"
 typeof function () {}; // "function"
 ```
@@ -374,9 +374,9 @@ typeof [1, 2, 3]; // "object"
 -
 - to properly check: Array.isArray([1, 2, 3]); // true
 
-### 💡 1. Arrays _are_ Objects in JavaScript
+### 💡 1. Arrays are Objects in JavaScript
 
-- In JavaScript, almost everything except primitives data types is an **object**.
+- In JavaScript, almost everything except `primitives data` types is an **object**.
 - An **array is a special kind of object** — optimized for storing ordered data.
 
 ### ⚙️ 2. Internally, Arrays Are Objects with Extra Features
@@ -438,15 +438,15 @@ typeof "hello"; // "string"
 
 2. **TCP Connection**
 
-   - Browser establishes a **TCP handshake** (via port 80/443).
+   - `Browser` establishes a **TCP handshake** (via port 80/443).
 
-3. **HTTPS (TLS Handshake)**
+<!-- 3. **HTTPS (TLS Handshake)**
 
-   - If HTTPS, browser and server exchange certificates and keys.
+   - If HTTPS, browser and server exchange certificates and keys. -->
 
 4. **HTTP Request Sent**
 
-   - Browser sends a **GET** request for the web page.
+   - `Browser` sends a **GET** request for the web page.
 
 5. **Server Response**
 
@@ -826,7 +826,7 @@ After await
 
 ## 🗣️ What to say in the interview:
 
-> "ORM lets you work with databases using code objects, making development easier. Raw queries give full control and can be faster but need SQL expertise."
+> "ORM lets you work with databases using code `objects`, making development easier. Raw queries give full control and can be faster but need SQL expertise."
 
 ---
 

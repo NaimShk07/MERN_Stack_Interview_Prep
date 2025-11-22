@@ -387,7 +387,7 @@ FROM employees;
 SELECT first_name, salary
 FROM employees
 WHERE salary > (
-   SELECT AVG(salary)
+   SELECT AVG(salary) -- single value
    FROM employees
 );
 
@@ -395,7 +395,7 @@ WHERE salary > (
 SELECT first_name
 FROM employees
 WHERE dept_id IN (
-   SELECT dept_id
+   SELECT dept_id -- multiple row
    FROM departments
    WHERE location = 'New York'
 );

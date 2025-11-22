@@ -151,7 +151,7 @@
 
 - Code splitting means **breaking your app’s bundle into smaller chunks**.
   - Loads only the necessary code for the current page or feature.
-  - Reduces initial load time and improves performance.
+  - `Reduces initial load time` and improves performance.
   - Often used with tools like Webpack or React.lazy.
   - same like above with out suspence
 
@@ -298,6 +298,7 @@ document.getElementById("searchBox").addEventListener("input", debouncedInput);
     	greet: function () {
     		console.log("Hello, my name is " + this.name);
     	},
+
     	name, // same as name: name
     	greet() {
     		// method shorthand

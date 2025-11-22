@@ -8,7 +8,7 @@
 
 #### 1. What is MySQL? How is it different from SQL?
 
-**MySQL** is a popular open-source **Relational Database Management System (RDBMS)**.  
+**MySQL** is a popular open-source **Relational Database Management System (`RDBMS`)**.  
 **SQL** (Structured Query Language) is the **language** used to interact with MySQL and other RDBMS.
 
 📌 **Key Differences:**
@@ -28,7 +28,7 @@
 
 #### 2. What is a NoSQL Database? How is data stored in it?
 
-A **NoSQL database** is a non-relational database that stores data in **flexible, schema-less formats**.
+A **NoSQL database** is a `non-relational database` that stores data in **flexible, schema-less formats**.
 
 📌 **Key Points:**
 
@@ -80,7 +80,7 @@ SQL is **generally not case-sensitive**, but **behavior can vary** based on:
 
 #### 7. What is a Stored Procedure?
 
-A **Stored Procedure** is a pre-written SQL program saved in the database that performs a specific task or set of operations.
+A **Stored Procedure** is a `pre-written SQL program` saved in the database that performs a specific task or set of operations.
 
 📌 **Key Points:**
 
@@ -97,13 +97,13 @@ A **Stored Procedure** is a pre-written SQL program saved in the database that p
 
 #### 8. What is a Function?
 
-A **Function** is a database object that performs a specific calculation or operation and **returns a single value**.
+A **Function** is a `database object` that performs a `specific calculation` or `operation` and **returns a single value**.
 
 📌 **Key Points:**
 
 - Must return a value using `RETURN`
 - Can be used in SQL queries (e.g., `SELECT`, `WHERE`)
-- Typically used for reusable calculations or data transformations
+- Typically used for `reusable calculations` or `data transformations`
 
 ✅ Uses:
 
@@ -151,7 +151,7 @@ RETURN (
 
 #### 9. What is a Trigger? What are its types?
 
-A [**Trigger**](../../code-snippets/advanceQuery.sql#L81) is a special stored procedure that **automatically executes** in response to certain events on a table.
+A [**Trigger**](../../code-snippets/advanceQuery.sql#L81) is a `special stored procedure` that **automatically executes** in response to certain events on a table.
 
 📌 **Key Points:**
 
@@ -173,12 +173,12 @@ A [**Trigger**](../../code-snippets/advanceQuery.sql#L81) is a special stored pr
 
 #### 10. What are Events in SQL? What are their types?
 
-[**Events**](../../code-snippets/advanceQuery.sql#L101) are scheduled tasks in SQL that run **automatically** at specified times or intervals.
+[**Events**](../../code-snippets/advanceQuery.sql#L101) are `scheduled tasks` in SQL that run **automatically** at specified times or intervals.
 
 📌 **Key Points:**
 
-- Automate repetitive tasks (e.g., backups, cleanups)
-- Similar to cron jobs but inside the database
+- `Automate` repetitive tasks (e.g., `backups`, `cleanups`)
+- Similar to `cron jobs` but inside the database
 - Supported in DBMS like MySQL (Event Scheduler)
 
 📦 **Types of Events:**
@@ -194,7 +194,7 @@ A [**Trigger**](../../code-snippets/advanceQuery.sql#L81) is a special stored pr
 
 #### 11. What is a Delimiter in SQL?
 
-A **Delimiter** is a symbol or sequence that marks the **end of a SQL statement**.
+A **Delimiter** is a `symbol` or `sequence` that marks the **end of a SQL statement**.
 
 📌 **Key Points:**
 
@@ -213,7 +213,7 @@ A **Delimiter** is a symbol or sequence that marks the **end of a SQL statement*
 
 #### 13. What is a Materialized View?
 
-A **Materialized View** is a **precomputed, stored result** of a query that can be refreshed periodically.
+A **Materialized View** is a **precomputed, `stored result`** of a query that can be refreshed periodically.
 
 📌 **Key Points:**
 
@@ -229,6 +229,16 @@ SELECT region, SUM(amount) AS total_sales
 FROM Sales
 GROUP BY region;
 ```
+
+View
+
+- A virtual table.
+- SQL engine rewrites queries using the view definition at runtime.
+
+Materialized View
+
+- A real table storing query results.
+- Can be indexed like a table.
 
 ✅ Uses:
 
@@ -253,7 +263,7 @@ GROUP BY region;
 
 #### 15. What are String Functions in SQL?
 
-[**String functions**](../../code-snippets/query.sql#L347) are built-in SQL functions used to **manipulate and process text data**.
+[**String functions**](../../code-snippets/query.sql#L347) are `built-in SQL functions` used to **manipulate and process text data**.
 
 #### 16. What are Date and Time Functions?
 
@@ -288,7 +298,7 @@ These are SQL set and conditional operators used to compare results from multipl
 
 📌 **1. INTERSECT**
 
-- Returns **common rows** between two queries
+- Returns **`common` rows** between two queries
 - Both queries must have the **same columns and data types**
 
 🧪 **Example:**
@@ -301,7 +311,7 @@ SELECT id FROM B;
 
 📌 **2. MINUS** (also known as `EXCEPT` in some DBMS)
 
-- Returns rows from the first query that are not in the second
+- Returns rows from the `first query` that are not in the second
 - Not supported in MySQL (use LEFT JOIN + IS NULL)
 
 🧪 **Example:**
@@ -314,12 +324,13 @@ SELECT id FROM B;
 
 📌 **3. NOT EXISTS**
 
-- Returns rows where a subquery does NOT return any result
-- Efficient for checking non-matching rows
+- `Returns rows` where a `subquery does NOT return` any result
+- Efficient for `checking non-matching rows`
 
 🧪 **Example:**
 
 ```sql
+-- those who have not ordered
 SELECT * FROM Customers C
 WHERE NOT EXISTS (
   SELECT 1 FROM Orders O WHERE O.customer_id = C.id
@@ -334,7 +345,7 @@ WHERE NOT EXISTS (
 
 #### 1. What are the types of Subqueries?
 
-A [**subquery**](../../code-snippets/query.sql#L376) is a query nested inside another SQL query. It returns data used by the main query.
+A [**subquery**](../../code-snippets/query.sql#L376) is a query `nested inside another SQL query`. It returns data used by the main query.
 
 📌 **Types of Subqueries:**
 
@@ -364,6 +375,22 @@ A [**subquery**](../../code-snippets/query.sql#L376) is a query nested inside an
 - Prefer subqueries in WHERE, FROM, or SELECT clauses
 
 #### 2. How does `EXISTS` differ from `IN`?
+
+`EXISTS`
+
+- Checks whether at least one row exists that satisfies the condition.
+- Returns TRUE if any row is found; stops searching immediately after the first match.
+- Works on rows and is often used with correlated subqueries.
+- Safe with NULL values — doesn’t get confused by them.
+- More efficient for large data sets, since it can short-circuit early.
+
+`IN`
+
+- Checks whether a value is present in a list or subquery result.
+- Compares scalar values, not rows.
+- The subquery must return all results before evaluation.
+- Can behave unpredictably when NULL values exist in the subquery result.
+- More suitable for small, fixed lists (e.g., id IN (1,2,3)).
 
 #### 3. Write a SQL query to:
 

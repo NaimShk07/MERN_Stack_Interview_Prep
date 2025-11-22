@@ -37,7 +37,7 @@ app.use(
 		origin: function (origin, callback) {
 			// allow non-browser requests like Postman
 			if (!origin) return callback(null, true);
-			if (allowedOrigins.indexOf(origin) === -1) {
+			if (!allowedOrigins.includes(origin)) {
 				return callback(new Error("Not allowed by CORS"), false);
 			}
 			return callback(null, true);
@@ -91,7 +91,7 @@ if (cluster.isMaster) {
 
 ### 3. Rate Limiting
 
-- Prevent brute-force or spam with express-rate-limit or similar:
+- Prevent `brute-force` or `spam` with express-rate-limit or similar:
 
 ```js
 const rateLimit = require("express-rate-limit");

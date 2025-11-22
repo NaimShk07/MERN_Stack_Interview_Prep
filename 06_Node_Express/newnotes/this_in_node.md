@@ -4,13 +4,13 @@ The keyword **`this`** refers to the **execution context** — i.e., the object 
 
 📌 **Key Points:**
 
-| Context               | `this` refers to                             |
-| --------------------- | -------------------------------------------- |
-| **Global scope**      | Empty object `{}` (not `global`)             |
-| **Regular function**  | `undefined` (strict) / `global` (non-strict) |
-| **Method call**       | The object owning the method                 |
-| **Arrow function**    | Inherited from parent scope                  |
-| **Class constructor** | The class instance                           |
+| Context               | `this` refers to                |
+| --------------------- | ------------------------------- |
+| **Global scope**      | Empty object `{}` / `undefined` |
+| **Regular function**  | `global`                        |
+| **Method call**       | The object owning the method    |
+| **Arrow function**    | Inherited from parent scope     |
+| **Class constructor** | The class instance              |
 
 🧪 **Example:**
 
@@ -27,7 +27,7 @@ function showThis() {
 	console.log(this);
 }
 
-showThis(); // undefined (strict mode) or global (non-strict)
+showThis(); // global
 
 // Method Call
 const user = {

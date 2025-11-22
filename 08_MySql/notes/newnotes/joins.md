@@ -1,7 +1,7 @@
 ## SQL JOINs – Interview Cheat Sheet
 
 📌 **What is a JOIN?**  
-A `JOIN` combines rows from two or more tables based on a related column (typically a foreign key).
+A `JOIN` `combines rows` from `two or more tables` based on a related column (typically a foreign key).
 
 ---
 

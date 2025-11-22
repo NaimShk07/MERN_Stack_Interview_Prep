@@ -6,10 +6,12 @@
 
 ### 📌 Common Methods:
 
+- `Object.create(null)` → to create a object
 - `Object.keys(obj)` → returns array of keys
 - `Object.values(obj)` → returns array of values
 - `Object.entries(obj)` → returns array of `[key, value]` pairs
 - `Object.assign(target, source)` → copies properties
+- `Object.freeze(obj)` → ❄️ make object immutable but its shallow use deepFreeze
 - `Object.hasOwn(obj, key)` → checks key existence
 - `obj.hasOwnProperty("city")` → checks key existence
 

@@ -2,8 +2,7 @@
 
 ### ✅ What is an Index?
 
-An **index** is a **database object** that **speeds up data retrieval**.  
-Works like a **book index** – jumps directly to data without scanning every row.
+An [**index**](https://www.youtube.com/watch?v=xXtig5uLQS4) is a **database object** that **speeds up data retrieval**. Works like a **book index** – jumps directly to data without scanning every row.
 
 ---
 

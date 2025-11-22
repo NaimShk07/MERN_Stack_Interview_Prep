@@ -65,7 +65,7 @@ function add(a, b) {
 
 ## 7. What is Helmet?
 
-**Helmet** is a **Node.js middleware** that helps secure Express apps by setting various HTTP headers.
+**Helmet** is a **Node.js middleware** that helps `secure` Express apps by setting various HTTP headers.
 
 ---
 
@@ -270,8 +270,8 @@ An **Error Boundary** is a React component that **catches JavaScript errors in i
 
 ### 📌 Key Points
 
-- ✅ Catches errors during rendering, lifecycle methods, and constructors of child components
-- ⚠️ Does **not** catch errors inside event handlers or async code
+- ✅ Catches errors during `rendering`, `lifecycle methods`, and `constructors` of child components
+- ⚠️ Does **not** catch errors inside `event handlers` or `async code`
 - 🔄 Implemented using `componentDidCatch` lifecycle method or `static getDerivedStateFromError`
 
 ---

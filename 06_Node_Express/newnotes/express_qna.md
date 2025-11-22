@@ -72,7 +72,7 @@ about question
 #### 5. What is a RESTful API?
 
 - Representational State Transfer
-- A RESTful API follows **REST principles** to handle communication between client and server.
+- A RESTful API follows **REST principles** to `handle communication` between `client and server`.
 - It uses:
   - 🔹 **HTTP methods**: GET, POST, PUT, PATCH, DELETE
   - 🔹 **URLs as resources**: `/users`, `/products/:id`
@@ -149,7 +149,7 @@ If `next()` is **not called**, the request will **hang**.
 
 #### 5. What are nested routes and why use them?
 
-- Nested routes help you organize related routes in separate files or under a common parent path. They're useful for cleaner structure and modular code
+- Nested routes help you `organize related routes` in separate files or under a common parent path. They're useful for cleaner structure and modular code
 
 ```
   GET /posts              → Get all posts

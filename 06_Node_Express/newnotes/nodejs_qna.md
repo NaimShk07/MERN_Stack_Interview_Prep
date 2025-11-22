@@ -118,10 +118,10 @@ console.log("Hello from browser JS");
 
 #### 5. What is the V8 JavaScript Engine and how does Node.js use it?
 
-**V8** is Google’s open-source JavaScript engine written in C++, powering **Google Chrome** and **Node.js**.
+**V8** is Google’s open-source `JavaScript engine` written in C++, powering **Google Chrome** and **Node.js**.
 
 - Compiles JS directly to **machine code** using **Just-In-Time (JIT)** compilation.
-- Manages **memory** with built-in garbage collection.
+- Manages **memory** with `built-in garbage collection`.
 - Cross-platform: runs on Windows, macOS, Linux.
 
 ---
@@ -212,7 +212,7 @@ server.listen(3000, () => {
 
 #### 1. What is a module in Node.js?
 
-A **module** is a reusable piece of code in a separate file, encapsulated with its own scope, that can be imported or exported.
+A **module** is a `reusable piece of code` in a separate file, encapsulated with its own scope, that can be imported or exported.
 
 - Organizes code into manageable parts
 - Every file is treated as a module
@@ -222,7 +222,7 @@ A **module** is a reusable piece of code in a separate file, encapsulated with i
 
 #### 2. What is the CommonJS module system?
 
-CommonJS is Node.js’s default module system using `require()` for **synchronous** loading.
+CommonJS is Node.js’s `default module system` using `require()` for **synchronous** loading.
 
 - Uses `module.exports` or `exports` to expose code
 - Modules are loaded at runtime synchronously
@@ -318,7 +318,7 @@ const add = require("./add");
 
 #### 6. What is clustering?
 
-**Clustering** is a technique to run multiple instances of a Node.js application across CPU cores to improve performance and reliability.
+**Clustering** is a `technique` to `run multiple instances` of a Node.js application across CPU cores to improve performance and reliability.
 
 - Utilizes Node.js’s built-in **cluster module**
 - Creates **worker processes** that share the same server port
@@ -371,7 +371,7 @@ const add = require("./add");
 
 #### 1. What are streams in Node.js?
 
-**Streams** are objects that allow you to **read or write data piece-by-piece** instead of loading it all into memory.
+**Streams** are objects that allow you to **`read or write` data piece-by-piece** instead of loading it all into memory.
 
 - Handle **large files** or **network data efficiently**
 - Enable **data pipelining** between sources
@@ -398,7 +398,7 @@ readStream.on("data", (chunk) => console.log(chunk.toString()));
 
 #### 3. What is a buffer and how is it used?
 
-A Buffer is a temporary storage for binary data in Node.js.
+A Buffer is a `temporary storage` for binary data in Node.js.
 
 - Temporary storage for binary data
 - Works with raw streams from files, network, or other sources
@@ -447,9 +447,9 @@ readStream.pipe(writeStream); // handles backpressure automatically
 **Additional Tips:**
 
 - Use `helmet` middleware for setting secure HTTP headers
+- Always **keep Node.js and packages updated** to latest stable versions
 - Sanitize all user input with libraries like `validator.js` or `DOMPurify`
 - Monitor logs and implement alerting for suspicious activities
-- Always **keep Node.js and packages updated** to latest stable versions
 
 #### 2. How do you secure REST APIs in Express?
 
@@ -545,7 +545,7 @@ jwt.verify(token, "SECRET_KEY", (err, user) => {
 
 #### 5. Vertical vs horizontal scaling?
 
-**Scaling** means increasing a system’s capacity to handle more load by adding resources.
+**Scaling** means increasing a `system’s capacity` to `handle more load` by adding resources.
 
 - **Vertical Scaling** (Scaling Up): Adding more power (CPU, RAM) to a single machine
 - **Horizontal Scaling** (Scaling Out): Adding more machines or nodes to distribute the load
@@ -595,9 +595,21 @@ jwt.verify(token, "SECRET_KEY", (err, user) => {
 
 #### 2. When to use REST vs GraphQL in Node.js?
 
-#### 3. Can Node.js be used with WebSockets?
+#### 3. What is WebSockets ? why use it ?
 
-#### 4. What is Socket.io?
+#### 3.1 Can Node.js be used with WebSockets?
+
+#### 3.2 Difference between websockets and http?
+
+#### 4. What is Socket.io
+- io.on
+- socket.on()
+- socket.emit()
+- socket.broadcast.emit
+- socket.to().emit
+- socket.join()
+
+#### 5. Use of app.use(express.static("/public"));
 
 ### 📌 Miscellaneous
 

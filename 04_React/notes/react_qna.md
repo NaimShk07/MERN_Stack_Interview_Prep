@@ -1,12 +1,45 @@
-1. What is React?
+1. What is React? Why use it?
 
-- React is a JavaScript library which make easy to manage and build comple front end /user interfaces, especially single-page applications (SPAs).
-- Developed by Facebook
-- Uses components to break UIs into reusable pieces
-- Uses JSX (JavaScript + HTML)
-- Maintains a virtual DOM for efficient rendering
+- **React** is a **JavaScript library for building user interfaces**, primarily for single-page applications.
+- Allows developers to create **reusable UI components**.
+- Developed and maintained by **Facebook** (Meta).
 
-1. Why use React, pros and cons?
+**Why use React?**
+
+- 🔹 Uses a **component-based architecture**, promoting **reusability** and **modularity**.
+- 🔹 **Virtual DOM** improves performance by efficiently updating only the parts of the UI that change.
+- 🔹 Large ecosystem and strong community support.
+- 🔹 Can be used with other libraries or frameworks (e.g., Redux, Next.js).
+- 🔹 Enables **declarative programming**, making UI predictable and easier to debug.
+
+1. What are the advantages and disadvantages of React?
+
+- Advantages ✅
+
+  - Efficient rendering with Virtual DOM.
+  - Reusable components reduce code duplication.
+  - Strong community support and vast ecosystem.
+  - SEO-friendly when used with Next.js or server-side rendering.
+  - Can integrate with various state management libraries (Redux, MobX, Recoil).
+
+- Disadvantages ⚠️
+  - Only handles UI layer — requires additional libraries for full-stack solutions.
+  - Steep learning curve for beginners due to JSX, hooks, and state management.
+  - Frequent updates may require developers to keep up-to-date.
+  - Boilerplate can increase in large projects without proper structure.
+
+1. What is the current version of React and its features?
+
+- Current stable version: React 19.x
+
+1. Why should we use React over plain JavaScript?
+
+- 🔹 Makes complex UI easier to manage with components.
+- 🔹 Declarative syntax reduces DOM manipulation errors.
+- 🔹 Reusable components speed up development.
+- 🔹 Optimized performance using Virtual DOM.
+- 🔹 Better state management and predictable UI updates compared to vanilla JS.
+- 🔹 Easier integration with modern tools and frameworks for scalable applications.
 
 2. Virtual DOM
 
@@ -29,14 +62,16 @@
 
   - Example
 
-  ```
+```
+
     <ul>
       <li key="1">Apple</li>
       <li key="2">Banana</li>
     </ul>
-  ```
 
-  - If "Banana" is removed, React will look at the keys and only remove that li, instead of re-rendering the whole list.
+```
+
+- If "Banana" is removed, React will look at the keys and only remove that li, instead of re-rendering the whole list.
 
 4. Functional vs Class components
 
@@ -47,7 +82,7 @@
   - Not used
   - setState()
 - Class(No hook)
-  - A JavaScript class that extends React.Component and returns JSX from render().
+  - A JavaScript class that extends `React.Component` and returns JSX from render().
   - this.state
   - componentDidMount, componentDidUpdate, etc.
   - Required (e.g., this.state, this.props)
@@ -110,6 +145,7 @@
 
 - A Controlled Component is a form element (like <input>, <textarea>, <select>) whose value is controlled by React state.
 - Controlled Components keep the form UI and logic in sync via React state — giving full control, validation, and logic handling capabilities.
+-
 - An Uncontrolled Component is a form input where the DOM itself handles the input state, rather than React.
 - You access the input value using a ref, not React state.
 - Uncontrolled Components give up control to the browser. Use them when you don’t need to track input changes in real-time or for simple cases.
@@ -139,7 +175,7 @@
 
 17. Reconciliation
 
-- Reconciliation is the process React uses to update the DOM when a component’s state or props change.
+- Reconciliation is the process React `uses` to update the DOM when a component’s state or props change.
 - It compares the new virtual DOM with the previous one and efficiently applies the minimum number of changes to the real DOM.
 
 18. Why key is very important in the react
@@ -167,4 +203,4 @@
 40. current latest version
 41. useLayoutEffect
 42. organize the code in seperate file(demo)
-43. 
+43. what is outlet

@@ -1,5 +1,7 @@
 ## 1. What is javascript, why use, pros and cons?
 
+- final: `high-level` `dynamically typed` `single-threaded`
+
 - JavaScript is a **high-level, interpreted programming language**.
 - Runs mainly in the **browser**, but also on the **server (Node.js)**.
 - Used to make web pages **interactive and dynamic**.
@@ -58,6 +60,16 @@ console.log(1 + "2"); // "12" → number + string = string
 console.log("5" - 2); // 3 → string converted to number
 ```
 
+### High-Level
+
+- Abstracts away low-level things like memory management, pointers, etc.
+  - 🧼 Easier to write, read, and understand compared to low-level languages like C
+
+### Interpreted Language
+
+- Code is executed line-by-line at runtime, not compiled ahead of time.
+  - 💻 Browsers or Node.js interpret JS code on the fly (using V8 engine, for example)
+
 ### 3️⃣ Prototype-Based
 
 - `first learn prototypes`
@@ -75,21 +87,11 @@ const student = Object.create(person);
 student.greet(); // Inherits from person
 ```
 
-### High-Level
-
-- Abstracts away low-level things like memory management, pointers, etc.
-  - 🧼 Easier to write, read, and understand compared to low-level languages like C
-
-### Interpreted Language
-
-- Code is executed line-by-line at runtime, not compiled ahead of time.
-  - 💻 Browsers or Node.js interpret JS code on the fly (using V8 engine, for example)
-
 ---
 
 ## 1.2 🧩 What is a Polyfill?
 
-- A **polyfill** is a piece of code (usually JavaScript) that **adds support for modern features** in **older browsers** that don’t support them natively.
+- A **polyfill** is a piece of fallback code (usually JavaScript) that **adds support for modern features** in **older browsers** that don’t support them natively.
 
 > It's like a "patch" that lets your code work across all environments.
 
@@ -153,7 +155,7 @@ console.log(b); // null
 
 ## 2. Hoisting
 
-- Hoisting means JavaScript moves **declarations** (not initializations) to the top of their scope before running the code.
+- Hoisting means JavaScript moves **`declarations`** (not initializations) to the top of their scope before running the code.
 - variables (var) and functions can be used before they are declared.
 - Only var and function declarations are hoisted, let and const are also hoisted but in different way. let and const are in a "temporal dead zone" before declaration.
 
@@ -174,7 +176,7 @@ console.log(b); // null
 
 ## 5. Execution context
 
-- An Execution Context is the environment in which JavaScript code is evaluated and executed.
+- An Execution Context is the `environment` in which JavaScript code is evaluated and executed.
 - Every time a function runs, a new execution context is created.
 
 ---
@@ -210,11 +212,21 @@ console.log(b); // null
 ## 9. bind/call/apply
 
 - datanova: 38.2
-- All three are used to manually set the value of this.
-- to change function's this value to some object of our choice we can use call apply bind
-- call: change the value of this to a given object
-- apply: similar like call but 2nd arg always an array
-- bind: similar like call but dont call straight it return a function for later call
+- `call` – calls function with `this` and args individually
+- `apply` – calls function with `this` and args as array
+- `bind` – returns a new function with `this` bound
+
+```js
+function greet(msg, punc) {
+	console.log(msg + ", " + this.name + punc);
+}
+const user = { name: "Alice" };
+
+greet.call(user, "Hello", "!"); // Hello, Alice!
+greet.apply(user, ["Hi", "!!"]); // Hi, Alice!!
+const fn = greet.bind(user, "Hey", "?");
+fn(); // Hey, Alice?
+```
 
 ---
 
@@ -312,6 +324,23 @@ console.log(b); // null
 
 ## 22. Higher Order Function
 
+A function that **takes another function as an argument** or **returns a function**.
+
+## 22. Pure Function
+
+A function that:
+
+- Always gives the **same output** for the **same input**
+- Has **no side effects** (doesn’t modify external state or data)
+
+## 22. First class Function
+
+In JavaScript, functions are **first-class citizens**, meaning:
+
+- You can **store them in variables**
+- **Pass them as arguments**
+- **Return them** from other functions
+
 ---
 
 ## 23. Prototype & Prototypal Inheritance
@@ -327,6 +356,20 @@ console.log(b); // null
 ---
 
 ## 26. Curring
+
+Currying is the process of breaking a function with multiple arguments into a series of functions that each take a single argument.
+
+```js
+function add(a) {
+	return function (b) {
+		return a + b;
+	};
+}
+
+const addFive = add(5);
+console.log(addFive(3)); // 8
+console.log(addFive(10)); // 15
+```
 
 ---
 
@@ -352,6 +395,20 @@ console.log(b); // null
 
 ## 32. Localstorage vs Sessionstorage
 
+📌 **1. LocalStorage**
+
+- **Persistence:** Data persists **even after the browser is closed**.
+- **Scope:** Shared across all tabs/windows of the **same origin**.
+- **Storage Limit:** ~5-10 MB (varies by browser).
+- **Use Case:** Saving **user preferences, theme, language**, or data you want to remember long-term.
+
+📌 **2. SessionStorage**
+
+- Persistence: Data lasts only for the current tab session.
+- Scope: Unique to each tab/window; not shared between tabs.
+- Storage Limit: Similar to LocalStorage (~5 MB).
+- Use Case: Temporary data like form state, session tokens, or wizard progress
+
 ---
 
 ## 33. Cookies & Session
@@ -359,6 +416,10 @@ console.log(b); // null
 ---
 
 ## 34. Lexical environment
+
+- i think it's correct(not confirmed)
+- Lexical scope means that the scope of a variable is determined by its position.
+- In JavaScript, child functions have access to variables defined in their parent functions because of lexical scope.
 
 ---
 
@@ -399,3 +460,9 @@ console.log(b); // null
 ---
 
 ## 44. event delegation
+
+---
+
+## 45. 5 ways to create object
+
+## 46. What is shadowing

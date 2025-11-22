@@ -105,7 +105,7 @@ The current major stable release of MongoDB is MongoDB `8.0`, released in Octobe
   - Returns `null` if no match
 
 - find
-  - Returns a `cursor` or array of documents matching the query
+  - Returns a `cursor` or `array` of documents matching the query
   - Can return multiple documents
   - Returns `empty array` or `empty cursor` if no match
 

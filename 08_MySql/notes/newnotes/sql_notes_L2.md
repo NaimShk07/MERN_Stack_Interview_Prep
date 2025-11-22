@@ -6,7 +6,7 @@
 
 ### 1. What is a Database?
 
-A **database** is an organized collection of data that can be easily accessed, managed, and updated electronically.
+A **database** is an `organized collection of data` that can be easily `accessed`, `managed`, and `updated` `electronically`.
 
 📌 **Key Points:**
 
@@ -15,7 +15,7 @@ A **database** is an organized collection of data that can be easily accessed, m
 
 ### 2. What is SQL? What does it do?
 
-**SQL (Structured Query Language)** is a standard language used to interact with relational databases.
+**SQL (Structured Query Language)** is a `standard language` used to `interact` with relational databases.
 
 📌 **Key Points:**
 
@@ -42,7 +42,7 @@ CREATE DATABASE Company;
 
 ### 4. What is a Relational Database (RDBMS)?
 
-An **RDBMS** is a `type` of DBMS based on the relational model, where data is stored in tables with rows and columns.
+An **RDBMS** is a `type` of DBMS based on the `relational model`, where data is stored in tables with rows and columns.
 
 📌 **Key Points**:
 
@@ -53,7 +53,7 @@ An **RDBMS** is a `type` of DBMS based on the relational model, where data is st
 ### 5. What is a Primary Key? What is a Foreign Key?
 
 A **Primary Key** uniquely identifies each record in a table.  
-A **Foreign Key** links records between two tables using a reference to the primary key of another table.
+A **Foreign Key** `links` records between two tables using a reference to the primary key of another table.
 
 📌 **Key Points:**
 
@@ -80,7 +80,7 @@ CREATE TABLE Orders (
 
 ### 6. What is Normalization? Explain the first normal form (1NF).
 
-**Normalization** is the process of organizing data in a database to reduce redundancy and improve data integrity.
+**Normalization** is the `process of organizing data` in a database to reduce redundancy and improve data integrity.
 
 📌 **Key Points:**
 
@@ -101,7 +101,7 @@ A table is in **1NF** if:
 
 ❌ **Not in 1NF**
 | ID | Name | Hobbies |
-|----|--------|------------------|
+|---- |--------|------------------|
 | 1 | Alice | Reading, Singing |
 
 ✅ **In 1NF**
@@ -138,7 +138,7 @@ DROP TABLE Users;
 
 ### 8. What is a View ? Why do we use it?
 
-A **[View](../../code-snippets/advanceQuery.sql#L1)** is a virtual table based on the result of a SQL query. It does not store data itself but displays data from one or more tables.
+A **[View](../../code-snippets/advanceQuery.sql#L1)** is a `virtual table` based on the result of a SQL query. It does not store data itself but displays data from one or more tables.
 
 📌 **Key Points:**
 
@@ -165,7 +165,7 @@ A **[View](../../code-snippets/advanceQuery.sql#L1)** is a virtual table based o
 
 ### 10. What are Constraints in SQL? Name some and explain.
 
-**[Constraints](../../code-snippets/query.sql#L234)** in SQL are rules applied to table columns to enforce data integrity and consistency.
+**[Constraints](../../code-snippets/query.sql#L234)** in SQL are `rules` applied to table columns to enforce data integrity and consistency.
 
 📌 **Common SQL Constraints:**
 
@@ -185,7 +185,7 @@ A **[View](../../code-snippets/advanceQuery.sql#L1)** is a virtual table based o
 SQL statements are categorized based on their purpose in managing data and database structures.
 
 📌 **Main Types of SQL Statements:**
-[Click here](../statements.md)
+[Click here](./statements.md)
 
 ✅ Key Points:
 
@@ -280,18 +280,11 @@ SELECT u.name FROM Users AS u;
 
 ### 1. What is a Join? Explain INNER JOIN, LEFT JOIN, and RIGHT JOIN.
 
-A [**Join**](../../code-snippets/query.sql#L251) combines rows from two or more tables based on a related column between them.
-
-📌 **Key Types:**
-
-- **INNER JOIN:** Returns only matching rows from both tables
-- **LEFT JOIN:** Returns all rows from the left table + matched rows from the right table (NULL if no match)
-- **RIGHT JOIN:** Returns all rows from the right table + matched rows from the left table (NULL if no match)
+[**Join**](./joins.md)
 
 ### 2. What is the difference between INNER JOIN and OUTER JOIN?
 
-**INNER JOIN** returns only rows with matching values in both tables.  
-**OUTER JOIN** returns all `matching` rows **plus** `unmatched` rows from one or both tables.
+[**Join**](./joins.md)
 
 ### 3. What is UNION and UNION ALL?
 
@@ -306,13 +299,13 @@ A [**Join**](../../code-snippets/query.sql#L251) combines rows from two or more 
 
 ✅ Key Points:
 
-- 🧩 All SELECT queries must have the same number of columns and compatible types
-- 🔍 Use UNION when unique results are needed
+- 🧩 All SELECT queries must have the `same number of columns` and compatible types
+- 🔍 Use UNION when `unique` results are needed
 - 🚀 Use UNION ALL for better performance if duplicates are allowed
 
 ### 4. What is the difference between WHERE and HAVING clauses?
 
-Both [`WHERE` and `HAVING`](../../code-snippets/query.sql#L78) are used to **filter results**, but they apply at different stages of query execution.
+Both [`WHERE` and `HAVING`](../../code-snippets/query.sql#L78) are used to **filter results**, but they apply at `different stages` of query execution.
 
 📌 **Key Differences:**
 
@@ -349,7 +342,7 @@ The [`GROUP BY`](../../code-snippets/query.sql#L337) clause is used to **group r
 
 ### 1. What is a Subquery? What is a Correlated Subquery?
 
-A [**Subquery**](../../code-snippets/query.sql#L376) is a SQL query nested inside another query to return data for use in the outer query.  
+A [**Subquery**](../../code-snippets/query.sql#L376) is a `SQL query nested` inside another query to return data for use in the outer query.  
 A **Correlated Subquery** is a subquery that **depends on a value from the outer query** for each row.
 
 📌 **Types:**
@@ -389,11 +382,35 @@ SELECT * FROM HighSalary;
 - 🔁 Supports recursive queries (e.g., org charts, hierarchies)
 - 🔍 Easier to debug and maintain than nested subqueries
 
+### 2.1 💡 View vs CTE
+
+A **View** and a **CTE (Common Table Expression)** both represent `virtual result sets`, but differ in **scope**, **persistence**, and **purpose**.
+
+📌 **Key Differences:**
+
+1. 🧱 **View (Permanent Virtual Table)**
+
+   - Created once using `CREATE VIEW` and stored in the database.
+   - Reusable across multiple queries and sessions.
+   - Can have **permissions**, **indexes (if materialized)**, and improves **security abstraction**.
+   - Ideal for **reusable business logic** or **shared reporting** layers.
+
+2. ⚡ **CTE (Temporary Query Helper)**
+   - Defined using `WITH` inside a single SQL query.
+   - Exists **only during query execution** — not stored in the database.
+   - Enhances **readability** and supports **recursive logic**.
+   - Perfect for **breaking down complex queries** into simpler steps.
+
+💬 **In short:**
+
+> ✅ **Use a View** when you need reusable, stored logic.  
+> ⚙️ **Use a CTE** when you need temporary, readable logic within one query.
+
 ### 3. Write a query to find the second highest salary from a table.
 
 [Click here](../../practical/query.sql#L4)
 
-### 4. How do you remove duplicate rows from a table?
+<!-- ### 4. How do you remove duplicate rows from a table?
 
 ```sql
 DELETE FROM YourTable
@@ -403,11 +420,13 @@ WHERE id NOT IN (
   GROUP BY columnA, columnB
 );
 
-```
+``` -->
 
 ### 5. What are Transactions? How do `COMMIT` and `ROLLBACK` work?
 
-A **Transaction** is a sequence of one or more SQL operations executed as a single logical unit of work.
+- A transaction in MySQL is a set of SQL statements executed together so that either all succeed or all fail, maintaining data integrity — following ACID properties.
+
+A **Transaction** is a `sequence` of `one or more SQL operations` executed as a single logical unit of work.
 
 📌 **Key Properties (ACID):**
 
@@ -434,7 +453,7 @@ COMMIT; -- or ROLLBACK; to undo
 
 ### 6. Explain ACID properties of a transaction.
 
-**ACID** is a set of properties that ensure reliable and consistent execution of database transactions.
+**ACID** is a set of properties that ensure `reliable and `consistent execution` of database transactions.
 
 📌 **ACID Stands For:**
 
@@ -464,54 +483,7 @@ COMMIT; -- or ROLLBACK; to undo
 
 ### 7. What are Indexes? What types exist?
 
-[yt](https://www.youtube.com/watch?v=xXtig5uLQS4)
-
-An **Index** is a database object that improves the **speed of data retrieval** on a table column by reducing the number of rows scanned.
-
-📌 **Key Points:**
-
-- Works like a **lookup** for faster searches
-- Does not affect the actual data
-- Can slow down `INSERT`, `UPDATE`, `DELETE` due to maintenance overhead
-
-🧪 **Basic Index Example:**
-
-```sql
-CREATE INDEX idx_name ON Employees(name);
-```
-
-📦 Common Types of Indexes:
-
-1. Single-column Index
-
-- Created on one column
-- E.g., `CREATE INDEX idx_salary ON Employees(salary);`
-
-2. Composite (Multi-column) Index
-
-- Covers two or more columns
-- E.g., `CREATE INDEX idx_dept_role ON Employees(department, role);`
-
-3. Unique Index
-
-- Ensures all values in the column(s) are unique
-- Automatically created with PRIMARY KEY or UNIQUE constraint
-
-4. Full-text Index
-
-- For fast searching of large text fields
-- E.g., used in search engines
-
-5. Clustered Index (Supported in some RDBMS like SQL Server)
-
-- Sorts the actual data rows in the table
-- Only one per table
-
-✅ Uses:
-
-- ⚡ Speeds up `SELECT`, `WHERE`, `JOIN`, and `ORDER BY`
-- 📉 Reduces performance in write-heavy tables if overused
-- 🧠 Choose wisely based on query patterns
+[click here](indexes.md)
 
 ### 8. How do you optimize a slow-running query?
 
@@ -521,7 +493,7 @@ Query optimization improves performance by reducing execution time and resource 
 
 1. **Use Indexes Wisely**
 
-   - Add indexes on frequently filtered (`WHERE`), joined, or sorted (`ORDER BY`) columns
+   - Add indexes on frequently filtered (`WHERE`), `joined`, or sorted (`ORDER BY`) columns
 
 2. **Avoid SELECT \* **
 

@@ -12,10 +12,11 @@ SELECT o.organizationname,COUNT(p.personid) FROM organization o
 inner JOIN organizationperson op on op.OrganizationID = o.organizationid and op.status = 'active'
 inner JOIN person p ON op.PersonID = p.personid and p.status = 'active'
 WHERE o.organizationtype = 'RMB Chapter' 
-and o.status = 'active' GROUP BY o.organizationname;
+and o.status = 'active' 
+GROUP BY o.organizationname;
 
 -- List employees who joined after 2020.
-SELECT * FROM person p WHERE YEAR(p.createdon) < '2020';
+SELECT * FROM person p WHERE YEAR(p.createdon) > '2020';
 
 -- Get all customers who have never placed an order.
 -- (Use LEFT JOIN with IS NULL)
