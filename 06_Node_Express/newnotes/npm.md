@@ -22,10 +22,8 @@
 
 ## 3. Dependencies vs DevDependencies
 
-| Type                | Purpose                                                  | Installed in Production? |
-| ------------------- | -------------------------------------------------------- | ------------------------ |
-| **dependencies**    | Required to **run** the app                              | Yes                      |
-| **devDependencies** | Required for **development only** (testing, build tools) | No                       |
+- **dependencies** : Required to **run** the app
+- **devDependencies** : Required for **development only** (testing, build tools)
 
 ---
 

@@ -102,7 +102,7 @@ The Flow (Simple Words)
 ```
 
 > Node.js gives priority to process.nextTick() and Promises before moving to the next phase.
-> Libuv provide eventloop functionality to Node.js 
+> Libuv provide eventloop functionality to Node.js
 
 ---
 
@@ -118,10 +118,8 @@ The Flow (Simple Words)
 
 ## ⏳ Synchronous vs Asynchronous in Node.js
 
-| Type             | Description                                                  | Example             | Effect       |
-| ---------------- | ------------------------------------------------------------ | ------------------- | ------------ |
-| **Synchronous**  | Executes one task at a time; next task waits.                | `fs.readFileSync()` | Blocking     |
-| **Asynchronous** | Executes tasks concurrently; doesn’t wait for one to finish. | `fs.readFile()`     | Non-blocking |
+**Synchronous(Blocking)** : Executes one task at a time; next task waits. ex: `fs.readFileSync()`
+**Asynchronous(Non-Blocking)** : Executes tasks concurrently; doesn’t wait for one to finish. ex: `fs.readFile()`
 
 📘 Example:
 
@@ -152,9 +150,12 @@ Node.js follows an `event-driven`, `non-blocking I/O` architecture designed for 
 ### 🧩 Flow Diagram (Conceptually)
 
 ```vbnet
-Client Request → Event Queue → Event Loop
+Client Request
+→ Event Queue
+→ Event Loop
 → (libuv handles I/O in background)
-→ Callback returned → Response Sent
+→ Callback returned 
+→ Response Sent
 ```
 
 ### ✅ Benefits
@@ -181,7 +182,7 @@ Client Request → Event Queue → Event Loop
 ## 🚀 Key Takeaways
 
 - Node.js `executes JS on one thread` but uses `libuv’s thread pool` for async I/O.
-- The `Event Loop` in Node.js has more phases and handles `setImmediate` & `process.nextTick ` differently than browsers.
+- The `Event Loop` in Node.js has more phases and handles `setImmediate` & `process.nextTick` differently than browsers.
 - `Asynchronous design` makes Node.js scalable for I/O-heavy applications.
 - For `CPU-heavy work`, use `Worker Threads` or `Child Processes`.
 

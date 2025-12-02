@@ -159,7 +159,10 @@ NaN2
 ```
 
 > number + string = string
+> string + number = string
+
 > number - string = number
+> string - number = number
 
 ## 💥 8. Destructuring & Default Values
 
@@ -330,7 +333,7 @@ sum(1, 2, 3);
 ```js
 const obj = Object.freeze({ a: 1, b: { c: 2 } });
 obj.b.c = 3;
-console.log(obj.b.c);
+console.log(obj.b.c); // 3
 ```
 
 Explanation:

@@ -1,8 +1,5 @@
 ## 1. On which column should we add indexing?
 
-- We should add indexing on columns used frequently in `WHERE`, `JOIN`, `ORDER BY`, or `GROUP BY` clauses.
-- **Note:** Primary keys, foreign key and unique keys are automatically indexed.
-
 ## 2. Datatypes in SQL and Their Differences
 
 | Data Type      | Description                                | Use Case                            |

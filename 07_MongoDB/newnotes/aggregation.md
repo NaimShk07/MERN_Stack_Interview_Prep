@@ -48,7 +48,7 @@ db.collection.aggregate([
 - $ = field
 - \_id: null, // to make all at one
 
-```
+```js
 db.orders.aggregate([
   {
     $group: {
@@ -64,7 +64,7 @@ db.orders.aggregate([
 
 ### 2. 🔎 Filter + Group + Sort
 
-```
+```js
 db.orders.aggregate([
   { $match: { status: "completed" } },
   {
@@ -73,51 +73,63 @@ db.orders.aggregate([
       total: { $sum: "$amount" }
     }
   },
-  { $sort: { total: -1 } }
+  { $sort: { total: -1 } } // desc
+  { $sort: { total: 1 } } // asc
 ])
 ```
 
 ### 3. 🧾 Project Specific Fields
 
-```
+```js
 db.users.aggregate([
-  {
-    $project: {
-      name: 1,
-      email: 1,
-      _id: 0
-    }
-  }
-])
+	{
+		$project: {
+			name: 1,
+			email: 1,
+			_id: 0,
+		},
+	},
+]);
 ```
 
 ### 4. 🔗 Join Collections with $lookup
 
-```
+```js
 db.orders.aggregate([
-  {
-    $lookup: {
-      from: "users",
-      localField: "userId",
-      foreignField: "_id",
-      as: "userInfo"
-    }
-  }
-])
+	{
+		$lookup: {
+			from: "users",
+			localField: "userId",
+			foreignField: "_id",
+			as: "userInfo",
+		},
+	},
+]);
+```
+
+### 4.1 🔗 Join Collections with `.populate()` (Mongoose)
+
+```js
+Order.find()
+	.populate("userId") // assumes 'userId' is a reference to the User model
+	.exec((err, orders) => {
+		if (err) throw err;
+		console.log(orders);
+	});
 ```
 
 ### 5. 🎯 Unwind Array Field
 
-```
+```js
 db.products.aggregate([
-  { $unwind: "$tags" },
-  {
-    $group: {
-      _id: "$tags",
-      count: { $sum: 1 }
-    }
-  }
-])
+	{ $unwind: "$tags" },
+	{
+		$group: {
+			_id: "$tags",
+			count: { $sum: 1 },
+		},
+	},
+]);
 ```
 
 ## 🧠 Interview Tips

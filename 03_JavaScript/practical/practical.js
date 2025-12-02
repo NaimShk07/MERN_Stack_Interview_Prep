@@ -130,6 +130,20 @@
 
 // ! 14. Flatten a nested array
 
+// function flattenArr(arr) {    
+//     let newArr = [];
+//     for (let i = 0; i < arr.length; i++) {
+//         if(Array.isArray(arr[i])){
+//             newArr = newArr.concat(flattenArr(arr[i]));
+//         }else{
+//             newArr.push(arr[i]);
+//         }         
+//     }   
+//     return newArr;
+// }
+
+// console.log(flattenArr([1, [2, [3, 4]], 5, [6]] ));
+
 // ! 15. Find all pairs in an array that sum to a target
 
 // ! 16. Capitalize first letter of each word in a sentence
@@ -259,15 +273,15 @@ function returnDuplicate(arr) {
 	let repeatedNum = [];
 
 	// #1
-
-	// for(let i=0;i < arr.length; i++){
-	//     for(let j=i;j < arr.length - 1; j++){
-	//         if(arr[i] == arr[j+1]){
-	//             if(!repeatedNum.includes(arr[i])){
-	//               repeatedNum.push(arr[i]);
-	//             }
-	//         }
-	//     }
+	// for (let i = 0; i < arr.length; i++) {
+	// 	for (let j = i + 1; j < arr.length; j++) {
+	// 		if (arr[i] == arr[j]) {
+	// 			if (!repeatedNum.includes(arr[i])) {
+	// 				repeatedNum.push(arr[i]);
+	// 			}
+	// 			break; // unless you have to find how many times it repeat
+	// 		}
+	// 	}
 	// }
 
 	// #2
@@ -314,4 +328,3 @@ console.log(returnDuplicate(arr));
 // 💡 Simple Words Mein:
 // “x + 5% = 100” ka matlab hai “x mein uska 5% add karke 100 milta hai.”
 // Isliye 5% ko x ke saath multiply karna zaroori hai — isliye “0.05x” likhte hain.
-

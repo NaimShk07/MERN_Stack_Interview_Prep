@@ -263,7 +263,11 @@ export default async function Blog() {
 
 ---
 
-## 7. 🧠 Server Side Rendering (SSR)
+## 7. ISR (Incremental Static Regeneration)
+
+- ISR (Incremental Static Regeneration): Allows static pages to be regenerated at runtime without rebuilding the entire site. Useful for content that updates occasionally.
+
+## 7.1 🧠 Server Side Rendering (SSR)
 
 ### 📘 Definition
 

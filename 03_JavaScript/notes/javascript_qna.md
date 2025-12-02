@@ -147,9 +147,9 @@ console.log(b); // null
 ## 1. Scope
 
 - Scope determines where variables can be accessed in your code.
-- Types Global, Functional and Block(let and const)
+- Global
 - Functional (){}
-- Block {}
+- Block(let and const)
 
 ---
 
@@ -191,7 +191,7 @@ console.log(b); // null
 
 ## 7. Regular functions vs Arrow functions
 
-- Dynamic (based on how called) | Lexical (inherits from parent scope)
+- Dynamic This (based on how called) | Lexical (inherits from parent scope)
 - arguments object: Available | No
 - Hoisting : Yes | No
 - can be constructor : Yes (can with new) | No
@@ -357,7 +357,8 @@ In JavaScript, functions are **first-class citizens**, meaning:
 
 ## 26. Curring
 
-Currying is the process of breaking a function with multiple arguments into a series of functions that each take a single argument.
+- Currying is the process of `breaking a function` with `multiple arguments`
+- into a series of functions that each take a single argument.
 
 ```js
 function add(a) {
@@ -370,10 +371,6 @@ const addFive = add(5);
 console.log(addFive(3)); // 8
 console.log(addFive(10)); // 15
 ```
-
----
-
-## 27. First Class Fuctions
 
 ---
 
@@ -429,9 +426,21 @@ console.log(addFive(10)); // 15
 
 ## 36. Debounce
 
+- **Debounce** ensures that a function is **called only after a certain amount of time has passed since the last call**.
+- Useful to **limit the rate of execution** for events that fire frequently, like `resize`, `scroll`, or `input`.
+
 ---
 
 ## 37. Throttle
+
+- Throttle ensures that a function is called at most once in a specified time interval, no matter how many times the event is triggered.
+- Useful to limit the frequency of function execution.
+
+Use Cases:
+
+- Scroll events
+- Button click rate limiting
+- Mouse movement tracking
 
 ---
 

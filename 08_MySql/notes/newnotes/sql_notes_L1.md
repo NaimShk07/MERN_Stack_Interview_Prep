@@ -522,7 +522,69 @@ Table: Users
 
 > "I’ve primarily worked with MySQL and PostgreSQL for building web applications, writing complex queries, optimizing performance, and handling relational data efficiently."
 
-#### 3. Can any kind of data be stored in tables? How can we enforce data types?
+#### 3. Data types
+
+[click](../../code-snippets/query.sql#L135)
+
+| Data Type      | Description                                | Use Case                            |
+| -------------- | ------------------------------------------ | ----------------------------------- |
+| `INT`          | Whole numbers                              | IDs, counters, quantities           |
+| `VARCHAR(n)`   | Variable-length string (up to `n` chars)   | Names, emails, descriptions         |
+| `CHAR(n)`      | Fixed-length string (exactly `n` chars)    | Country codes, status codes         |
+| `TEXT`         | Large variable-length text                 | Comments, articles, long content    |
+| `DATE`         | Stores date (YYYY-MM-DD)                   | Birthdays, registration date        |
+| `TIME`         | Stores time (HH:MM:SS)                     | Time of day fields                  |
+| `DATETIME`     | Stores date and time                       | Timestamps for created/updated data |
+| `TIMESTAMP`    | Date and time, often auto-updated          | Tracking changes                    |
+| `BOOLEAN`      | True/false (often stored as 1/0)           | Flags like is_active, is_deleted    |
+| `FLOAT`        | Approximate decimal numbers (binary float) | Scientific data, measurements       |
+| `DECIMAL(p,s)` | Exact decimal numbers (precision, scale)   | Prices, financial calculations      |
+
+#### 3.1 Can any kind of data be stored in tables? How can we enforce data types?
+
+VARCHAR vs CHAR
+
+Both `CHAR` and `VARCHAR` are used to store **string data**, but they differ in **storage, performance, and usage**.
+
+---
+
+📌 **1. CHAR**
+
+- **Fixed-length**: Always uses the same space, regardless of actual string size.
+- **Faster** for retrieval since data length is constant.
+- **Trailing spaces** are automatically removed.
+- Ideal for **fixed-size data** like country codes (`'US'`, `'IN'`), PINs, or flags.
+
+```sql
+CHAR(10)  -- always reserves 10 bytes
+```
+
+🧩 **Example:**
+
+| Value          | Stored Size                   |
+| -------------- | ----------------------------- |
+| `'ABC'`        | 10 bytes (padded with spaces) |
+| `'ABCDEFGHIJ'` | 10 bytes                      |
+
+📌 **2. VARCHAR**
+
+- Variable-length: Stores only the actual string length + 1 or 2 bytes for length info.
+- More space-efficient for varying text lengths.
+- Slightly slower in updates due to length recalculation.
+- Ideal for names, emails, or descriptions with unpredictable length.
+
+```sql
+VARCHAR(100) -- stores actual size + 1 or 2 bytes overhead
+```
+
+🧩 Example:
+
+| Value          | Stored Size                |
+| -------------- | -------------------------- |
+| `'ABC'`        | 4 bytes (3 + 1 overhead)   |
+| `'ABCDEFGHIJ'` | 11 bytes (10 + 1 overhead) |
+
+#### 3.2 Can any kind of data be stored in tables? How can we enforce data types?
 
 📌 **Yes**, tables can store various types of data, but each column must have a **defined data type** to control what kind of data it holds.
 

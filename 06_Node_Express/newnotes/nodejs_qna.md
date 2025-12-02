@@ -312,6 +312,42 @@ const add = require("./add");
 
 #### 3. What is the difference between `process.nextTick()` and `Promise.resolve().then()`?
 
+In Node.js, both `process.nextTick()` and `Promise.resolve().then()` are used to schedule callbacks to be executed asynchronously, but they differ in **timing and queue behavior**:
+
+- **`process.nextTick()`**
+
+  - Adds a callback to the **next tick queue**.
+  - Executes **before the next event loop iteration**, even before I/O operations or timers.
+  - Can potentially block I/O if overused because it always runs **before other asynchronous tasks**.
+  - Example:
+    ```javascript
+    process.nextTick(() => {
+    	console.log("Next tick callback");
+    });
+    console.log("Synchronous log");
+    // Output:
+    // Synchronous log
+    // Next tick callback
+    ```
+
+- **`Promise.resolve().then()`**
+  - Adds a callback to the **microtask queue** (also called the job queue).
+  - Executes **after the current operation completes** but **before the next event loop phase**.
+  - Slightly lower priority than `process.nextTick()` in Node.js.
+  - Example:
+    ```javascript
+    Promise.resolve().then(() => {
+    	console.log("Promise callback");
+    });
+    console.log("Synchronous log");
+    // Output:
+    // Synchronous log
+    // Promise callback
+    ```
+
+**Key difference:**  
+`process.nextTick()` callbacks run **before** microtasks scheduled by promises. So if both are scheduled in the same tick, `process.nextTick()` executes first.
+
 #### 4. What is concurrency in Node.js?
 
 #### 5. What is a thread pool in Node.js?
@@ -602,6 +638,7 @@ jwt.verify(token, "SECRET_KEY", (err, user) => {
 #### 3.2 Difference between websockets and http?
 
 #### 4. What is Socket.io
+
 - io.on
 - socket.on()
 - socket.emit()
