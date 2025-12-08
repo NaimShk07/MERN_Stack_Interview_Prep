@@ -100,6 +100,8 @@ The current major stable release of MongoDB is MongoDB `8.0`, released in Octobe
 
 ### 12. What is the difference between `findOne()` and `find()`?
 
+`find` and `findOne` are MongoDB methods used to query documents, but they return different types.
+
 - findOne
 
   - Returns a `single document` that matches the query
@@ -374,6 +376,9 @@ db.users.aggregate([
 			as: "posts",
 		},
 	},
+	{
+		$match: { "postInfo.0": { $exists: true } }, // filters out unmatched
+	},
 ]);
 ```
 
@@ -389,3 +394,220 @@ db.users.aggregate([
 | Flexibility | Easier to implement              | More control, but more verbose  |
 
 > Use populate() for quick, simple relationships in Mongoose apps — use $lookup for efficient, complex joins directly in MongoDB.
+
+### 31. how to handle one to many relationship in mongodb
+
+- A single document is related to multiple documents.
+
+  - `Embedded`: When the "many" documents are few and tightly coupled.
+
+  ```js
+    { name: "User", posts: [ { title: "Post1" }, { title: "Post2" } ] }
+  ```
+
+  - `Referenced`: When the "many" documents are many, large, or independent.
+
+  ```js
+   // UserD
+   { _id: 1, name: "User" }
+   // Posts
+   { title: "Post1", user_id: 1 }
+  ```
+
+### 32. MongoDB vs Mongoose
+
+### 🍃 MongoDB
+
+- A **NoSQL database**
+- Stores data in **JSON-like documents**
+- Provides native **CRUD operations**
+- Querying is done using the **MongoDB query language**
+- Can be used with or without Mongoose
+
+```js
+// Native MongoDB query
+db.users.find({ age: { $gt: 18 } });
+```
+
+### 📦 Mongoose
+
+- An ODM (Object Data Modeling) library for Node.js
+- Works on top of MongoDB
+- Provides:
+  - Schema-based modeling
+  - Validation
+  - Middleware
+  - Virtuals & population (joins)
+- Simplifies working with MongoDB in Node.js apps
+
+```js
+// Mongoose model + query
+const User = mongoose.model("User", userSchema);
+User.find({ age: { $gt: 18 } });
+```
+
+### 32. What is Binary JSON (BSON)?
+
+📌 **Definition:**  
+BSON (**Binary JSON**) is a **`binary-encoded` serialization** of JSON-like documents.  
+It is primarily used by **MongoDB** to `store and transfer` data efficiently.
+
+BSON stands for Binary JSON. It’s a `binary-encoded` format used by MongoDB to store documents more efficiently than plain JSON. Unlike JSON, BSON supports additional data types like Date, Binary, and ObjectId, and it’s faster for reading and writing due to its binary nature.
+
+---
+
+### ⚡ Key Points
+
+1. **Binary format** – Faster to parse and smaller in size than plain JSON.
+2. **Supports additional data types** – e.g., `Date`, `Binary`, `ObjectId` (not in standard JSON).
+3. **Optimized for storage and network transfer** – Used internally by MongoDB.
+
+---
+
+### 🧪 Example
+
+```js
+// JSON document
+const jsonDoc = { name: "Naim", age: 25, createdAt: new Date() };
+
+// Stored as BSON in MongoDB
+// Binary format includes types for each field for efficient storage
+```
+
+> In short: BSON = binary version of JSON with extra data types, used for efficiency in MongoDB.
+
+---
+
+### 33. What is Sharding in MongoDB?
+
+**Sharding** is a method to **horizontally scale** a MongoDB database by distributing data across multiple servers.
+
+---
+
+### 📌 Key Points
+
+- 📊 Distributes data into **shards** (separate database instances)
+- ⚖️ Enables handling large datasets and high throughput
+- 🔑 Uses a **shard key** to determine data placement
+- 🚀 Improves read/write performance and storage capacity
+
+---
+
+### 🔤 Example (Conceptual)
+
+```js
+// Enable sharding on a database
+sh.enableSharding("myDatabase");
+
+// Shard a collection by shard key
+sh.shardCollection("myDatabase.users", { userId: 1 });
+```
+
+---
+
+### 📊 Benefits vs Replica Set
+
+| Feature           | Sharding               | Replica Set              |
+| ----------------- | ---------------------- | ------------------------ |
+| Purpose           | Horizontal scaling     | High availability        |
+| Data distribution | Across multiple shards | Copies of data on nodes  |
+| Use case          | Large datasets         | Failover and backups     |
+| Performance       | Improved write/read    | Read scaling (secondary) |
+
+---
+
+### ✅ Key Takeaways
+
+- Sharding splits data for **scalability** and **performance**
+- Requires careful shard key selection for balanced data distribution
+- Often combined with replica sets for fault tolerance
+
+### 34. Scaling in MongoDB
+
+**Scaling** in MongoDB refers to increasing the database’s capacity to handle more data and traffic.
+
+---
+
+### 📌 Key Types of Scaling
+
+- 🔼 **Vertical Scaling:** Increasing resources (CPU, RAM, storage) on a single server
+- ↔️ **Horizontal Scaling (Sharding):** Distributing data across multiple servers (shards)
+
+---
+
+### 📊 Comparison Table
+
+| Scaling Type       | Description                   | Pros                   | Cons                |
+| ------------------ | ----------------------------- | ---------------------- | ------------------- |
+| Vertical Scaling   | Upgrade existing server       | Simple to implement    | Limited by hardware |
+| Horizontal Scaling | Add more servers via sharding | Handles large datasets | More complex setup  |
+
+---
+
+### ✅ Key Points
+
+- Vertical scaling is easy but limited by machine capacity
+- Horizontal scaling (sharding) improves performance and storage
+- MongoDB uses **sharding** for horizontal scaling to support big data
+- Combine with **replica sets** for fault tolerance and availability
+
+### 35. What is `upsert: true` in MongoDB?
+
+`upsert: true` is an option in MongoDB update operations that **inserts a new document if no matching document is found**.
+
+---
+
+### 📌 Key Points
+
+- ✅ Combines **update** and **insert** in one operation
+- 🔍 If a document matches the filter, it is updated
+- ➕ If no match, a new document is created with the update data
+
+---
+
+### 🔤 Example
+
+```js
+db.users.updateOne(
+	{ username: "alice" }, // filter
+	{ $set: { age: 30 } }, // update
+	{ upsert: true } // option
+);
+```
+
+- If `"alice"` exists, update her age to 30
+- If not, insert a new document `{ username: "alice", age: 30 }`
+
+---
+
+### ✅ Key Takeaways
+
+- Use `upsert: true` to **ensure a document exists** after update
+- Avoids separate find + insert logic
+- Useful for caching, counters, or default data insertion
+
+### 36. asdf
+
+### 32. asdf
+
+### 32. asdf
+
+### 32. asdf
+
+### 32. asdf
+
+### 32. asdf
+
+### 32. asdf
+
+### 32. asdf
+
+### 32. asdf
+
+### 32. asdf
+
+### 32. asdf
+
+### 32. asdf
+
+### 32. asdf

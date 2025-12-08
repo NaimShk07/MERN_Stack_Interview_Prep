@@ -44,13 +44,104 @@ setState({ value: slowCalculation() });
 
 ## 3. Why do we use keys in list?
 
+Keys help React **identify which items in a list have changed, been added, or removed**.  
+They make React's **reconciliation and diffing process faster and more accurate**.
+
+### 📌 Key Points
+
+- Keys should be **unique** among siblings
+- Help React **track elements** between render cycles
+- Prevent unnecessary re-renders
+- Avoid bugs where DOM nodes get mixed or reused incorrectly
+- Best practice: use **stable IDs**, not array indexes (when possible)
+
 ## 4. What is React Concurrent Mode?
+
+**Concurrent Mode** (now simply called **Concurrent Features**) is a set of React capabilities that make UI rendering **interruptible**, **non-blocking**, and more **responsive**.
+
+### 📌 Key Points
+
+- Allows React to **pause, resume, or cancel** rendering work
+- Makes UI feel smooth during heavy updates
+- Prioritizes important updates (e.g., typing) over expensive ones
+- Powered by **React Fiber** and the **scheduler**
+- Used through features like:
+  - `Suspense`
+  - `useTransition`
+  - `useDeferredValue`
+
+### 🧪 Example (Using `useTransition`)
+
+```jsx
+const [isPending, startTransition] = useTransition();
+
+function handleInput(e) {
+	const value = e.target.value;
+
+	startTransition(() => {
+		setSearch(value); // low-priority update
+	});
+}
+```
 
 ## 5. What is Suspense boundary?
 
+A **Suspense boundary** is a React component (`<Suspense>`) that **wraps parts of the UI which may need to wait** for asynchronous data or lazy-loaded components.  
+While waiting, React shows a **fallback UI** (like a loader or placeholder).
+
+### 📌 Key Points
+
+- Wraps async components or data-fetching logic
+- Shows `fallback` until the content inside is ready
+- Helps split UI into **independent loading sections**
+- Works with features like **lazy loading**, **RSC**, and **data fetching**
+- Prevents the entire UI from blocking during async operations
+
+### 🧪 Example
+
+```jsx
+<Suspense fallback={<div>Loading...</div>}>
+	<UserProfile /> {/* This component may suspend */}
+</Suspense>
+```
+
 ## 6. What is hydration in React?
 
+**Hydration** is the process where React takes a **server-rendered HTML page** and **attaches event listeners + React state** to make it fully interactive in the browser.
+
+### 📌 Key Points
+
+- Used in **Server-Side Rendering (SSR)** and **React Server Components (RSC)**
+- React matches the **existing HTML** with its **virtual DOM**
+- Adds event handlers, turns static HTML into a live React app
+- Faster initial load because HTML is already rendered
+- Only updates mismatched parts during hydration
+
+### 🧪 Example (Conceptual)
+
+```jsx
+// Server renders HTML
+ReactDOMServer.renderToString(<App />);
+
+// Browser hydrates it
+ReactDOM.hydrateRoot(document.getElementById("root"), <App />);
+```
+
 ## 7. What is HOC (Higher Order Component)?
+
+A **Higher-Order Component (HOC)** is a **function that takes a component and returns a new enhanced component**.  
+It is used to **reuse logic** across multiple components.
+
+### 📌 Key Points
+
+- HOC = **Component → New Component**
+- Commonly used for:
+  - Authentication wrappers
+  - Logging or analytics
+  - Permission handling
+  - Injecting props or behavior
+- Should be **pure functions** (no side effects)
+- Avoids code duplication by sharing logic between components
 
 # Node.js / JavaScript
 
@@ -77,77 +168,153 @@ Microtasks (Promises, `process.nextTick`) run **between** phases and have higher
 
 ## 2. Difference between micro task and macro task.
 
-**Microtasks**
+Microtasks and macrotasks are two types of async tasks handled by the **Event Loop**, but they run in **different priority orders**.
 
-- Higher priority
-- Executed immediately after the current operation
-- Examples:
-  - Promise callbacks
-  - `queueMicrotask()`
-  - `process.nextTick()` (even higher priority)
+---
 
-**Macrotasks**
+### 📌 Microtasks
 
-- Executed according to event loop phases
-- Examples:
-  - `setTimeout`
-  - `setInterval`
-  - `setImmediate`
-  - I/O callbacks
+Tasks that run **immediately after the current call stack**, _before_ any macrotask.
 
-**Execution Order:**  
-`process.nextTick()` → Microtasks → Macrotasks
+**Examples:**
+
+- `Promise.then()`
+- `queueMicrotask()`
+- `MutationObserver`
+
+---
+
+### 📌 Macrotasks
+
+Tasks that run **after microtasks**, scheduled for the next Event Loop cycle.
+
+**Examples:**
+
+- `setTimeout`
+- `setInterval`
+- `setImmediate` (Node.js)
+- DOM events
+- I/O tasks
+
+---
+
+### ⚡ Key Differences
+
+| Feature    | Microtask                     | Macrotask                |
+| ---------- | ----------------------------- | ------------------------ |
+| Priority   | Higher                        | Lower                    |
+| Runs When? | Right after call stack clears | Next Event Loop tick     |
+| Examples   | Promises, queueMicrotask      | setTimeout, setInterval  |
+| Frequency  | Can run many in a row         | Runs once per loop cycle |
 
 ---
 
 ## 3. How do you handle back pressure in node streams?
 
-Backpressure occurs when the **consumer** of data cannot handle the speed of the **producer**.
+**Backpressure** happens when the **Writable stream** can't consume data as fast as the **Readable stream** produces it.  
+Node.js provides built-in mechanisms to **slow down producers** and prevent memory overload.
 
-Node.js handles this using **built-in flow control**:
+---
 
-- `stream.write()` returns `false` when the internal buffer is full.
-- When `false` is returned, the producer must **pause** writing.
-- Producer resumes only when the stream emits a `drain` event.
+### 📌 Key Concepts
 
-Example:
+- Readable pushes data too fast → Writable overwhelmed
+- Node streams signal backpressure using `write()` return value
+- Proper handling ensures stable, memory-efficient streaming
 
-```js
-function writeData(stream, data) {
-	if (!stream.write(data)) {
-		stream.once("drain", () => writeData(stream, data));
+---
+
+## ✅ How to Handle Backpressure
+
+### **1. Check `write()` Return Value**
+
+If `write()` returns **false**, stop reading until the `"drain"` event fires.
+
+### 🧪 Example
+
+```javascript
+const fs = require("fs");
+
+const readable = fs.createReadStream("input.txt");
+const writable = fs.createWriteStream("output.txt");
+
+readable.on("data", (chunk) => {
+	const canContinue = writable.write(chunk);
+
+	if (!canContinue) {
+		readable.pause(); // stop producing
+		writable.once("drain", () => readable.resume()); // resume when ready
 	}
+});
+```
+
+### **2. Use `pipe()` (Recommended)**
+
+Node’s `pipe()` automatically handles backpressure for you.
+
+```javascript
+fs.createReadStream("input.txt").pipe(fs.createWriteStream("output.txt"));
+```
+
+### **3. Use Async Iteration (Modern Approach)**
+
+```javascript
+for await (const chunk of readable) {
+	const ok = writable.write(chunk);
+	if (!ok) await once(writable, "drain");
 }
 ```
 
-## 4. What is memory leak?
+## ⚡ Why Backpressure Handling Matters
 
-A memory leak occurs when memory that is no longer needed is **not released**, causing the application’s memory usage to grow over time.  
-In Node.js, this eventually leads to performance degradation and even process crashes (out of memory).
+- Prevents memory bloat
+- Ensures stable streaming in production
+- Keeps CPU and I/O balanced
+- Essential in file streaming, HTTP servers, and real-time data pipelines
 
-### **Common Causes**
+## 4. Memory Leak
 
-- Unbounded in-memory caches
-- Global variables that never reset
-- Forgotten timers or intervals
+A **memory leak** occurs when a program **holds onto memory that is no longer needed**, preventing the garbage collector from freeing it.  
+Over time, this can **slow down the application or even crash it**.
+
+---
+
+## 📌 Key Points
+
+- Occurs when objects are **still referenced but not used**
+- Common in JavaScript/Node.js due to closures, global variables, or event listeners
+- Symptoms: increasing memory usage, slow performance, crashes
+
+---
+
+## ⚡ Common Causes
+
+- Forgotten timers (`setInterval`, `setTimeout`)
+- Detached DOM nodes (in browsers)
+- Global variables holding large data
 - Event listeners not removed
-- Closures retaining large objects
-- Long-lived objects that reference each other (reference cycles)
+- Closures retaining references unnecessarily
 
-### **How to Detect**
+---
+
+## ⚡ How to Detect
 
 - Chrome DevTools Heap Snapshots
-- `node --inspect` debugging
-- `clinic.js` (Clinic Heap / Doctor / Flame)
+- `node --inspect` for memory profiling
+- `clinic.js` (Heap / Doctor / Flame)
 - `heapdump`
-- Monitoring tools (Datadog, NewRelic)
+- Monitoring tools like Datadog or NewRelic
 
-### **How to Fix**
+---
 
-- Limit cache sizes (use LRU cache)
-- Clean up timers/listeners
-- Avoid global state
-- Validate memory usage over time
+## ⚡ How to Fix
+
+- Remove unnecessary references, timers, and listeners
+- Break closures retaining large objects
+- Use weak references (`WeakMap`, `WeakSet`) when appropriate
+- Limit cache sizes (e.g., LRU cache)
+- Avoid excessive global state
+- Monitor memory usage over time
 
 ---
 
@@ -253,8 +420,63 @@ Together these provide strong bot and brute-force protection.
 
 ## 1. What is TTL index?
 
+A **TTL (Time-To-Live) index** in MongoDB automatically **removes documents after a specified amount of time**, helping manage **temporary or expiring data**.
+
+---
+
+### 📌 Key Points
+
+- Created on a **date field**
+- Documents expire after **`expireAfterSeconds`**
+- Useful for: session data, cache, logs, temporary tokens
+- MongoDB runs a **background thread** to delete expired documents
+
+---
+
+### 🧪 Example
+
+```javascript
+// Create a TTL index on "createdAt" to expire documents after 3600 seconds (1 hour)
+db.sessions.createIndex({ createdAt: 1 }, { expireAfterSeconds: 3600 });
+
+// Insert a document
+db.sessions.insertOne({ user: "Alice", createdAt: new Date() });
+```
+
 ## 2. Can you tell me what is embedded data?
 
 ## 3. How about reference data?
 
 ## 4. Do you know what is MongoDB Change Stream?
+
+**Change Streams** allow applications to **listen to real-time changes** (insert, update, delete, replace) in a MongoDB collection, database, or cluster.  
+They provide a **reactive way** to respond to data changes without polling.
+
+---
+
+### 📌 Key Points
+
+- Introduced in **MongoDB 3.6+**
+- Works with **replica sets** and **sharded clusters**
+- Returns a **stream of change events** (`insert`, `update`, `delete`, `replace`)
+- Can filter changes using **aggregation pipelines**
+- Useful for **real-time analytics, notifications, caching, and event-driven architectures**
+
+---
+
+### 🧪 Example (Node.js)
+
+```javascript
+async function watchChanges() {
+	const db = client.db("myDB");
+	const collection = db.collection("users");
+
+	const changeStream = collection.watch();
+
+	changeStream.on("change", (change) => {
+		console.log("Detected change:", change);
+	});
+}
+
+watchChanges();
+```

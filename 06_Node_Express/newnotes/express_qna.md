@@ -198,3 +198,31 @@ If `next()` is **not called**, the request will **hang**.
 #### 2. What is clustering and how can it be implemented in Express?
 
 #### 3. How to handle large file uploads efficiently in Express?
+
+## General
+
+1. How are you performing MySQL queries in Express.js?
+
+- How to Perform MySQL Queries in Express.js
+- Steps:
+  1.  Install MySQL package → `npm install mysql2`
+  2.  Create a DB connection
+  3.  Use `.query()` to run SQL queries
+
+```js
+const mysql = require("mysql2");
+
+const connection = mysql.createConnection({
+	host: "localhost",
+	user: "root",
+	password: "yourpassword",
+	database: "yourdb",
+});
+
+app.get("/users", (req, res) => {
+	connection.query("SELECT * FROM users", (err, results) => {
+		if (err) return res.status(500).send(err);
+		res.json(results);
+	});
+});
+```

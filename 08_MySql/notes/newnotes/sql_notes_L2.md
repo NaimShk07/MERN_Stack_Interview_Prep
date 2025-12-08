@@ -13,6 +13,13 @@ A **database** is an `organized collection of data` that can be easily `accessed
 - Stores data in structured format (tables, documents, key-value, etc.)
 - Managed using a **Database Management System (DBMS)**
 
+### 1.1 Why use a Database instead of File System?
+
+- Databases provide **structured, efficient data storage** with **fast querying**.
+- Support **concurrent access** by multiple users safely.
+- Provide **data integrity, indexing, transactions, and security**.
+- File systems are simple but **slow and error-prone** for complex data operations.
+
 ### 2. What is SQL? What does it do?
 
 **SQL (Structured Query Language)** is a `standard language` used to `interact` with relational databases.
@@ -88,6 +95,12 @@ CREATE TABLE Orders (
 - Removes duplicate and repeating data
 - Follows multiple normal forms: 1NF, 2NF, 3NF, etc.
 
+### 📚 Normal Forms:
+
+- **1NF** – Remove repeating groups (atomic values)
+- **2NF** – Remove partial dependencies
+- **3NF** – Remove transitive dependencies
+
 🔹 First Normal Form (1NF)
 
 A table is in **1NF** if:
@@ -100,21 +113,19 @@ A table is in **1NF** if:
 🧪 **Example: Before and After 1NF**
 
 ❌ **Not in 1NF**
-| ID | Name | Hobbies |
-|---- |--------|------------------|
-| 1 | Alice | Reading, Singing |
+
+| ID  | Name  | Hobbies          |
+| --- | ----- | ---------------- |
+| 1   | Alice | Reading, Singing |
 
 ✅ **In 1NF**
-| ID | Name | Hobby |
-|----|--------|-----------|
-| 1 | Alice | Reading |
-| 1 | Alice | Singing |
 
-✅ **Advantages / Uses:**
+| ID  | Name  | Hobby   |
+| --- | ----- | ------- |
+| 1   | Alice | Reading |
+| 1   | Alice | Singing |
 
-- 📦 Eliminates repeating groups
-- 🎯 Ensures cleaner and more efficient data storage
-- 🧩 Forms the base for higher normal forms (2NF, 3NF, etc.)
+> Normalization reduces duplicate data by splitting it into related tables, making the database more efficient and consistent.
 
 ### 7. What is the difference between DELETE, TRUNCATE, and DROP?
 
@@ -303,7 +314,25 @@ SELECT u.name FROM Users AS u;
 - 🔍 Use UNION when `unique` results are needed
 - 🚀 Use UNION ALL for better performance if duplicates are allowed
 
-### 4. What is the difference between WHERE and HAVING clauses?
+### 4. LONGTEXT vs TEXT
+
+- `TEXT`: Can store up to **65,535 characters (64 KB)** of text data.  
+  Suitable for medium-sized content like comments or descriptions.
+
+- `LONGTEXT`: Can store up to **4,294,967,295 characters (4 GB)** of text data.  
+  Used for very large content like articles, logs, or documents.
+
+📌 **Key Differences:**
+
+- `LONGTEXT` supports **much larger data** than `TEXT`.
+- Both are stored **outside the table row** (with pointers), unlike `VARCHAR`.
+- Neither can have a **default value** in MySQL.
+
+💬 **Tip:**
+
+> Use `TEXT` for normal-length text and `LONGTEXT` for very large or unbounded text fields.
+
+### 4.1 What is the difference between WHERE and HAVING clauses?
 
 Both [`WHERE` and `HAVING`](../../code-snippets/query.sql#L78) are used to **filter results**, but they apply at `different stages` of query execution.
 
@@ -424,7 +453,8 @@ WHERE id NOT IN (
 
 ### 5. What are Transactions? How do `COMMIT` and `ROLLBACK` work?
 
-- A transaction in MySQL is a set of SQL statements executed together so that either all succeed or all fail, maintaining data integrity — following ACID properties.
+- A transaction in MySQL is a set of SQL statements executed together
+- so that either all succeed or all fail, maintaining data integrity — following ACID properties.
 
 A **Transaction** is a `sequence` of `one or more SQL operations` executed as a single logical unit of work.
 

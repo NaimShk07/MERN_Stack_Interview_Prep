@@ -2,51 +2,6 @@
 
 ## 2. Arrow Function vs Normal Function
 
-**Arrow functions** are a shorter syntax for writing functions in JavaScript, introduced in ES6.  
-They differ from **normal functions** mainly in how they handle `this` and `arguments`.
-
----
-
-### 📌 Key Differences
-
-- ✅ Arrow functions do **not bind** their own `this`
-- ⚠️ No `arguments` object in arrow functions
-- ❌ Arrow functions **can't be used as constructors**
-- 🔄 Normal functions bind `this` dynamically (at call time)
-
----
-
-### 🔤 Example
-
-```js
-// Arrow Function
-const add = (a, b) => a + b;
-
-// Normal Function
-function add(a, b) {
-	return a + b;
-}
-```
-
----
-
-### 📊 Comparison Table
-
-| Feature            | Arrow Function      | Normal Function   |
-| ------------------ | ------------------- | ----------------- |
-| `this` binding     | Lexical (inherited) | Dynamic (runtime) |
-| `arguments` object | Not available       | Available         |
-| Constructor usage  | Not allowed         | Can be used       |
-| Syntax             | Short & concise     | Verbose           |
-
----
-
-### ✅ Key Points
-
-- 📌 Use arrow functions for small utilities or callbacks
-- ⚠️ Avoid in methods or constructors where dynamic `this` is needed
-- 🔧 Great for functional programming patterns (e.g., `.map()`, `.filter()`)
-
 ## 3. Difference Between Node.js and JavaScript
 
 [click](../06_Node_Express/newnotes/nodejs_qna.md#L69)
@@ -65,94 +20,13 @@ function add(a, b) {
 
 ## 7. What is Helmet?
 
-**Helmet** is a **Node.js middleware** that helps `secure` Express apps by setting various HTTP headers.
-
----
-
-### 📌 Key Points
-
-- 🛡️ Protects against common web vulnerabilities (e.g., XSS, clickjacking)
-- ⚙️ Adds security-related headers like `Content-Security-Policy`, `X-Frame-Options`
-- 🔧 Easy to configure and use with Express.js
-
----
-
-### 🔤 Example
-
-```js
-const express = require("express");
-const helmet = require("helmet");
-
-const app = express();
-app.use(helmet());
-
-app.get("/", (req, res) => {
-	res.send("Hello, secure world!");
-});
-
-app.listen(3000);
-```
-
----
-
-### ✅ Key Benefits
-
-- Improves app security with minimal setup
-- Helps prevent attacks by controlling HTTP headers
-- Highly recommended for all Express-based applications
-
 ## 8. What Are Streams in Node.js?
-
-[click](../06_Node_Express/newnotes/nodejs_qna.md#L370)
-
-### 📌 Key Points
-
-- ✅ Efficient for handling large data (files, network)
-- ⚙️ Four types: **Readable**, **Writable**, **Duplex**, **Transform**
-- 🔄 Work with events like `data`, `end`, `error` for async processing
-- 🚀 Help reduce memory usage and improve performance
-
----
-
-### 🔤 Example
-
-```js
-const fs = require("fs");
-
-const readable = fs.createReadStream("large-file.txt");
-const writable = fs.createWriteStream("copy.txt");
-
-readable.pipe(writable); // Stream data from file to file efficiently
-```
-
----
-
-### 📊 Stream Types
-
-| Stream Type | Description                      |
-| ----------- | -------------------------------- |
-| Readable    | Data can be read from it         |
-| Writable    | Data can be written to it        |
-| Duplex      | Can read and write               |
-| Transform   | Duplex stream that modifies data |
-
----
-
-### ✅ Key Takeaways
-
-- Use streams for large or continuous data processing
-- Prevents loading entire data into memory at once
-- Essential for building fast, scalable Node.js apps
 
 ## 9. Find vs Aggregation Query (MongoDB)
 
 [click](../07_MongoDB/newnotes/mongodb_qna.md/#L202)
 
 ## 10. Return Type of `find` and `findOne` (MongoDB)
-
-`find` and `findOne` are MongoDB methods used to query documents, but they return different types.
-
-[click](../07_MongoDB/newnotes/mongodb_qna.md/#L99)
 
 ## 11. What is Sharding in MongoDB?
 
@@ -264,72 +138,7 @@ db.users.updateOne(
 
 ## 14. What is an Error Boundary in React?
 
-An **Error Boundary** is a React component that **catches JavaScript errors in its child component tree** and displays a fallback UI instead of crashing the whole app.
-
----
-
-### 📌 Key Points
-
-- ✅ Catches errors during `rendering`, `lifecycle methods`, and `constructors` of child components
-- ⚠️ Does **not** catch errors inside `event handlers` or `async code`
-- 🔄 Implemented using `componentDidCatch` lifecycle method or `static getDerivedStateFromError`
-
----
-
-### ✅ Key Takeaways
-
-- Use Error Boundaries to **prevent entire app crashes**
-- Wrap them around components that might throw errors
-- Helps improve user experience with graceful error handling
-
 ## 15. Difference Between Axios and Fetch
-
-**Axios** and **Fetch** are both used to make HTTP requests in JavaScript but have key differences.
-
----
-
-### 📌 Key Differences
-
-| Feature                  | Axios ✅                                | Fetch API 🌀                    |
-| ------------------------ | --------------------------------------- | ------------------------------- |
-| Browser Support          | Supports older browsers with polyfills  | Native in modern browsers only  |
-| Syntax                   | Simple and concise                      | Requires more manual setup      |
-| Response Handling        | Automatically parses JSON               | Needs `.json()` to parse JSON   |
-| Request Cancellation     | Supports cancellation (via CancelToken) | No built-in cancellation        |
-| Interceptors             | Supports request/response interceptors  | No built-in interceptors        |
-| Error Handling           | Throws error for HTTP errors            | Only rejects on network failure |
-| Default Timeout          | Supports timeout configuration          | No built-in timeout             |
-| Upload/Download Progress | Supports progress events                | Limited support                 |
-
----
-
-### 🔤 Example
-
-**Axios:**
-
-```js
-axios
-	.get("/api/data")
-	.then((response) => console.log(response.data))
-	.catch((error) => console.error(error));
-```
-
-**Fetch:**
-
-```js
-fetch("/api/data")
-	.then((res) => res.json())
-	.then((data) => console.log(data))
-	.catch((err) => console.error(err));
-```
-
----
-
-### ✅ Key Takeaways
-
-- Use **Axios** for more features, ease of use, and better error handling
-- Use **Fetch** for native, lightweight requests in modern environments
-- Axios simplifies many HTTP tasks with built-in utilities
 
 ## Q: How to Print 1 to 10 Without Loop?
 
@@ -486,7 +295,7 @@ if (typeof obj.name !== "string") {
 ## Q: What is the output of the following?
 
 ```js
-console.log(1 + "1" + 1);
+console.log(1 + "1" + 1); //
 console.log(1 - "1" + 1);
 ```
 

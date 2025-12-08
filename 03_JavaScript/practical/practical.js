@@ -130,15 +130,15 @@
 
 // ! 14. Flatten a nested array
 
-// function flattenArr(arr) {    
+// function flattenArr(arr) {
 //     let newArr = [];
 //     for (let i = 0; i < arr.length; i++) {
 //         if(Array.isArray(arr[i])){
 //             newArr = newArr.concat(flattenArr(arr[i]));
 //         }else{
 //             newArr.push(arr[i]);
-//         }         
-//     }   
+//         }
+//     }
 //     return newArr;
 // }
 
@@ -328,3 +328,43 @@ console.log(returnDuplicate(arr));
 // 💡 Simple Words Mein:
 // “x + 5% = 100” ka matlab hai “x mein uska 5% add karke 100 milta hai.”
 // Isliye 5% ko x ke saath multiply karna zaroori hai — isliye “0.05x” likhte hain.
+
+// ! 33. Finding the Longest Common Prefix (LCP)
+// function longestCommonPrefix(strs) {
+// 	if (!strs.length) return "";
+
+// 	strs.sort();
+// 	const first = strs[0];
+// 	const last = strs[strs.length - 1];
+// 	let i = 0;
+
+// 	while (i < first.length && i < last.length && first[i] === last[i]) {
+// 		i++;
+// 	}
+
+// 	return first.slice(0, i);
+// }
+// console.log(longestCommonPrefix(["aebcv", "aeq", "aeml", "aeiyt"]));
+
+// ! 34. Move element 0 to last
+
+// function moveZerosToEnd(arr) {
+// 	let nonZeroIndex = 0;
+
+// 	// Move non-zero elements forward
+// 	for (let i = 0; i < arr.length; i++) {
+// 		if (arr[i] !== 0) {
+// 			arr[nonZeroIndex] = arr[i];
+// 			nonZeroIndex++;
+// 		}
+// 	}
+
+// 	// Fill the rest with zeros
+// 	for (let i = nonZeroIndex; i < arr.length; i++) {
+// 		arr[i] = 0;
+// 	}
+
+// 	return arr;
+// }
+
+// console.log(moveZerosToEnd([1, 2, 0, 4, 5, 0, 3]));

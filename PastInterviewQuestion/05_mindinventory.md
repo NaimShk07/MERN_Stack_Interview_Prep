@@ -6,48 +6,7 @@
 
 ## 2. JSON vs Object – What are the differences?
 
-### 🔶 1. Definition
-
-- **JSON (JavaScript Object Notation)**: A **string-based** data format used for `data exchange`. It is language-independent but based on JavaScript syntax.
-- **Object**: A data structure in JavaScript used to store key-value pairs.
-
-### 🔶 2. Syntax Differences
-
-- JSON keys and string values **must be in double quotes**.
-- JS Objects can have keys without quotes and support functions and other complex types.
-
-```js
-// JSON (valid only as a string)
-'{ "name": "Alice", "age": 25 }'
-
-// JavaScript Object
-{ name: "Alice", age: 25 }
-```
-
 ## 3. How does reference vs value work in JavaScript?
-
-- **Primitive types** (`string`, `number`, `boolean`, etc.) are **passed by value** — a copy is created; changes don’t affect original.
-- **Objects, Arrays, Functions** are **passed by reference** — variables point to the same memory; changes affect all references.
-- Assigning primitives copies the value, assigning objects copies the reference.
-- To avoid mutation bugs, use shallow/deep copies (`spread`, `Object.assign`, `structuredClone`).
-
----
-
-### Examples:
-
-```js
-// Passed by value
-let a = 5;
-let b = a;
-b = 10;
-console.log(a); // 5
-
-// Passed by reference
-let obj1 = { name: "Alice" };
-let obj2 = obj1;
-obj2.name = "Bob";
-console.log(obj1.name); // 'Bob'
-```
 
 ## 4. What is Git?
 
@@ -92,37 +51,6 @@ git cherry-pick <commit-hash>
 ```
 
 ## 7. Explain the difference between spread and rest operators.
-
-Both use the `...` syntax but serve **opposite purposes** based on context.
-
----
-
-### 🔹 Spread Operator (`...`)
-
-- **Expands** elements of an iterable (like arrays or objects).
-- Used in array/object literals or function calls to **unpack values**.
-
-```js
-const arr1 = [1, 2];
-const arr2 = [...arr1, 3]; // [1, 2, 3]
-
-const obj1 = { a: 1 };
-const obj2 = { ...obj1, b: 2 }; // { a: 1, b: 2 }
-```
-
-### 🔸 Rest Operator (...)
-
-- Collects multiple elements into a single array.
-- Used in function parameters or destructuring to pack values.
-
-```js
-function sum(...numbers) {
-	return numbers.reduce((a, b) => a + b, 0);
-}
-
-const [first, ...rest] = [10, 20, 30];
-// first = 10, rest = [20, 30]
-```
 
 ## 8. What is the difference between interfaces and types?
 
@@ -173,44 +101,7 @@ const MyComponent = React.memo(function MyComponent({ value }) {
 
 ## 10. What is the difference between deep copy and shallow copy?
 
-- mostimp: 8
-
 ## 11. What are JavaScript Objects and their methods?
-
-A **JavaScript object** is a collection of key-value pairs used to store and organize data. Keys are strings (or Symbols), and values can be any type.
-
-- 📦 Defined using `{ key: value }` syntax
-- 🧩 Can hold functions (called methods) as values
-- 🔁 Commonly used to model real-world entities
-
-```js
-const user = {
-	name: "Alice",
-	age: 25,
-	greet() {
-		console.log(`Hello, I'm ${this.name}`);
-	},
-};
-
-user.greet(); // Hello, I'm Alice
-```
-
-### ✅ Common Object Methods
-
-- `Object.keys(obj)` → 🔑 array of keys
-- `Object.values(obj)` → 📦 array of values
-- `Object.entries(obj)` → 🧾 array of `[key, value]` pairs
-- `Object.assign(target, source)` → 🛠️ copy properties
-- `Object.hasOwnProperty(key)` → ✅ check if key exists
-- `Object.freeze(obj)` → ❄️ make object immutable
-- `Object.seal(obj)` → 🔒 prevent adding/removing properties
-
-```js
-const obj = { a: 1, b: 2 };
-Object.keys(obj); // ['a', 'b']
-Object.values(obj); // [1, 2]
-Object.entries(obj); // [['a', 1], ['b', 2]]
-```
 
 ## 12. How do you make a secure and robust application from:
 
@@ -295,28 +186,6 @@ db.query("SELECT * FROM users WHERE id = ?", [userId]);
 
 ## 14. JSX vs JS – What are the differences?
 
-**JSX** is a syntax extension for JavaScript that allows writing HTML-like code inside JavaScript, primarily used in React to describe UI components.
-
-- 📝 JSX looks like HTML but is transformed into `React.createElement` calls
-- ⚙️ JS is the core scripting language without special syntax
-- 🧩 JSX must be compiled (e.g., Babel) before browsers can run it
-- 🚀 JSX improves readability and UI development
-
-```jsx
-// JSX example
-const element = <h1>Hello, world!</h1>;
-
-// JS equivalent
-const element = React.createElement("h1", null, "Hello, world!");
-```
-
-### ✅ Key Points
-
-- 📌 JSX is **not** valid JavaScript until transpiled
-- ⚡ JSX makes UI code declarative and easier to visualize
-- 🔄 JS is more flexible but less readable for UI
-- 🧪 JSX supports embedding JS expressions inside `{}`
-
 ## 15. How can you hide payload of API in browser network tab ?
 
 You **cannot fully hide** network payloads in the browser — client-side requests are visible to users/devtools. Instead, minimize exposure and make payloads useless to attackers via server-side design and cryptographic measures.
@@ -364,14 +233,3 @@ async function encryptAndSend(publicKeyJwk, dataObj, url) {
 ✅ Bottom line: make payloads **non-sensitive** on the client and rely on server-side controls — that's the robust, practical solution.
 
 ## 16. forEach vs map, what both return?
-
-- `forEach` executes a function on each element and returns **`undefined`**
-- `map` transforms each element and returns a **new array** of results
-- Use `forEach` for side effects (e.g., logging), `map` to create new arrays
-- Neither modifies the original array directly (unless you mutate inside `forEach`)
-
-```js
-const nums = [1, 2, 3];
-nums.forEach((n) => console.log(n)); // returns undefined
-const doubled = nums.map((n) => n * 2); // returns [2, 4, 6]
-```

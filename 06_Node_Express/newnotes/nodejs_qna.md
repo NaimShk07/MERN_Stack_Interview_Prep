@@ -66,6 +66,61 @@ Avoid Node.js when:
 - As of now, the **current stable version** is **Node.js 24.8.0**
 - The **active LTS (Long Term Support)** version is **Node.js 22.x**
 
+#### 3.1 10 major features came in es6(ecmascript) module(2015)
+
+1. **Import / Export Syntax**  
+   Clean way to import/export functions, objects, variables.
+
+2. **Named Exports**  
+   Export multiple named values from a module.
+
+3. **Default Exports**  
+   Export a single default value per module.
+
+4. **Arrow Functions**  
+   Shorter syntax for writing functions and lexically binds `this`.
+
+5. **let and const**  
+   Block-scoped variable declarations replacing var with more predictable scoping.
+
+6. **Template Literals**  
+   Multi-line strings and string interpolation with backticks
+
+7. **Default Parameters**  
+   Functions can have default values for parameters.
+
+8. **Destructuring Assignment**  
+   Extract values from arrays or objects into variables easily.
+
+9. **Rest and Spread Operators**  
+   ... syntax to collect multiple elements into an array or spread elements out.
+
+10. **Classes**  
+    Syntactic sugar for constructor functions and prototype inheritance.
+
+11. **Promises**  
+    Built-in support for asynchronous operations and cleaner handling of async code.
+
+12. **Enhanced Object Literals**  
+     Simplified syntax for defining properties and methods.
+
+    ```js
+    const obj = {
+    	name: name,
+    	greet: function () {
+    		console.log("Hello, my name is " + this.name);
+    	},
+
+    	name, // same as name: name
+    	greet() {
+    		// method shorthand
+    		console.log(`Hello, my name is ${this.name}`);
+    	},
+    };
+    ```
+
+---
+
 #### 4. How does Node.js differ from browser-based JavaScript?
 
 **JavaScript** is a **programming language** primarily used for web development.  
@@ -292,7 +347,30 @@ const add = require("./add");
 
 ### 🌀 Asynchronous Programming
 
-#### 1. What are callbacks, promises, and async/await?
+#### 1. If we have Promises, why do we still need async/await?
+
+- Makes code **look synchronous** — easier to read and write
+- Helps avoid **callback chaining** and `.then().catch()` nesting
+- Cleaner error handling using `try/catch`
+
+#### 1.1 What are callbacks, promises, and async/await?
+
+1. Callback
+
+   - A function passed as an argument, runs after task completes.
+   - ❌ Can lead to "callback hell" with nested code.
+
+2. Promise
+
+   - Represents a future value (pending → resolved/rejected).
+   - Helps avoid callback hell.
+
+3. Async/Await
+
+   - Syntactic sugar over Promises.
+   - Looks like synchronous code, easier to read.
+
+---
 
 #### 2. How does asynchronous programming work in Node.js?
 
@@ -432,6 +510,17 @@ readStream.on("data", (chunk) => console.log(chunk.toString()));
 | **Duplex**    | Both readable & writable         | `net.Socket`             |
 | **Transform** | Duplex stream that modifies data | `zlib.createGzip()`      |
 
+🔤 Example: Piping Streams
+
+```js
+const fs = require("fs");
+
+const readable = fs.createReadStream("large-file.txt");
+const writable = fs.createWriteStream("copy.txt");
+
+readable.pipe(writable); // Efficient file-to-file streaming
+```
+
 #### 3. What is a buffer and how is it used?
 
 A Buffer is a `temporary storage` for binary data in Node.js.
@@ -489,7 +578,45 @@ readStream.pipe(writeStream); // handles backpressure automatically
 
 #### 2. How do you secure REST APIs in Express?
 
-#### 3. What is Helmet and how does it improve security?
+#### 3. What is Helmet
+
+**Helmet** is a **Node.js middleware** that helps `secure` Express apps by setting various HTTP headers.
+
+---
+
+### 📌 Key Points
+
+- 🛡️ Protects against common web vulnerabilities (e.g., XSS, clickjacking)
+- ⚙️ Adds security-related headers like `Content-Security-Policy`, `X-Frame-Options`
+- 🔧 Easy to configure and use with Express.js
+
+---
+
+### 🔤 Example
+
+```js
+const express = require("express");
+const helmet = require("helmet");
+
+const app = express();
+app.use(helmet());
+
+app.get("/", (req, res) => {
+	res.send("Hello, secure world!");
+});
+
+app.listen(3000);
+```
+
+---
+
+### ✅ Key Benefits
+
+- Improves app security with minimal setup
+- Helps prevent attacks by controlling HTTP headers
+- Highly recommended for all Express-based applications
+
+#### 3.1 How helmet improve security?
 
 #### 4. What is CORS and when do you need it?
 
@@ -525,15 +652,20 @@ readStream.pipe(writeStream); // handles backpressure automatically
 
 #### 2. How does JWT authentication work in Node.js?
 
-**JWT (JSON Web Token)** is a compact, URL-safe token used for securely transmitting user identity between client and server.
+**JWT** is a compact, URL-safe token used for **securely transmitting user identity** or other information between client and server.  
+Primarily used for **authentication and authorization** in APIs and single-page applications (SPAs).
 
-📌 **Key Points:**
+---
 
-- JWT = **Header + Payload + Signature**
-- The server issues a token after successful login
-- Client stores the token (usually in localStorage or cookies)
-- Each subsequent request includes the token in the `Authorization` header (`Bearer <token>`)
-- Server verifies the token’s signature using a **secret key** or **public key** on protected routes.
+### ⚡ Key Points
+
+- **Stateless:** No server storage needed; all info is in the token
+- **Issued by server** after successful login
+- **Stored on client:** localStorage, sessionStorage, or HttpOnly cookies
+- **Sent with requests:** in `Authorization` header as `Bearer <token>`
+- **Signed:** with HMAC or RSA keys to ensure authenticity
+- **Includes expiry** (`exp`) to limit token lifetime
+- Keep tokens **secure** to prevent leaks
 
 🧪 **Example :**
 
@@ -602,6 +734,248 @@ jwt.verify(token, "SECRET_KEY", (err, user) => {
 #### 6. What is API versioning and how do you implement it?
 
 #### 7. What are microservices?
+
+#### 8. What is ORM?
+
+- ORM (**Object-Relational Mapping**) is a technique that maps **`database tables` to `objects`**.
+- Lets developers interact with databases using **JavaScript objects instead of raw SQL queries**.
+- Improves **readability, maintainability**, and speeds up development.
+- Common ORMs in JS: **Sequelize, TypeORM**
+
+---
+
+### ⚖️ Benefits of ORM
+
+1. `Cleaner` and more `readable` code
+2. Database-agnostic (can switch DBs easily)
+3. Built-in `validations` and `relations`
+4. `Faster development` for CRUD apps
+
+---
+
+### 🧪 Example (Sequelize - SQL ORM)
+
+```js
+// Define model
+const User = sequelize.define("User", {
+	name: Sequelize.STRING,
+	email: Sequelize.STRING,
+});
+
+// Insert
+await User.create({ name: "Naim", email: "naim@example.com" });
+
+// Fetch
+const users = await User.findAll();
+```
+
+#### 9. What is ODM?
+
+- ODM (**Object-Document Mapping**) is a technique that maps **NoSQL database documents** (like MongoDB) to JavaScript objects.
+- Similar to ORM but works with **document-oriented databases** instead of relational tables.
+- In JavaScript, the most popular ODM is **Mongoose**.
+
+---
+
+### ⚖️ Benefits of ODM
+
+1. Abstracts MongoDB queries into simple JS methods
+2. Provides **schema & validation** for collections
+3. Supports `middleware/hooks` for pre & post operations
+4. Easier to handle relationships (populate, refs)
+
+---
+
+### 🧪 Example (Mongoose - MongoDB ODM)
+
+```js
+// Define Schema & Model
+const userSchema = new mongoose.Schema({
+	name: String,
+	email: String,
+});
+const User = mongoose.model("User", userSchema);
+
+// Insert
+await User.create({ name: "Naim", email: "naim@example.com" });
+
+// Fetch
+const users = await User.find();
+```
+
+---
+
+#### 10. Web hook
+
+📌 **A webhook is a way for one application to send real-time data to another through an HTTP callback.**  
+It allows a server to **automatically notify another system whenever a specific event occurs**, without the receiving system having to request the data.
+
+In simple terms, a webhook is an **automatic server-to-server push notification**.
+
+**Example:**  
+“When a payment is completed, send a POST request to this URL with the payment details.”
+
+---
+
+### 📌 Key Points
+
+- Triggered by **events** (e.g., new user signup, payment received)
+- Sends **HTTP POST requests** to a pre-configured URL
+- **Push-based**: unlike polling, data is sent immediately when event happens
+- Commonly used in **APIs, integrations, and automation**
+
+---
+
+### 🔧 Example
+
+```json
+POST /webhook-endpoint HTTP/1.1
+Host: example.com
+Content-Type: application/json
+
+{
+  "event": "user_signup",
+  "user": {
+    "id": 123,
+    "name": "Alice"
+  }
+}
+```
+
+### ✅ Advantages / Uses
+
+- ⚡ Real-time notifications between systems
+- 🔄 Automates workflows without manual polling
+- 📊 Used in payment gateways, GitHub, Slack, Stripe, etc.
+- 🧪 Easy integration with external services
+
+#### 11. Queue
+
+A **queue** is a linear data structure that follows the **FIFO (First In, First Out)** principle.  
+Used when processing order matters.
+
+### 📌 Key Points
+
+- Elements are added at the **rear** and removed from the **front**
+- Supports operations like `enqueue`, `dequeue`, `peek`
+- Useful in scheduling, buffering, and async tasks
+
+#### 12. Event Queue
+
+An event queue stores incoming events/tasks to be processed asynchronously by an event loop.
+Common in JavaScript, OS kernels, and UI systems.
+
+### 📌 Key Points
+
+- Follows FIFO, but may prioritize certain events
+- Works with an event loop
+- Enables non-blocking and async programming
+
+#### 13. Message Queue
+
+A **messaging queue** in Node.js is a system that lets different parts of an application **send and receive messages asynchronously** using a queue.  
+It helps Node apps scale and handle background tasks efficiently.
+
+### 📌 Key Points
+
+- Decouples producers (senders) and consumers (workers)
+- Ensures reliable delivery with retries & acknowledgments
+- Ideal for background jobs, microservices communication, and load smoothing
+- Common tools: `RabbitMQ`, `BullMQ` (Redis), `Kafka`, `SQS`
+
+#### 14. Polling, Long Polling, Server-Sent Events, and WebSockets
+
+📌 **These are techniques to get real-time or near-real-time data from a server.**  
+They differ in how the client and server communicate and how efficiently updates are delivered.
+
+---
+
+### 1️⃣ Short Polling
+
+📌 Client repeatedly requests the server at fixed intervals to check for updates.
+
+```txt
+Client: GET /data every 5s
+Server: responds immediately
+```
+
+- Pros: Simple to implement
+- Cons: Wasteful, high latency if interval is long, unnecessary server load
+
+### 2️⃣ Long Polling
+
+📌 Client sends a request; server holds it until new data is available or a timeout occurs.
+Once responded, client immediately sends a new request.
+
+```txt
+Client: GET /updates
+Server: waits until new data or timeout
+Client: GET /updates again
+```
+
+- Pros: Near real-time updates, less wasted requests
+- Cons: Each update still requires HTTP request, connection overhead
+
+### 3️⃣ Server-Sent Events (SSE)
+
+📌 Server can push updates to client over a single HTTP connection.
+Client subscribes and receives continuous updates.
+
+```txt
+const evtSource = new EventSource('/events');
+evtSource.onmessage = e => console.log(e.data);
+```
+
+- Pros: Simple, one-way real-time updates
+- Cons: Only works server → client, not bi-directional
+
+### 4️⃣ WebSockets
+
+📌 Creates a persistent, full-duplex connection between client and server.
+Both can send messages anytime.
+
+```txt
+const ws = new WebSocket('ws://example.com/socket');
+ws.onmessage = e => console.log(e.data);
+ws.send('Hello Server');
+```
+
+- Pros: True bi-directional real-time communication
+- Cons: Slightly more complex, requires WebSocket support on server
+
+#### 15. sdfa
+
+#### 10. sdfa
+
+#### 10. sdfa
+
+#### 10. sdfa
+
+#### 10. sdfa
+
+#### 10. sdfa
+
+#### 10. sdfa
+
+#### 10. sdfa
+
+#### 10. sdfa
+
+#### 10. sdfa
+
+#### 10. sdfa
+
+#### 10. sdfa
+
+#### 10. sdfa
+
+#### 10. sdfa
+
+#### 10. sdfa
+
+#### 10. sdfa
+
+#### 10. sdfa
 
 ### 🌐 Deployment & DevOps
 

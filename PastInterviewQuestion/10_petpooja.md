@@ -1,53 +1,4 @@
-## 1. ## Commonly Used Libraries in React
-
-📌 **React ecosystem has many libraries to simplify state management, routing, UI, and data fetching.**  
-Here are the most commonly used ones in modern React apps:
-
----
-
-### 📌 Key Libraries
-
-- **State Management**
-
-  - `redux` / `@reduxjs/toolkit` ✅
-  - `zustand` ⚡
-  - `recoil` 🌿
-  - `mobx` 🧠
-
-- **Routing**
-
-  - `react-router-dom` 🌐
-
-- **Data Fetching / Server State**
-
-  - `react-query` / `@tanstack/react-query` 🔄
-  - `swr` 🌊
-
-- **UI / Component Libraries**
-
-  - `material-ui` / `@mui/material` 🎨
-  - `chakra-ui` ✨
-  - `antd` 🏛
-
-- **Form Handling**
-
-  - `react-hook-form` 📝
-  - `formik` 🧩
-
-- **Animation**
-
-  - `framer-motion` 🎬
-
-- **Utility**
-  - `axios` ⚡ (HTTP requests)
-  - `date-fns` 📅 / `moment` ⏳ (Date manipulation)
-
----
-
-### ✅ Interview Tip
-
-> When asked, mention 3–4 popular libraries and their **primary use case**, e.g.,  
-> “I mostly use `react-router-dom` for routing, `react-query` for server state, and `@mui/material` for UI components.”
+## 1. Commonly Used Libraries in React
 
 ## 2. CSS Libraries in React
 
@@ -105,30 +56,7 @@ Here’s a quick overview of the most popular ones.
 3. Added optimistic **UI updates** with rollback on server errors.
 4. **Used MongoDB versioning** (\_\_v) to prevent race conditions when multiple users updated the same document simultaneously.
 
-## 4. ## Lifecycle Methods of React Components
-
-📌 **Lifecycle methods are functions in React class components that run at specific stages of a component’s life: mounting, updating, and unmounting.**
-
----
-
-## 1️⃣ Mounting (Component is created & added to DOM)
-
-- `render()` → Returns JSX
-- `componentDidMount()` → Runs after first render (API calls, subscriptions)
-
----
-
-## 2️⃣ Updating (Props or state change)
-
-- `componentDidUpdate()` → Runs after DOM update (fetch more data, sync state)
-
----
-
-## 3️⃣ Unmounting (Component removed from DOM)
-
-- `componentWillUnmount()` → Cleanup (timers, listeners, subscriptions)
-
----
+## 4. Lifecycle Methods of React Components
 
 ## 5. Why Write Speed Decreases When Using Indexes
 

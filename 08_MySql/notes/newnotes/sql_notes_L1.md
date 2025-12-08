@@ -290,7 +290,11 @@ SQL statements are grouped into **categories** based on their purpose.
 
 #### 1. What is FULL OUTER JOIN, CROSS JOIN, SELF JOIN?
 
+[**Join**](./joins.md)
+
 #### 2. What is the difference between INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL OUTER JOIN?
+
+[**Join**](./joins.md)
 
 #### 3. What is INTERSECT, MINUS, NOT EXISTS?
 
