@@ -1,3 +1,5 @@
+[practice](https://chatgpt.com/c/692dc264-0de4-8320-a318-f2d4376a6183)
+
 ## 1. What is javascript, why use, pros and cons?
 
 - final: `high-level` `dynamically typed` `single-threaded`
@@ -153,6 +155,7 @@ JavaScript has two main categories of data types:
 
 ### 🔹 Primitive Types → Stored by **Value**
 
+> stored directly in the call stack
 > Copying creates a new value. Changes don’t affect the original.
 
 ```js
@@ -165,6 +168,7 @@ console.log(a); // "Hello"
 
 ### 🔸 Non-Primitives (Objects, Arrays) → Stored by Reference
 
+> stored in heap; variable holds a reference
 > Copying just points to the same memory. Changes affect both.
 
 ```js
@@ -173,6 +177,18 @@ const obj2 = obj1;
 
 obj2.name = "Bob";
 console.log(obj1.name); // "Bob"
+```
+
+```js
+function change(obj) {
+	// obj -> 57
+	obj.x = 200;
+	obj = { x: 300 }; // 58
+}
+
+let p = { x: 100 }; // 57
+change(p); // 57
+console.log(p.x);
 ```
 
 ### 🔁 Shallow Copy
@@ -277,6 +293,14 @@ let x = 10;
 - An Execution Context is the `environment` in which JavaScript code is evaluated and executed.
 - Every time a function runs, a new execution context is created.
 
+Think of Execution Context as a room where your code runs.
+
+Every room has:
+
+- Variable Environment → variables, functions
+- Scope Chain → where to search variables
+- this binding → depends on how you entered the room
+
 ---
 
 ## 6. Difference between var, let and const
@@ -347,6 +371,7 @@ function add(a, b) {
 | Context               | `this` refers to               |
 | --------------------- | ------------------------------ |
 | Global scope          | `window` (in browser)          |
+| Global scope          | `{}` (in Node.js)              |
 | Function (non-strict) | `window`                       |
 | Function (strict)     | `undefined`                    |
 | Object method         | That object                    |
@@ -356,6 +381,9 @@ function add(a, b) {
 ---
 
 ### 🧠 Arrow Function Example:
+
+Arrow functions DO NOT have their own `this`.
+They borrow `this` from outer scope (lexical `this`).
 
 ```js
 const obj = {
@@ -403,26 +431,19 @@ const obj = {
 function greet(greeting, punctuation) {
 	console.log(greeting + ", " + this.name + punctuation);
 }
-
 const person = { name: "Alice" };
 
 greet.call(person, "Hello", "!"); // Hello, Alice!
+
 greet.apply(person, ["Hi", "!!!"]); // Hi, Alice!!!
-const boundGreet = greet.bind(person, "Hey", "?");
-boundGreet(); // Hey, Alice?
+
+const boundGreet = greet.bind(person);
+boundGreet("Hey", "?"); // Hey, Alice?
 ```
 
-```js
-function greet(msg, punc) {
-	console.log(msg + ", " + this.name + punc);
-}
-const user = { name: "Alice" };
-
-greet.call(user, "Hello", "!"); // Hello, Alice!
-greet.apply(user, ["Hi", "!!"]); // Hi, Alice!!
-const fn = greet.bind(user, "Hey", "?");
-fn(); // Hey, Alice?
-```
+`call` → abhi call karo
+`apply` → array ke saath
+`bind` → baad me call karna
 
 ---
 
@@ -636,6 +657,14 @@ console.log(addFive(10)); // 15
 ---
 
 ## 28. New keyword
+
+`new` keyword:
+
+1. Creates empty object {}
+2. Sets this = newly created object
+3. Returns the object
+
+✔️ this refers to the new object.
 
 ---
 
@@ -935,7 +964,7 @@ counter(); // 2
 
 ### 🔹 Where?
 
-- **Data privacy:** To create private variables not accessible from outside.
+- **Data privacy:** To create `private variables` not accessible from outside.
 - **Maintain state:** In functions like counters, timers, or caches.
 - **Callbacks & event handlers:** To remember variables in asynchronous code.
 - **Functional programming:** For partial application, currying, and memoization.
@@ -1318,7 +1347,29 @@ const doubled = nums.map((n) => n * 2); // returns [2, 4, 6]
 - Use **Fetch** for native, lightweight requests in modern environments
 - Axios simplifies many HTTP tasks with built-in utilities
 
-## 78. f
+## 78. Object.freeze() vs Object.seal()
+
+✔ **Object.freeze()**
+
+- Prevents adding, removing, changing any properties
+- Prevents modifying nested objects?  
+  → **NO**, unless deep freeze.
+
+```js
+const obj = Object.freeze({ a: 1 });
+obj.a = 10; // silently fails (or throws in strict mode)
+```
+
+✔ **Object.seal()**
+
+- Cannot add/remove properties
+- Can modify existing values
+
+```js
+const obj = Object.seal({ a: 1 });
+obj.a = 10; // allowed
+delete obj.a; // fails
+```
 
 ## 79. asd
 

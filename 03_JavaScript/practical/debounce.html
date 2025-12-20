@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<input type="text" id="inputValue" />
+		<button id="debounce">Debounce</button>
+		<button id="throttle">Throttle</button>
+	</body>
+	<script>
+		// const input = document.querySelector("#inputValue");
+
+		// const fetchData = (e) => {
+		// 	console.log("API called with:", e.target.value);
+		// };
+
+		// const debounce = (fn, time) => {
+		// 	let timeoutId;
+
+		// 	return function (...args) {
+		// 		clearTimeout(timeoutId);
+
+		// 		timeoutId = setTimeout(() => {
+		// 			fn.apply(this, args);
+		// 		}, time);
+		// 	};
+		// };
+
+		// const debouncedFetch = debounce(fetchData, 300);
+
+		// input.addEventListener("keyup", debouncedFetch);
+
+		function debounce(fn, delay) {
+			let timer;
+
+			return function (...args) {
+				clearTimeout(timer);
+
+				timer = setTimeout(() => {
+					fn.apply(this, args);
+				}, delay);
+			};
+		}
+
+		function throttle(fn, limit) {
+			let isThrottle = false;
+
+			return function (...args) {
+				if (!isThrottle) {
+					fn.apply(this, args);
+					isThrottle = true;
+
+					setTimeout(() => {
+						isThrottle = false;
+					}, limit);
+				}
+			};
+		}
+
+		document.getElementById("debounce").addEventListener(
+			"click",
+			debounce(() => console.log("Debounced"), 1000)
+		);
+
+		document.getElementById("throttle").addEventListener(
+			"click",
+			throttle(() => console.log("Throttled"), 1000)
+		);
+	</script>
+</html>

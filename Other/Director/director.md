@@ -1,10 +1,9 @@
 ## About You & Your Career Goals
 
 1. Tell me about yourself.
+2. What are your strengths and weaknesses?
 
 - My main strengths are `problem-solving`, writing `clean` and `maintainable` code, and `adapting quickly` to new technologies. I also take `ownership` of my work and enjoy collaborating with my team.
-
-2. What are your strengths and weaknesses?
 
 - Sometimes I get too `focused` on `perfecting` small details, but I’ve learned to balance `quality` with `timely delivery`.
 

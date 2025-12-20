@@ -250,7 +250,6 @@ const users = [
 const formatedUser = {};
 
 users.forEach((value) => {
-	console.log(value.city);
 	if (!formatedUser.hasOwnProperty(value.city)) {
 		formatedUser[value.city] = [value.name];
 	} else {
