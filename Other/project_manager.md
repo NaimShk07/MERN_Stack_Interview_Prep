@@ -75,3 +75,15 @@ with a team that values quality and learning. Over time,
 I’d like to grow into someone who can design services end-to-end and mentor newer developers.
 
 ---
+
+## 11. Expected Salary
+
+**Simple & Professional**
+
+“Regarding salary expectations, I am flexible and comfortable with the company’s standard compensation.”
+
+**Polite & Clear**
+
+“In terms of expectations, I am flexible and open to a salary that aligns with company standards.”
+
+20 - 40 % (negotiable)

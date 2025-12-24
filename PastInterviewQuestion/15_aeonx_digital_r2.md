@@ -1,4 +1,4 @@
-1. Can you tell me about the role of note-taking for interview questions and managing EV charging project charges?
+1. Can you tell me about the your role and managing EV charging project charges?
 2. What is the difference between TypeScript and Basic JavaScript?
 3. All these projects which you have mentioned, were they products of the company?
 4. How do you get the requirement? How do you understand the requirement and design the solution?
