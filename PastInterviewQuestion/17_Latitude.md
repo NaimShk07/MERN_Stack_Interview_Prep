@@ -69,3 +69,5 @@
 ## Miscellaneous
 
 1. Have you integrated any payment gateway?
+2. how will you implement a search feature in optimize way to get response in microseconds
+3. You know there are some member in your team who are not performing well what you will do 
