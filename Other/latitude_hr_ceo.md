@@ -4,6 +4,7 @@ At this stage, they already believe you’re **technically capable**. This round
 Below is a **clear, practical guide** tailored for a **2-year MERN developer**.
 
 ---
+project ai offer 
 
 ## What This Final Round Is REALLY About
 
